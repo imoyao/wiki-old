@@ -611,7 +611,7 @@ HTTPS 并不是新协议，而是让 HTTP 先和 SSL（Secure Sockets Layer）�
 
 通过使用 SSL，HTTPS 具有了加密（防窃听）、认证（防伪装）和完整性保护（防篡改）。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/ssl-offloading.jpg" width="700"/>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/ssl-offloading.jpg)
 
 ## 加密
 
@@ -622,7 +622,7 @@ HTTPS 并不是新协议，而是让 HTTP 先和 SSL（Secure Sockets Layer）�
 - 优点：运算速度快；
 - 缺点：无法安全地将密钥传输给通信方。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/7fffa4b8-b36d-471f-ad0c-a88ee763bb76.png" width="600"/>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/7fffa4b8-b36d-471f-ad0c-a88ee763bb76.png)
 
 ### 2.非对称密钥加密
 
@@ -635,7 +635,7 @@ HTTPS 并不是新协议，而是让 HTTP 先和 SSL（Secure Sockets Layer）�
 - 优点：可以更安全地将公开密钥传输给通信发送方；
 - 缺点：运算速度慢。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/39ccb299-ee99-4dd1-b8b4-2f9ec9495cb4.png" width="600"/>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/39ccb299-ee99-4dd1-b8b4-2f9ec9495cb4.png)
 
 ### 3. HTTPS 采用的加密方式
 
@@ -644,7 +644,7 @@ HTTPS 并不是新协议，而是让 HTTP 先和 SSL（Secure Sockets Layer）�
 - 使用非对称密钥加密方式，传输对称密钥加密方式所需要的 Secret Key，从而保证安全性;
 - 获取到 Secret Key 后，再使用对称密钥加密方式进行通信，从而保证效率。（下图中的 Session Key 就是 Secret Key）
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/How-HTTPS-Works.png" width="600"/>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/How-HTTPS-Works.png)
 
 ## 认证
 
@@ -685,7 +685,7 @@ HTTP/1.x 实现简单是以牺牲性能为代价的：
 
 HTTP/2.0 将报文分成 HEADERS 帧和 DATA 帧，它们都是二进制格式的。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/86e6a91d-a285-447a-9345-c5484b8d0c47.png" width="400"/>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/86e6a91d-a285-447a-9345-c5484b8d0c47.png)
 
 在通信过程中，只会有一个 TCP 连接存在，它承载了任意数量的双向数据流（Stream）。
 
@@ -693,7 +693,7 @@ HTTP/2.0 将报文分成 HEADERS 帧和 DATA 帧，它们都是二进制格式�
 - 消息（Message）是与逻辑请求或响应对应的完整的一系列帧。
 - 帧（Frame）是最小的通信单位，来自不同数据流的帧可以交错发送，然后再根据每个帧头的数据流标识符重新组装。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/af198da1-2480-4043-b07f-a3b91a88b815.png" width="600"/>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/af198da1-2480-4043-b07f-a3b91a88b815.png)
 
 ## 服务端推送
 
@@ -709,7 +709,7 @@ HTTP/2.0 要求客户端和服务器同时维护和更新一个包含之前见�
 
 不仅如此，HTTP/2.0 也使用 Huffman 编码对首部字段进行压缩。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/_u4E0B_u8F7D.png" width="600"/>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/_u4E0B_u8F7D.png)
 
 # 八、HTTP/1.1 新特性
 
