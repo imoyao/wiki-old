@@ -16,7 +16,7 @@ date: 2020-05-25 18:21:46
 >
 > <right> ——《笑林广记》· 训子（古艳部）</right> 
  
-![线性搜索算法](./img/Linear_search.gif)
+![线性搜索算法](/images/Linear_search.gif)
 
 以上便是`线性查找`，线性查找也叫`简单查找`，或者更加通俗的叫法“傻找”。就是从头找到尾，直到符合条件了才返回。
 
@@ -26,7 +26,7 @@ date: 2020-05-25 18:21:46
 
 ## 图示
 
-![二分搜索算法](./img/Binary_search_into_array.png)
+![二分搜索算法](/images/Binary_search_into_array.png)
 
 ## 复杂度
 

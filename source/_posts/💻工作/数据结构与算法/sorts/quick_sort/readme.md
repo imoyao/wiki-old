@@ -32,7 +32,7 @@ date: 2020-05-25 18:21:46
 
 ## 图示
 
-![快速排序算法](./img/quick_sort_anim.gif)
+![快速排序算法](/images/quick_sort_anim.gif)
 
 ## 复杂度
 

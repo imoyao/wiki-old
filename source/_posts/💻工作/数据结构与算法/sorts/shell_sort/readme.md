@@ -20,7 +20,7 @@ date: 2020-05-25 18:21:46
 
 ## 图示
 
-![希尔排序](./img/Sorting_shellsort_anim.gif)
+![希尔排序](/images/Sorting_shellsort_anim.gif)
 
 ## 复杂度
 

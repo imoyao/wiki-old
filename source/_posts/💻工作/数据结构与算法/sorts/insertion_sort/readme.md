@@ -17,9 +17,9 @@ date: 2020-05-25 18:21:46
 
 ## 图示
 
-![插入排序算法](./img/Insertion_sort_animation.gif)
+![插入排序算法](/images/Insertion_sort_animation.gif)
 
-![插入排序实例](./img/Insertion-sort-example.gif)
+![插入排序实例](/images/Insertion-sort-example.gif)
 
 ## 复杂度
 

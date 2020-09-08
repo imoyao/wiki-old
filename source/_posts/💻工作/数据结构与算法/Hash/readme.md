@@ -28,13 +28,13 @@ date: 2020-05-25 18:21:46
 ### 开放寻址法（OPEN ADDRESSING）
 开放寻址法中，所有的元素都存放在散列表里，当产生哈希冲突时，通过一个探测函数计算出下一个候选位置，如果下一个获选位置还是有冲突，那么不断通过探测函数往下找，直到找个一个空槽来存放待插入元素。
 函数定义:   
-![](./img/open-addr-1.jpg)
+![](/images/open-addr-1.jpg)
 其中，hash(key) 是哈希函数，di 是增量序列，i 为已冲突的次数。
 - 线性探测法(linear probing)：
     h(k,i)=(h′(k)+i)%m,i=0,1,...,m−1
     di= i ，或者其他线性函数。相当于逐个探测存放地址的表，直到查找到一个空单元，然后放置在该单元。    
 - 平方探测法(quadratic probing)：
-    ![平方探测法](./img/square-func.jpg)
+    ![平方探测法](/images/square-func.jpg)
     当一个槽被占用，以二次方作为偏移量。 h(k,i)=(h′(k)+c1+c2i2)%m,i=0,1,...,m−1
 - 双重散列(double hashing): 重新计算 hash 结果。 h(k,i)=(h1(k)+ih2(k))%m
 

@@ -41,7 +41,7 @@ date: 2020-05-25 18:21:46
 链表的每个节点结构如下：  
 data|next   
 完整结构如下： 
-![单链表](img/Link_zh.png) 
+![单链表](/images/Link_zh.png)
 其中，head 保存首位节点的地址，其余节点保存本节点数据以及下一节点地址，最后一个节点保存节点数据，指向 null;
 
 ## 代码实现
@@ -51,7 +51,7 @@ data|next
 1. 使用 3 个指针遍历单链表，逐个链接点进行反转
 
 2. 从第 2 个节点到第 N 个节点，依次逐节点插入到第 1 个节点(head 节点)之后，最后将第一个节点挪到新表的表尾。    
-![原来的链表头最后移动到表尾](./img/reverse_linked_list_head_last.gif)
+![原来的链表头最后移动到表尾](/images/reverse_linked_list_head_last.gif)
     
 3. 递归(相信我们都熟悉的一点是，对于树的大部分问题，基本可以考虑用递归来解决。但是我们不太熟悉的一点是，对于单链表的一些问题，也可以使用递归。可以认为单链表是一颗永远只有左(右)子树的树，因此可以考虑用递归来解决。或者说，因为单链表本身的结构也有自相似的特点，所以可以考虑用递归来解决)
 ### 查找链表中间节点
@@ -65,10 +65,10 @@ data|next
 2. 从 left 头节点和逆序后的 right 头节点开始遍历，一直往后遍历直到链表尾；
 3. 遍历过程中出现不相同的数据则不是回文的单链表，否则就是回文的单链表；
 #### 图解
-![1](img/whole_linked_list.png)
-![2](img/split_to_2_side.png)
-![3](img/reverse_linked_list.png)
-![4](img/compare_linked_list.png)
+![1](/images/whole_linked_list.png)
+![2](/images/split_to_2_side.png)
+![3](/images/reverse_linked_list.png)
+![4](/images/compare_linked_list.png)
 --- 
 #### 代码实现
 
@@ -81,7 +81,7 @@ data|next
 ## 结构模型 
 指针域|数据域|指针域 
 完整结构如下  
-![双向链表](img/Doubly-linked-list.svg.png)
+![双向链表](/images/Doubly-linked-list.svg.png)
 
 ## 代码实现
 - [双向链表](./doubly_linked_list.py)  

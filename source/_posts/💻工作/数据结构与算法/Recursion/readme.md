@@ -25,9 +25,9 @@ date: 2020-05-25 18:21:46
 
 ## 图示
 
-![自然界中的递归](./img/fab_in_culture.jpg)
+![自然界中的递归](/images/fab_in_culture.jpg)
 
-![生活中中的递归](./img/recurse_in_life.jpg)
+![生活中中的递归](/images/recurse_in_life.jpg)
 
 ## 特点
 

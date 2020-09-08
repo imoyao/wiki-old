@@ -25,9 +25,9 @@ date: 2020-05-25 18:21:46
 
 ## 图示
 
-![归并排序算法](./img/Merge_sort_animation.gif)
+![归并排序算法](/images/Merge_sort_animation.gif)
 
-![归并排序实例](./img/Merge-sort-example.gif)
+![归并排序实例](/images/Merge-sort-example.gif)
 
 ## 复杂度
 

@@ -12,11 +12,11 @@ date: 2020-05-25 18:21:46
 
 ## 概念
 队列，（queue），是*先进先出*（FIFO, First-In-First-Out）的线性表。在具体应用中通常用链表或者数组来实现。队列只允许在后端（称为 rear）进行插入操作，在前端（称为 front）进行删除操作。
-![先进先出](img/queue.png)
+![先进先出](/images/queue.png)
 
 ## 生活实例
 - 车站排队购票
-![春运排队](img/queue-example.jpg)
+![春运排队](/images/queue-example.jpg)
 
 ## 操作
 队列的操作方式和堆栈类似，唯一的区别在于队列只允许新数据在后端进行添加。  

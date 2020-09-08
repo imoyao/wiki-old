@@ -19,9 +19,9 @@ date: 2020-05-25 18:21:46
 
 ## 图示
 
-![选择排序算法](./img/Selection_sort_animation.gif)
+![选择排序算法](/images/Selection_sort_animation.gif)
 
-![选择排序动画示例](./img/Selection-Sort-Animation.gif)
+![选择排序动画示例](/images/Selection-Sort-Animation.gif)
 
 红色表示当前未排序序列中的最小值，黄色表示已排序序列，蓝色表示搜寻操作。
 
