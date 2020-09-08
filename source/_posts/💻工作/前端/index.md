@@ -1,5 +1,5 @@
 ---
-title: 一个示例 markdown
+title: 前端模板收集
 toc: true
 tags: 前端
 categories:
