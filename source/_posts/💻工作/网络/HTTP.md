@@ -16,17 +16,17 @@ date: 2019-08-07 12:27:56
 
 URI 包含 URL 和 URN。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/8441b2c4-dca7-4d6b-8efb-f22efccaf331.png" width="500px"> </div><br>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/8441b2c4-dca7-4d6b-8efb-f22efccaf331.png)
 
 ## 请求和响应报文
 
 ### 1. 请求报文
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/HTTP_RequestMessageExample.png" width=""/> </div><br>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/HTTP_RequestMessageExample.png)
 
 ### 2. 响应报文
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/HTTP_ResponseMessageExample.png" width=""/> </div><br>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/HTTP_ResponseMessageExample.png)
 
 # 二、HTTP 方法
 
@@ -113,7 +113,7 @@ DELETE /file.html HTTP/1.1
 CONNECT www.example.com:443 HTTP/1.1
 ```
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/dc00f70e-c5c8-4d20-baf1-2d70014a97e3.jpg" width=""/> </div><br>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/dc00f70e-c5c8-4d20-baf1-2d70014a97e3.jpg)
 
 ## TRACE
 
@@ -256,7 +256,7 @@ CONNECT www.example.com:443 HTTP/1.1
 
 ## 连接管理
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/HTTP1_x_Connections.png" width="800"/> </div><br>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/HTTP1_x_Connections.png" width="800"/>
 
 ### 1. 短连接与长连接
 
@@ -585,11 +585,11 @@ HTTP/1.1 使用虚拟主机技术，使得一台服务器拥有多个域名，�
 
 - 用户察觉得到正向代理的存在。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/a314bb79-5b18-4e63-a976-3448bffa6f1b.png" width=""/> </div><br>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/a314bb79-5b18-4e63-a976-3448bffa6f1b.png)
 
 - 而反向代理一般位于内部网络中，用户察觉不到。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/2d09a847-b854-439c-9198-b29c65810944.png" width=""/> </div><br>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/2d09a847-b854-439c-9198-b29c65810944.png)
 
 ### 2. 网关
 
@@ -611,7 +611,7 @@ HTTPS 并不是新协议，而是让 HTTP 先和 SSL（Secure Sockets Layer）�
 
 通过使用 SSL，HTTPS 具有了加密（防窃听）、认证（防伪装）和完整性保护（防篡改）。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/ssl-offloading.jpg" width="700"/> </div><br>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/ssl-offloading.jpg" width="700"/>
 
 ## 加密
 
@@ -622,7 +622,7 @@ HTTPS 并不是新协议，而是让 HTTP 先和 SSL（Secure Sockets Layer）�
 - 优点：运算速度快；
 - 缺点：无法安全地将密钥传输给通信方。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/7fffa4b8-b36d-471f-ad0c-a88ee763bb76.png" width="600"/> </div><br>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/7fffa4b8-b36d-471f-ad0c-a88ee763bb76.png" width="600"/>
 
 ### 2.非对称密钥加密
 
@@ -635,7 +635,7 @@ HTTPS 并不是新协议，而是让 HTTP 先和 SSL（Secure Sockets Layer）�
 - 优点：可以更安全地将公开密钥传输给通信发送方；
 - 缺点：运算速度慢。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/39ccb299-ee99-4dd1-b8b4-2f9ec9495cb4.png" width="600"/> </div><br>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/39ccb299-ee99-4dd1-b8b4-2f9ec9495cb4.png" width="600"/>
 
 ### 3. HTTPS 采用的加密方式
 
@@ -644,7 +644,7 @@ HTTPS 并不是新协议，而是让 HTTP 先和 SSL（Secure Sockets Layer）�
 - 使用非对称密钥加密方式，传输对称密钥加密方式所需要的 Secret Key，从而保证安全性;
 - 获取到 Secret Key 后，再使用对称密钥加密方式进行通信，从而保证效率。（下图中的 Session Key 就是 Secret Key）
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/How-HTTPS-Works.png" width="600"/> </div><br>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/How-HTTPS-Works.png" width="600"/>
 
 ## 认证
 
@@ -656,7 +656,7 @@ HTTPS 并不是新协议，而是让 HTTP 先和 SSL（Secure Sockets Layer）�
 
 进行 HTTPS 通信时，服务器会把证书发送给客户端。客户端取得其中的公开密钥之后，先使用数字签名进行验证，如果验证通过，就可以开始通信了。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/2017-06-11-ca.png" width=""/> </div><br>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/2017-06-11-ca.png)
 
 ## 完整性保护
 
@@ -685,7 +685,7 @@ HTTP/1.x 实现简单是以牺牲性能为代价的：
 
 HTTP/2.0 将报文分成 HEADERS 帧和 DATA 帧，它们都是二进制格式的。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/86e6a91d-a285-447a-9345-c5484b8d0c47.png" width="400"/> </div><br>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/86e6a91d-a285-447a-9345-c5484b8d0c47.png" width="400"/>
 
 在通信过程中，只会有一个 TCP 连接存在，它承载了任意数量的双向数据流（Stream）。
 
@@ -693,13 +693,13 @@ HTTP/2.0 将报文分成 HEADERS 帧和 DATA 帧，它们都是二进制格式�
 - 消息（Message）是与逻辑请求或响应对应的完整的一系列帧。
 - 帧（Frame）是最小的通信单位，来自不同数据流的帧可以交错发送，然后再根据每个帧头的数据流标识符重新组装。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/af198da1-2480-4043-b07f-a3b91a88b815.png" width="600"/> </div><br>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/af198da1-2480-4043-b07f-a3b91a88b815.png" width="600"/>
 
 ## 服务端推送
 
 HTTP/2.0 在客户端请求一个资源时，会把相关的资源一起发送给客户端，客户端就不需要再次发起请求了。例如客户端请求 page.html 页面，服务端就把 script.js 和 style.css 等与之相关的资源一起发给客户端。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/e3f1657c-80fc-4dfa-9643-bf51abd201c6.png" width="800"/> </div><br>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/e3f1657c-80fc-4dfa-9643-bf51abd201c6.png" width="800"/>
 
 ## 首部压缩
 
@@ -709,7 +709,7 @@ HTTP/2.0 要求客户端和服务器同时维护和更新一个包含之前见�
 
 不仅如此，HTTP/2.0 也使用 Huffman 编码对首部字段进行压缩。
 
-![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/_u4E0B_u8F7D.png" width="600"/> </div><br>
+![](https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/_u4E0B_u8F7D.png" width="600"/>
 
 # 八、HTTP/1.1 新特性
 
@@ -834,10 +834,6 @@ DELETE /idX/delete HTTP/1.1   -> Returns 404
 - [Symmetric vs. Asymmetric Encryption – What are differences?](https://www.ssl2buy.com/wiki/symmetric-vs-asymmetric-encryption-what-are-differences)
 - [Web 性能优化与 HTTP/2](https://www.kancloud.cn/digest/web-performance-http2)
 - [HTTP/2 简介](https://developers.google.com/web/fundamentals/performance/http2/?hl=zh-cn)
-
-
-
-
 
 
 <div align="center"><img width="320px" src="https://open.weixin.qq.com/qr/code?username=idealyard"></img></div>
