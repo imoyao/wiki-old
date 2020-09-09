@@ -1,5 +1,5 @@
 ---
-title: first-wiki
+title: Ceph 性能优化总结
 toc: true
 categories:
   - "\U0001F4BB工作"
@@ -10,19 +10,6 @@ date: 2020-05-23 11:02:28
 tags:
 ---
 # [Ceph 性能优化总结](https://www.jianshu.com/p/dd572541df2e)
-
-1. 硬件层面
-   硬件规划
-   SSD 选择
-   BIOS 设置
-2. 软件层面
-   Linux OS
-   Ceph Configurations
-   PG Number 调整
-   CRUSH Map
-   其他因素
-
-------
 
 ## 硬件优化
 
