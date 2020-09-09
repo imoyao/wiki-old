@@ -1,5 +1,5 @@
 ---
-title: first-wiki
+title: CephFS搭建
 toc: true
 categories:
   - "\U0001F4BB工作"
