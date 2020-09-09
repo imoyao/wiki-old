@@ -1,5 +1,5 @@
 ---
-title: first-wiki
+title: CRUSH Map
 toc: true
 categories:
   - "\U0001F4BB工作"
