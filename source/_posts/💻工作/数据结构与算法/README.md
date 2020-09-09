@@ -5,7 +5,7 @@ tags:
   - 数据结构
   - 算法
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 数据结构与算法
 date: 2020-05-26 12:27:56
 ---
@@ -33,7 +33,6 @@ date: 2020-05-26 12:27:56
 #### TODO
 - [树](./Tree)
 - [图](./Graph)
-
 - 第一周：数组与链表、栈与队列
 - 第二周：哈希表、映射、集合
 - 第二周：树、二叉数和图
@@ -79,15 +78,16 @@ date: 2020-05-26 12:27:56
 
 [python-algorithm](https://hujiaweibujidao.github.io/tags/algorithm/)
 
-### Algorithms-Python
-
-来自 github trending ,暂时没有发现中文版。
-
-[Algorithms-Python](https://github.com/TheAlgorithms/Python)
+### Github
+- [LeetCode Solutions: A Record of My Problem Solving Journey.( leetcode 题解，记录自己的 leetcode 解题之路。)](https://github.com/azl397985856/leetcode)
+- [MisterBooo/LeetCodeAnimation: Demonstrate all the questions on LeetCode in the form of animation.（用动画的形式呈现解 LeetCode 题目的思路）](https://github.com/MisterBooo/LeetCodeAnimation)
+- [Algorithms-Python](https://github.com/TheAlgorithms/Python)
 
 ### Data Structures and Algorithms in Python
 
 [Data Structures and Algorithms in Python](https://doc.lagout.org/programmation/python/Data%20Structures%20and%20Algorithms%20in%20Python%20[Goodrich,%20Tamassia%20&%20Goldwasser%202013-03-18].pdf)
+
+[算法与数据结构入门教程](https://liweiwei1419.gitee.io/leetcode-algo/)
 
 ## 可视化
 
@@ -103,7 +103,7 @@ date: 2020-05-26 12:27:56
 
 ## 约定
 
-本仓库中代码全部使用`Python3.6`实现，使用`Linux`操作系统运行。内页`readme`中的代码默认指同目录下`.py`文件中的代码片段。
+本仓库中代码全部使用`Python3.6+`实现，使用`Linux`操作系统运行。内页`readme`中的代码默认指同目录下`.py`文件中的代码片段。
 ```plain
 imoyao@local:~$ lsb_release -a
 

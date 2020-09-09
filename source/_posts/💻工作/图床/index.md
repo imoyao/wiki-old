@@ -3,7 +3,7 @@ title: 打造个人图床
 toc: true
 tags: 博客
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 图床
 date: 2020-05-23 12:27:56
 ---

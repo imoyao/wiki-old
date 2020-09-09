@@ -4,7 +4,7 @@ toc: true
 tags:
   - 算法
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 数据结构与算法
   - Stack
 date: 2020-05-25 18:21:46
@@ -42,8 +42,8 @@ date: 2020-05-25 18:21:46
 | s.size()      | [4,'dog']          | 2      |                    |
 
 ## 代码实现
-[基于`list`实现`stack`](list_stack.py)  
-[基于单链表实现`stack`](linked_stack.py)
+[基于`list`实现`stack`](https://github.com/imoyao/my-wiki/blob/master/source/_posts/%F0%9F%92%BB%E5%B7%A5%E4%BD%9C/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Stack/list_stack.py)
+[基于单链表实现`stack`](https://github.com/imoyao/my-wiki/blob/master/source/_posts/%F0%9F%92%BB%E5%B7%A5%E4%BD%9C/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Stack/linked_stack.py)
 
 ## 其他
 常与另一种有序的线性数据`队列`相提并论。

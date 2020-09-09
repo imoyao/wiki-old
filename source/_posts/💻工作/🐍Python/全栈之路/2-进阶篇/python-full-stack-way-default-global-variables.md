@@ -6,7 +6,7 @@ tags:
   - 装饰器
 top: 3
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - "\U0001F40DPython"
   - 全栈之路
   - 2-进阶篇

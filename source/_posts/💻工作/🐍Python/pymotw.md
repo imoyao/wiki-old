@@ -3,7 +3,7 @@ title: 每周一个 Python 标准库
 toc: true
 tags: Python
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - "\U0001F40DPython"
 date: 2020-06-29 12:27:56
 ---

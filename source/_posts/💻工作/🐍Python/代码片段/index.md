@@ -3,7 +3,7 @@ title: Python 常用代码片段整理
 toc: true
 tags: others
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - "\U0001F40DPython"
   - 代码片段
 date: 2020-05-26 12:27:56

@@ -6,7 +6,7 @@ tags:
 subtitle: "想想说人生无悔，都是赌气的话。人生若无悔，那该多无趣啊。<br>所以说程序运行遇到报错是很正常的一件事。\U0001F61C"
 cover: /images/sarah-kilian-52jRtc2S_VE-unsplash.jpg
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
   - CEPH
   - 2-部署

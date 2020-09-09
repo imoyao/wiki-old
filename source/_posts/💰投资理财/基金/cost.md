@@ -3,7 +3,7 @@ title: 购买基金中的费率问题
 toc: true
 tags: others
 categories:
-  - "\U0001F4B0投资理财"
+  - "\U0001F4B0 投资理财"
   - 基金
 date: 2020-08-17 12:27:56
 ---

@@ -1,8 +1,8 @@
 ---
-title: mds元信息缓存不释放问题
+title: mds 元信息缓存不释放问题
 toc: true
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
   - CEPH
   - troubleshooting

@@ -3,7 +3,7 @@ title: Vim CHEATSHEET (中文速查表)
 toc: true
 tags: Vim
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 编辑器
 date: 2020-05-26 12:27:56
 ---
