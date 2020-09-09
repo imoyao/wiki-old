@@ -1,5 +1,5 @@
 ---
-title: first-wiki
+title: Ceph常用命令
 toc: true
 categories:
   - "\U0001F4BB工作"
