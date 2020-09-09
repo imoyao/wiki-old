@@ -1,5 +1,5 @@
 ---
-title: first-wiki
+title: osd自杀问题跟踪
 toc: true
 categories:
   - "\U0001F4BB工作"
