@@ -1,5 +1,5 @@
 ---
-title: first-wiki
+title: atop 获取进程退出信息
 toc: true
 categories:
   - "\U0001F4BB工作"
