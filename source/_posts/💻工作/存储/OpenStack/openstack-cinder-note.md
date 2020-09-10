@@ -72,7 +72,8 @@ volume_group = StorPool11
 volume_backend_name = estorip
 use_multipath_for_image_xfer = True
 ```
-
+## 使用 DRBD 作为 OpenStack 存储后端
+[How to Setup LINSTOR in OpenStack » LINBIT](https://www.linbit.com/how-to-setup-linstor-in-openstack/)
 ## 推荐阅读
 
 一些深入理解时可能有用的链接

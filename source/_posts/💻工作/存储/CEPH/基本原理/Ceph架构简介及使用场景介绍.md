@@ -250,7 +250,7 @@ ceph\_io\_4.png
 2.4 Ceph IO 伪代码流程
 ----------------
 
-    locator = object_nameplainplainplainplainplainplainplainplainplainplain
+    locator = object_nameplainplainplainplainplainplainplainplainplainplainplainplainplainplain
     obj_hash =  hash(locator)
     pg = obj_hash % num_pg
     osds_for_pg = crush(pg)  # returns a list of osds
@@ -499,19 +499,19 @@ ceph\_message\_3.png
     };
 
     struct ceph_msg_header {
-        ************__le64 seq;       // 当前 session 内 消息的唯一 序号
-        __************le64 tid;       // 消息的全局唯一的 id
-        ******************__le16 type;      // 消息类型
-        __******************le16 priority;  // 优先级
+        ********************__le64 seq;       // 当前 session 内 消息的唯一 序号
+        __********************le64 tid;       // 消息的全局唯一的 id
+        ******************************__le16 type;      // 消息类型
+        __******************************le16 priority;  // 优先级
         __le16 version;   // 版本号
 
-        __le32 front_len; // payload 的长度plainplainplainplainplainplainplainplainplainplain
+        __le32 front_len; // payload 的长度plainplainplainplainplainplainplainplainplainplainplainplainplainplain
         __le32 middle_len;// middle 的长度
         __le32 data_len;  // data 的 长度
         __le16 data_off;  // 对象的数据偏移量
 
 
-        struct ceph_entity_name src; //消息源plainplainplainplainplainplainplain
+        struct ceph_entity_name src; //消息源plainplainplainplainplainplainplainplainplain
 
         /* oldest code we think can decode this.  unknown if zero. */
         __le16 compat_version;
