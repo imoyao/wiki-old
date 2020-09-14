@@ -1,11 +1,15 @@
 ---
 title: MySQL 索引
 toc: true
-date: 2020-05-26 12:27:56
 tags:
-- MySQL
-- 索引
-- 面试
+  - MySQL
+  - 索引
+  - 面试
+categories:
+  - "\U0001F4BB 工作"
+  - 数据库
+  - MySQL
+date: 2020-05-26 12:27:56
 ---
 
 摘要

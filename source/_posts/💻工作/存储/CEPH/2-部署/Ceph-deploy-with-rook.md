@@ -1,10 +1,10 @@
 ---
-title: 使用rook部署CEPH
+title: 使用 rook 部署 CEPH
 categories:
   - "\U0001F4BB 工作"
   - 存储
   - CEPH
-  - rook
+  - 2-部署
 ---
 
 ## 版本信息
