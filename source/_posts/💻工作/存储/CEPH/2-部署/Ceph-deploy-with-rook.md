@@ -1,4 +1,5 @@
 ---
+title: 使用rook部署CEPH
 categories:
   - "\U0001F4BB 工作"
   - 存储
