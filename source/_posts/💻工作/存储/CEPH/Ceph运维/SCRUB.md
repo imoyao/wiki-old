@@ -1,4 +1,5 @@
 ---
+title: SCRUB 相关
 categories:
   - "\U0001F4BB 工作"
   - 存储

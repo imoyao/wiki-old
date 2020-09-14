@@ -1,4 +1,6 @@
 ---
+title: 元数据服务器（MDS）相关
+toc: true
 categories:
   - "\U0001F4BB 工作"
   - 存储
@@ -8,8 +10,6 @@ categories:
 # 1.说明
 ## 1.1 介绍
 MDS 全称 Ceph Metadata Server，是 CephFS 服务依赖的元数据服务。
-
-
 
 # 2. 常用操作
 ## 2.1 查看 mds 的状态

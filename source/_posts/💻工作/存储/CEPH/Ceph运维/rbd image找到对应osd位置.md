@@ -1,4 +1,5 @@
 ---
+title: rbd image找到对应osd位置
 categories:
   - "\U0001F4BB 工作"
   - 存储

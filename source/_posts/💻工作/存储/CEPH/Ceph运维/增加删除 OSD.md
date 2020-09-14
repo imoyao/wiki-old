@@ -1,4 +1,5 @@
 ---
+title: 增加删除 OSD
 categories:
   - "\U0001F4BB 工作"
   - 存储

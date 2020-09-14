@@ -1,4 +1,5 @@
 ---
+title: 块存储(RBD)搭建
 categories:
   - "\U0001F4BB 工作"
   - 存储
