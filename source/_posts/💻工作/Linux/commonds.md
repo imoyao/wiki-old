@@ -19,7 +19,9 @@ date: 2020-05-23 12:27:56
 
 ### 整个目录转换
 下面列出怎么对整个目录中的文件做`dos2unix`操作  
-`$ find . -type f -exec dos2unix {} \;`
+```bash
+find . -type f -exec dos2unix {} \;
+```
 
 其中具体命令的解释如下：
 ```plain
