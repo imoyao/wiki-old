@@ -1,6 +1,5 @@
 ---
 title: 社保小白科普文
-toc: true
 tags:
   - 社保
 categories:
