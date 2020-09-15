@@ -2,10 +2,10 @@
 title: 元数据服务器（MDS）相关
 toc: true
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
   - CEPH
-  - Ceph 运维
+  - Ceph运维
 ---
 # 1.说明
 ## 1.1 介绍

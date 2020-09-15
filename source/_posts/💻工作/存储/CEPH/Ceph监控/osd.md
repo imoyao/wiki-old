@@ -1,7 +1,7 @@
 ---
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
   - CEPH
-  - Ceph 监控
+  - Ceph监控
 ---
