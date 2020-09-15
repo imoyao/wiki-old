@@ -210,10 +210,8 @@ C:\Python35\python.exe F:/Python_code/sublime/Week5/Day02/sub.py
 
 Process finished with exit code 0
 ```
-<<<<<<< HEAD
 ## 其他资料
 [Python 之系统交互（subprocess） - 云游道士 - 博客园](https://www.cnblogs.com/yyds/p/7288916.html)
-=======
 
 ## 高级用法
 
@@ -252,4 +250,3 @@ with Popen(["cmd", "arg1"], stdout=PIPE, bufsize=1,
 与 Python 2 不同，Python 2 照原样输出子进程的字节串。 Python 3 使用文本模式（使用 locale.getpreferredencoding(False) 编码对 cmd 的输出进行解码）。
 
 来源参见[python - Read streaming input from subprocess.communicate() - Stack Overflow](https://stackoverflow.com/questions/2715847/read-streaming-input-from-subprocess-communicate)
->>>>>>> 7e9dccfdf9b7bc243e39db34b0c5d11d3adb5c62
