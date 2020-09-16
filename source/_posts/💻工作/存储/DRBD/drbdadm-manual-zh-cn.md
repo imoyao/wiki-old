@@ -174,6 +174,7 @@ drbdadm [-d] [-c {_file_}] [-t {_file_}] [-s {_cmd_}] [-m {_cmd_}] [-S] [-h�
 - dump
 
 分析配置文件并将其输出到标准输出。 可用于修改配置文件的语法。
+另外：`drbdadm dump-xml`可以解析drbd配置并生成xml文件。[python - Is the DRBD configuration-file format a standard one? - Stack Overflow](https://stackoverflow.com/questions/51499610/is-the-drbd-configuration-file-format-a-standard-one)
 
 - outdate
 
@@ -206,6 +207,36 @@ drbdadm [-d] [-c {_file_}] [-t {_file_}] [-s {_cmd_}] [-m {_cmd_}] [-S] [-h�
 - hidden-commands
 
 显示本文档中未列出的所有命令。
+```plain
+These additional commands might be useful for writing nifty shell scripts around drbdadm:
+
+ sh-nop                             sh-resources                       
+ sh-resource                        sh-mod-parms                       
+ sh-dev                             sh-udev                            
+ sh-minor                           sh-ll-dev                          
+ sh-md-dev                          sh-md-idx                          
+ sh-ip                              sh-lr-of                           
+ sh-b-pri                           sh-status                          
+ proxy-up                           proxy-down                         
+ new-resource                       
+
+These commands are used by the kernel part of DRBD to invoke user mode helper programs:
+
+ before-resync-target               after-resync-target                
+ before-resync-source               pri-on-incon-degr                  
+ pri-lost-after-sb                  fence-peer                         
+ unfence-peer                       local-io-error                     
+ pri-lost                           initial-split-brain                
+ split-brain                        out-of-sync                        
+
+These commands ought to be used by experts and developers:
+
+ sh-new-minor                       new-minor                          
+ suspend-io                         resume-io                          
+ set-gi                             new-current-uuid                   
+ check-resize                       
+
+```
 
 ## 版本
 
