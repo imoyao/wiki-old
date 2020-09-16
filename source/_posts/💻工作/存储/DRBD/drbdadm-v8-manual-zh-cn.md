@@ -94,42 +94,41 @@ drbdadm [-d] [-c {_file_}] [-t {_file_}] [-s {_cmd_}] [-m {_cmd_}] [-S] [-h�
 
 - primary
 
-将资源设备提升为主状态。 在 DRBD 管理的设备中创建文件系统或装载文件系统之前，应始终运行此命令。
+将资源设备提升为主(primary)状态。 在 DRBD 管理的设备中创建文件系统或装载文件系统之前，应始终运行此命令。
 
 - secondary
 
-将设备切换到辅助状态。 此命令是必需的，因为只有一个连接的 DRBD 设备对可以处于主状态（除非在配置文件中显式指定**了允许二次提示**）。
+将设备切换到辅助（secondary）状态。 此命令是必需的，因为只有一个连接的 DRBD 设备对可以处于主（primary）状态（除非在配置文件中显式指定了`allow-two-primaries`）。
 
 - invalidate
 
-让 DRBD 确定_本地_从属设备不一致。 因此，DRBD 从另一个节点复制所有块，以便两个设备保持同步状态。 在这种情况下，复制链接必须具有概率，否则将处于断开连接的第二个状态。
+强制DRBD将本地备份存储设备上的数据视为不同步（out-of-sync）。因此，DRBD将复制其对等方的每个块，以将本地存储设备恢复同步。 为了避免竞争，您需要建立复制链接，或断开次要连接。
 
 - invalidate-remote
 
-与无效命令类似，但_认为相反_节点的从属设备处于异步状态。 因此，本地节点中的数据将复制到其他节点。 在这种情况下，复制链接必须具有概率，否则将处于断开连接的"优先级"状态。
+此命令类似于`invalidate`命令，但是，对等方的后备存储无效，因此用本地节点的数据重写。 为了避免竞态，您需要已建立的复制链接或者已断开主连接。
 
 - resize
 
-让 DRBD 重新评估与磁盘大小相关的状态，并在必要时调整设备的大小。 例如，如果两个节点上扩展从属设备的大小，则在其中一个节点上运行此命令后，DRBD 将接受新大小。 由于新的存储区域需要同步，因此仅当至少有一个主节点时，此命令才有效。
+让 DRBD 重新评估与磁盘大小限制，并在必要时调整相应设备的大小。 例如，如果两个节点上扩展从属设备的大小，则在其中一个节点上运行此命令后，DRBD 将接受新大小。 由于新的存储区域需要同步，因此仅当至少有一个主节点时，此命令才有效。
 
-以下所有选项都是**反向选项**（由"-"分隔）：
+`--size`选项用于在线减小 DRBD 设备可用的大小。 用户有责任确保文件系统不会因此操作而损坏。 示例：
 
-**--size**选项用于在线减小 DRBD 设备可用的大小。 用户有责任确保文件系统不会因此操作而损坏。 示例：
 ```bash
 # drbdadm -- --size=10G resize r0
 ```
-**--assume-peer-has-space**选项允许您调整当前未连接到目标节点的设备的大小。 请注意，如果不以同样的方式更改相反节点的磁盘大小，则后续连接将失败。
+`--assume-peer-has-space`选项允许您调整当前未连接到目标节点的设备的大小。 请注意，如果不以同样的方式更改对应节点的磁盘大小，则后续连接将失败。
 
-**--assume-clean**选项允许您调整现有设备的大小，并避免同步新区域。 如果要向设备添加空存储，则非常有用。 示例：
+`--assume-clean`选项允许您调整现有设备的大小，并避免同步新设备空间。 将额外的空白存储添加到设备时，这很有用则非常有用。 示例：
 
 ```bash
 # drbdadm -- --assume-clean resize r0
 ```
-**--al-stripes** 和 **--al-stripe-size-kB** 选项在线更改活动日志的布局。 对于内部元数据，需要同时缩小或扩展子设备的用户可见的大小（使用**--size）。**
+`--al-stripes` 和 `--al-stripe-size-kB` 选项在线更改活动日志的布局。 对于内部元数据，需要同时缩小或扩展子设备的用户可见的大小（使用`--size`）。
 
 - check-resize
 
-调用 drbdmeta 移动内部元数据。 如果在 DRBD 停止期间调整从属设备的大小，则必须将元数据移动到设备的末尾，以便下一个**附加**命令成功。
+调用 drbdmeta 移动内部元数据。 如果在 DRBD 停止期间调整从属设备的大小，则必须将元数据移动到设备的末尾，以便下一个`attach`命令成功执行。
 
 - create-md
 
@@ -145,27 +144,27 @@ drbdadm [-d] [-c {_file_}] [-t {_file_}] [-s {_cmd_}] [-m {_cmd_}] [-S] [-h�
 
 - dump-md
 
-以纯文本形式转储元数据的全部内容。 转储还包括位图和活动日志。
+以纯文本形式转储元数据的全部内容。 转储还包括位图（ bit-map ）和活动日志（activity-log）。
 
 - outdate
 
-元数据具有 outdated 标志。
+元数据设置 outdated 标志。
 
 - adjust
 
-根据配置文件的设置调整设备的设置状态。 在实际运行之前，应运行 dry-run 模式，以检查生成的输出。
+根据配置文件的设置调整设备的设置状态。 在实际运行之前，应运行 `dry-run` 模式，以检查生成的输出。
 
 - wait-connect
 
-等待，直到连接到其他节点上的设备。
+等待直到连接到其他节点上的设备。
 
 - role
 
-以"机器/面向节点"的形式显示设备在机器和对台节点上的当前角色。 示例，主要/第二部分
+以"本机/节点"（local/peer）的形式显示设备在机器和对台节点上的当前角色。 示例，`Primary/Secondary`
 
 - state
 
-已弃用的"角色"别名。 参见前款规定。
+已弃用的"role"别名。 参见前款规定。
 
 - cstate
 
@@ -174,15 +173,16 @@ drbdadm [-d] [-c {_file_}] [-t {_file_}] [-s {_cmd_}] [-m {_cmd_}] [-S] [-h�
 - dump
 
 分析配置文件并将其输出到标准输出。 可用于修改配置文件的语法。
+
 另外：`drbdadm dump-xml`可以解析drbd配置并生成xml文件。[python - Is the DRBD configuration-file format a standard one? - Stack Overflow](https://stackoverflow.com/questions/51499610/is-the-drbd-configuration-file-format-a-standard-one)
 
 - outdate
 
-使节点的数据状态无效。 通常由其他节点的 fence-peer 处理程序设置。
+使节点的数据状态无效。 通常由其他节点的 `fence-peer` 处理程序设置。
 
 - verify
 
-开始联机匹配。 比较两个节点的数据，并检查是否存在不一致。 进度显示在 /proc/drbd 中。 即使找到异步块，也**不会**自动重新同步。 要同步，请在检查完成后**断开连接**，然后**断开连接**。
+开始联机匹配。 比较两个节点的数据，并检查是否存在不一致。 进度显示在 /proc/drbd 中。 如果找到异步块(out-of-sync)则不会自动重新同步。 要同步，请在检查完成后`disconnect `，然后`connect `资源。
 
 另请参阅 drbd.conf 手册页的数据完整性说明。
 
@@ -196,13 +196,13 @@ drbdadm [-d] [-c {_file_}] [-t {_file_}] [-s {_cmd_}] [-m {_cmd_}] [-S] [-h�
 
 - new-current-uuid
 
-生成新的当前 UUID 并旋转所有其他 UUID。
+生成新的当前 UUID 并旋转（rotates ）所有其他 UUID。
 
-此命令可用于缩短初始同步时间。 有关详细信息**，请参阅 drbdsetup**手册页。
+此命令可用于缩短初始同步时间。 有关详细信息，请参阅 drbdsetup手册页。
 
 - dstate
 
-显示从属设备的同步状态。 （local/peer）
+显示从属（local/peer）设备的同步状态。 
 
 - hidden-commands
 
@@ -257,4 +257,4 @@ Copyright 2001-2011 LINBIT Information Technologies, Philipp Reisner, Lars Ellen
 
 ## 参见
 
-[drbd.conf(5)](https://manpages.debian.org/testing/drbd-utils/drbd.conf.5.en.html), [drbd(8)](https://manpages.debian.org/testing/drbd-utils/drbd.8.en.html), [drbddisk(8)](https://manpages.debian.org/testing/drbd-utils/drbddisk.8.en.html), [drbdsetup(8)](https://manpages.debian.org/testing/drbd-utils/drbdsetup.8.en.html), [drbdmeta(8)](https://manpages.debian.org/testing/drbd-utils/drbdmeta.8.en.html) and the **DRBD project web site**[1]
+[drbd.conf(5)](https://manpages.debian.org/testing/drbd-utils/drbd.conf.5.en.html), [drbd(8)](https://manpages.debian.org/testing/drbd-utils/drbd.8.en.html), [drbddisk(8)](https://manpages.debian.org/testing/drbd-utils/drbddisk.8.en.html), [drbdsetup(8)](https://manpages.debian.org/testing/drbd-utils/drbdsetup.8.en.html), [drbdmeta(8)](https://manpages.debian.org/testing/drbd-utils/drbdmeta.8.en.html) and the `DRBD project web site`[1]
