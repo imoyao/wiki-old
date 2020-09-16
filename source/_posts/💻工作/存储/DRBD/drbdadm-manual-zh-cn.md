@@ -214,11 +214,11 @@ drbdadm [-d] [-c {_file_}] [-t {_file_}] [-s {_cmd_}] [-m {_cmd_}] [-S] [-h�
 ## 作者
 
 
-飞利浦Reisner <philipp.reisner@linbit.com> 拉里·埃伦伯格 <lars.ellenberg@linbit.com>
+philipp.Reisner <philipp.reisner@linbit.com> lars.ellenberg <lars.ellenberg@linbit.com>
 
 ## 报告 BUGS
 
-报告 bugs to <drbd-user@lists.linbit.com>。
+报告 bugs 给 <drbd-user@lists.linbit.com>。
 
 ## COPYRIGHT
 
