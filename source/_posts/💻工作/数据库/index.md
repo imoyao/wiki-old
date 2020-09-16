@@ -3,7 +3,7 @@ title: 数据库操作记录
 toc: true
 tags: MySQL
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 数据库
 date: 2020-06-06 12:27:56
 ---

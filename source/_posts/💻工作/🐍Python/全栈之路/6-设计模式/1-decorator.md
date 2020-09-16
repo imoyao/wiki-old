@@ -4,7 +4,7 @@ tags:
   - 装饰器
   - 设计模式
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - "\U0001F40DPython"
   - 全栈之路
   - 6-设计模式

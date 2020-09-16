@@ -4,7 +4,7 @@ toc: true
 tags:
   - 存储
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - Linux
 date: 2020-05-23 12:27:56
 ---

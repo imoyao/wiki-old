@@ -2,7 +2,7 @@
 title: PyCharm 如何排除目录（防止 index 时间太长）
 tags: wiki
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 编辑器
   - PyCharm
 date: 2020-05-23 12:27:56

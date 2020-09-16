@@ -3,7 +3,7 @@ title: HTTP API 设计指南
 toc: true
 tags: API
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 规范
 date: 2020-05-26 12:27:56
 ---
