@@ -10,7 +10,7 @@ subtitle: >-
   集群的工具（Nautilus 版仍然支持），取而代之的是新秀 cephadm。使用开源产品最重要的是跟上社区节奏，本文以官方文档为基础实践了 ceph
   集群的部署流程。
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
   - CEPH
   - 2-部署

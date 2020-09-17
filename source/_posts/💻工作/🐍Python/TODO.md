@@ -8,7 +8,7 @@ cover: >-
 subtitle: "人人都有松鼠癖，人人都是马来人。\U0001F611"
 top: 10
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - "\U0001F40DPython"
 date: 2019-11-27 23:34:31
 ---
@@ -34,7 +34,7 @@ date: 2019-11-27 23:34:31
  - [ ] assert 
  [notes/when-to-use-assert.md at master · emre/notes](https://github.com/emre/notes/blob/master/python/when-to-use-assert.md)
 ## 代码风格
-[Python重构代码的一些模式 | Slient Plant](https://mpwang.github.io/2017/08/26/python-refactor-patterns/)
+[Python 重构代码的一些模式 | Slient Plant](https://mpwang.github.io/2017/08/26/python-refactor-patterns/)
 
 ## 计算机书籍及知识体系
 （不会真有人看完了吧？）

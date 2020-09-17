@@ -1,10 +1,10 @@
 ---
 title: SCRUB 相关
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
   - CEPH
-  - Ceph运维
+  - Ceph 运维
 ---
 # 1. 基本概念
 ## 1.1 什么是 Scrub

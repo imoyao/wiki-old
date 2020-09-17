@@ -1,8 +1,8 @@
 ---
-title: CEPHFS介绍及经验分享
+title: CEPHFS 介绍及经验分享
 toc: true
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
   - CEPH
   - 基本原理

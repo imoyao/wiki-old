@@ -6,7 +6,7 @@ tags:
   - drbdadm
   - 存储
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
   - DRBD
 date: 2018-09-16 12:27:56
@@ -86,11 +86,11 @@ drbdadm [-d] [-c {_file_}] [-t {_file_}] [-s {_cmd_}] [-m {_cmd_}] [-S] [-h�
 
 - up
 
-同时执行连接和连接的快捷方式。
+同时执行`attach` 和`connect`的快捷方式。
 
 - down
 
-同时执行连接和连接的快捷方式。
+同时执行`disconnect `和`detach`的快捷方式。
 
 - primary
 
@@ -102,7 +102,7 @@ drbdadm [-d] [-c {_file_}] [-t {_file_}] [-s {_cmd_}] [-m {_cmd_}] [-S] [-h�
 
 - invalidate
 
-强制DRBD将本地备份存储设备上的数据视为不同步（out-of-sync）。因此，DRBD将复制其对等方的每个块，以将本地存储设备恢复同步。 为了避免竞争，您需要建立复制链接，或断开次要连接。
+强制 DRBD 将本地备份存储设备上的数据视为不同步（out-of-sync）。因此，DRBD 将复制其对等方的每个块，以将本地存储设备恢复同步。 为了避免竞争，您需要建立复制链接，或断开次要连接。
 
 - invalidate-remote
 
@@ -174,7 +174,7 @@ drbdadm [-d] [-c {_file_}] [-t {_file_}] [-s {_cmd_}] [-m {_cmd_}] [-S] [-h�
 
 分析配置文件并将其输出到标准输出。 可用于修改配置文件的语法。
 
-另外：`drbdadm dump-xml`可以解析drbd配置并生成xml文件。[python - Is the DRBD configuration-file format a standard one? - Stack Overflow](https://stackoverflow.com/questions/51499610/is-the-drbd-configuration-file-format-a-standard-one)
+另外：`drbdadm dump-xml`可以解析 drbd 配置并生成 xml 文件。[python - Is the DRBD configuration-file format a standard one? - Stack Overflow](https://stackoverflow.com/questions/51499610/is-the-drbd-configuration-file-format-a-standard-one)
 
 - outdate
 
@@ -182,7 +182,7 @@ drbdadm [-d] [-c {_file_}] [-t {_file_}] [-s {_cmd_}] [-m {_cmd_}] [-S] [-h�
 
 - verify
 
-开始联机匹配。 比较两个节点的数据，并检查是否存在不一致。 进度显示在 /proc/drbd 中。 如果找到异步块(out-of-sync)则不会自动重新同步。 要同步，请在检查完成后`disconnect `，然后`connect `资源。
+开始联机匹配。 比较两个节点的数据，并检查是否存在不一致。 进度显示在 /proc/drbd 中。 如果找到异步块(out-of-sync)则不会自动重新同步。 要同步，请在检查完成后`disconnect`，然后`connect`资源。
 
 另请参阅 drbd.conf 手册页的数据完整性说明。
 
@@ -198,7 +198,7 @@ drbdadm [-d] [-c {_file_}] [-t {_file_}] [-s {_cmd_}] [-m {_cmd_}] [-S] [-h�
 
 生成新的当前 UUID 并旋转（rotates ）所有其他 UUID。
 
-此命令可用于缩短初始同步时间。 有关详细信息，请参阅 drbdsetup手册页。
+此命令可用于缩短初始同步时间。 有关详细信息，请参阅 drbdsetup 手册页。
 
 - dstate
 
@@ -258,3 +258,6 @@ Copyright 2001-2011 LINBIT Information Technologies, Philipp Reisner, Lars Ellen
 ## 参见
 
 [drbd.conf(5)](https://manpages.debian.org/testing/drbd-utils/drbd.conf.5.en.html), [drbd(8)](https://manpages.debian.org/testing/drbd-utils/drbd.8.en.html), [drbddisk(8)](https://manpages.debian.org/testing/drbd-utils/drbddisk.8.en.html), [drbdsetup(8)](https://manpages.debian.org/testing/drbd-utils/drbdsetup.8.en.html), [drbdmeta(8)](https://manpages.debian.org/testing/drbd-utils/drbdmeta.8.en.html) and the `DRBD project web site`[1]
+
+## 参考链接
+[Ubuntu Manpage: drbdadm - Administration tool for DRBD .](http://manpages.ubuntu.com/manpages/trusty/man8/drbdadm.8.html)

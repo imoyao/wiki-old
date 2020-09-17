@@ -1,10 +1,10 @@
 ---
 title: RGW Bucket Shard 优化
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
   - CEPH
-  - Ceph运维
+  - Ceph 运维
 ---
 # 1.bucket index 背景简介
 bucket index 是整个 RGW 里面一个非常关键的数据结构，用于存储 bucket 的索引数据，默认情况下单个 bucket 的 index 全部存储在一个 shard 文件（shard 数量为 0，主要以 OMAP-keys 方式存储在 leveldb 中），随着单个 bucket 内的 Object 数量增加，整个 shard 文件的体积也在不断增长，当 shard 文件体积过大就会引发各种问题。

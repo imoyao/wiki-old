@@ -4,7 +4,7 @@ toc: true
 tags:
   - 算法
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 数据结构与算法
   - array_and_linked_list
 date: 2020-05-25 18:21:46

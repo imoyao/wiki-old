@@ -2,7 +2,7 @@
 title: 'PG 和 PGP 的区别'
 toc: true
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
   - CEPH
   - 基本原理
