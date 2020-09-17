@@ -1,5 +1,5 @@
 ---
-title: first-wiki
+title: 'PG 和 PGP 的区别'
 toc: true
 categories:
   - "\U0001F4BB工作"

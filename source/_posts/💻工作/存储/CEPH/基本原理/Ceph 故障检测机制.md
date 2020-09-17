@@ -1,5 +1,5 @@
 ---
-title: first-wiki
+title: Ceph 故障检测机制
 toc: true
 categories:
   - "\U0001F4BB工作"
