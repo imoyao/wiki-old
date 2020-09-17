@@ -12,3 +12,6 @@ date: 2020-05-23 12:27:56
 ```bash
 echo '- - -' > /sys/class/scsi_host/host0/scan  # 有几个host就扫面几个，除非找到已加磁盘
 ```
+
+## 指令查询
+[jaywcjlove/linux-command: Linux命令大全搜索工具，内容包含Linux命令手册、详解、学习、搜集。https://git.io/linux](https://github.com/jaywcjlove/linux-command)
