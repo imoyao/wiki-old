@@ -90,7 +90,7 @@ drbdadm [-d] [-c {_file_}] [-t {_file_}] [-s {_cmd_}] [-m {_cmd_}] [-S] [-h�
 
 - down
 
-同时执行`disconnect `和`detach`的快捷方式。
+同时执行`disconnect`和`detach`的快捷方式。
 
 - primary
 
