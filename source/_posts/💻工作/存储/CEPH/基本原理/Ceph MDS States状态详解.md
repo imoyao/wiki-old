@@ -1,5 +1,5 @@
 ---
-title: first-wiki
+title: 'Ceph MDS States状态详解'
 toc: true
 categories:
   - "\U0001F4BB工作"
