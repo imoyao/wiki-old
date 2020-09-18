@@ -3,7 +3,7 @@ title: 版本号
 toc: true
 tags: others
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
   - CEPH
   - 1-初识

@@ -3,10 +3,10 @@ title: 单个 Ceph 节点宕机处理
 toc: true
 tags: ceph
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
   - CEPH
-  - Ceph运维
+  - Ceph 运维
 date: 2020-05-23 11:02:28
 ---
 
