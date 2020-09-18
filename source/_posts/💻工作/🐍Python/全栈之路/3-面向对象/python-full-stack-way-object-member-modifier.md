@@ -5,7 +5,7 @@ tags:
   - 编码
 top: 3
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - "\U0001F40DPython"
   - 全栈之路
   - 3-面向对象

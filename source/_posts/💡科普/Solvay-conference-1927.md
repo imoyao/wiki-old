@@ -2,7 +2,7 @@
 title: 1927 索尔维会议(Solvay Conference)合影
 tags: 索尔维会议
 categories:
-  - "\U0001F4A1 科普"
+  - "\U0001F4A1科普"
 date: 2020-05-26 12:27:56
 ---
 

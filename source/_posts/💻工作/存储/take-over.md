@@ -3,7 +3,7 @@ title: 双控接管理解
 toc: true
 tags: 工作记录
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
 date: 2020-07-01 12:27:56
 ---

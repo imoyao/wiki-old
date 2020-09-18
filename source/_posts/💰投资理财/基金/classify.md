@@ -1,9 +1,10 @@
 ---
 title: 基金分类知识总结
 toc: true
-tags: others
+tags:
+- 基金分类
 categories:
-  - "\U0001F4B0 投资理财"
+  - "\U0001F4B0投资理财"
   - 基金
 date: 2020-08-26 12:27:56
 ---

@@ -3,10 +3,10 @@ title: ceph 集群警告和错误类型
 toc: true
 tags: ceph
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
   - CEPH
-  - Ceph 监控
+  - Ceph监控
 date: 2020-05-23 11:02:28
 ---
 

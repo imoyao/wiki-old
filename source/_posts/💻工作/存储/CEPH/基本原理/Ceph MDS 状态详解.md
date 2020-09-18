@@ -1,8 +1,8 @@
 ---
-title: 'Ceph MDS 状态详解'
+title: Ceph MDS 状态详解
 toc: true
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
   - CEPH
   - 基本原理

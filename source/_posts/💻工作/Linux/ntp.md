@@ -5,7 +5,7 @@ tags:
   - Linux
   - NTP
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - Linux
 date: 2020-06-02 18:21:46
 ---

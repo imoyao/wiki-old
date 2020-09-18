@@ -5,7 +5,7 @@ tags:
   - Python
   - 闭包
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - "\U0001F40DPython"
 date: 2020-08-06 12:27:56
 ---

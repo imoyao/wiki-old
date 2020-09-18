@@ -4,7 +4,7 @@ toc: true
 tags:
   - ceph
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
   - CEPH
   - 知识拓展
@@ -28,13 +28,13 @@ vm.dirty_writeback_centisecs = 500
 vm.dirty_expire_centisecs = 3000
 ```
 
-**vm.dirty_background_ratio** 是内存可以填充“脏数据”的百分比。这些“脏数据”在稍后是会写入磁盘的，pdflush/flush/kdmflush 这些后台进程会稍后清理脏数据。举一个例子，我有 32G 内存，那么有 3.2G 的内存可以待着内存里，超过 3.2G 的话就会有后来进程来清理它。
+**vm.dirty_background_ratio**是内存可以填充“脏数据”的百分比。这些“脏数据”在稍后是会写入磁盘的，pdflush/flush/kdmflush 这些后台进程会稍后清理脏数据。举一个例子，我有 32G 内存，那么有 3.2G 的内存可以待着内存里，超过 3.2G 的话就会有后来进程来清理它。
 
-**vm.dirty_ratio** 是绝对的脏数据限制，内存里的脏数据百分比不能超过这个值。如果脏数据超过这个数量，新的 IO 请求将会被阻挡，直到脏数据被写进磁盘。这是造成 IO 卡顿的重要原因，但这也是保证内存中不会存在过量脏数据的保护机制。
+**vm.dirty_ratio**是绝对的脏数据限制，内存里的脏数据百分比不能超过这个值。如果脏数据超过这个数量，新的 IO 请求将会被阻挡，直到脏数据被写进磁盘。这是造成 IO 卡顿的重要原因，但这也是保证内存中不会存在过量脏数据的保护机制。
 
-**vm.dirty_expire_centisecs** 指定脏数据能存活的时间。在这里它的值是 30 秒。当 pdflush/flush/kdmflush 进行起来时，它会检查是否有数据超过这个时限，如果有则会把它异步地写到磁盘中。毕竟数据在内存里待太久也会有丢失风险。
+**vm.dirty_expire_centisecs**指定脏数据能存活的时间。在这里它的值是 30 秒。当 pdflush/flush/kdmflush 进行起来时，它会检查是否有数据超过这个时限，如果有则会把它异步地写到磁盘中。毕竟数据在内存里待太久也会有丢失风险。
 
-**vm.dirty_writeback_centisecs** 指定多长时间 pdflush/flush/kdmflush 这些进程会起来一次。
+**vm.dirty_writeback_centisecs**指定多长时间 pdflush/flush/kdmflush 这些进程会起来一次。
 
 可以通过下面方式看内存中有多少脏数据：
 

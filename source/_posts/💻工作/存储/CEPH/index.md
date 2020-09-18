@@ -1,6 +1,10 @@
 ---
+title: CEPH 笔记
+toc: true
+tags:
+  - ceph
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
   - CEPH
 ---
@@ -14,5 +18,5 @@ categories:
 [12 份 Ceph 测试报告分享：从方法到性能优化 - 知乎](https://zhuanlan.zhihu.com/p/138061923)
 
 ## 网站
-[CEPH - 主题 - twt 企业 IT 交流平台](https://www.talkwithtrend.com/Topic/25017)
-[askceph](http://www.askceph.com/)
+- [CEPH - 主题 - twt 企业 IT 交流平台](https://www.talkwithtrend.com/Topic/25017)
+- [askceph](http://www.askceph.com/)

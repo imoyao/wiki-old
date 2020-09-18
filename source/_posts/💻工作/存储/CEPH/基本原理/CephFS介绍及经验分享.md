@@ -2,13 +2,13 @@
 title: CEPHFS 介绍及经验分享
 toc: true
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
   - CEPH
   - 基本原理
-date: 2020-05-23 11:02:28
 tags:
-- CEPH
+  - CEPH
+date: 2020-05-23 11:02:28
 ---
 
 ![image.png](https://upload-images.jianshu.io/upload_images/2099201-c8191260b9465f8f.png)

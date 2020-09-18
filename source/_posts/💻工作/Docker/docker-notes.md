@@ -7,7 +7,7 @@ tags:
 top_img: /images/logos/Docker-Logo-White-RGB_Horizontal.png
 cover: /images/logos/Docker-logo.png
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - Docker
 date: 2020-05-07 14:42:38
 ---
