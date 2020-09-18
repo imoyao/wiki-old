@@ -1,10 +1,10 @@
 ---
-title: "了解 Linux IO 调度算法"
+title: 了解 Linux IO 调度算法
 toc: true
 tags:
   - ceph
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
   - CEPH
   - 知识拓展

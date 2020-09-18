@@ -5,7 +5,7 @@ tags:
   - 网络
 cover: /images/internet1-100649339.jpg
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - "\U0001F468‍\U0001F4BBWeb"
   - HTTP
 date: 2020-03-21 21:48:26

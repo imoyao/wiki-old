@@ -2,7 +2,7 @@
 title: Ceph 架构简介及使用场景介绍
 toc: true
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
   - CEPH
   - 基本原理
@@ -250,14 +250,14 @@ ceph\_io\_4.png
 
 2.4 Ceph IO 伪代码流程
 ----------------
-
-    locator = object_nameplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplain
+```plain
+    locator = object_name
     obj_hash =  hash(locator)
     pg = obj_hash % num_pg
     osds_for_pg = crush(pg)  # returns a list of osds
     primary = osds_for_pg[0]
     replicas = osds_for_pg[1:]
-
+```
 
 2.5 Ceph RBD IO 流程
 -----------------
@@ -472,7 +472,7 @@ ceph\_message\_3.png
     *   middle //预留字段
     *   data //读写数据
 *   footer //消息的结束标记
-
+```c++
     class Message : public RefCountedObject {
     protected:
       ceph_msg_header  header;      // 消息头
@@ -500,19 +500,19 @@ ceph\_message\_3.png
     };
 
     struct ceph_msg_header {
-        **********************************************************__le64 seq;       // 当前 session 内 消息的唯一 序号
-        __**********************************************************le64 tid;       // 消息的全局唯一的 id
-        ******************************************************__le16 type;      // 消息类型
-        __******************************************************le16 priority;  // 优先级
+        ****************************************************************__le64 seq;       // 当前 session 内 消息的唯一 序号
+        __****************************************************************le64 tid;       // 消息的全局唯一的 id
+        ********************************************************__le16 type;      // 消息类型
+        __********************************************************le16 priority;  // 优先级
         __le16 version;   // 版本号
 
-        __le32 front_len; // payload 的长度plainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplain
+        __le32 front_len; // payload 的长度
         __le32 middle_len;// middle 的长度
         __le32 data_len;  // data 的 长度
         __le16 data_off;  // 对象的数据偏移量
 
 
-        struct ceph_entity_name src; //消息源plainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplain
+        struct ceph_entity_name src; //消息源
 
         /* oldest code we think can decode this.  unknown if zero. */
         __le16 compat_version;
@@ -525,7 +525,7 @@ ceph\_message\_3.png
         __le64  sig; //消息的64位signature
         __u8 flags; //结束标志
     } __attribute__ ((packed));
-
+```
 
 5\. Ceph CRUSH 算法
 ================
@@ -725,15 +725,3 @@ ceph\_qos2.png
 **个人简介：** 多年的底层开发经验，在高性能 nginx 开发和分布式缓存 redis cluster 有着丰富的经验，目前从事 Ceph 工作两年左右。
 先后在 58 同城、汽车之家、优酷土豆集团工作。 目前供职于滴滴基础平台运维部 负责分布式 Ceph 集群开发及运维等工作。
 个人主要关注的技术领域：高性能 Nginx 开发、分布式缓存、分布式存储。
-
-
-
-
-
-
-
-
-
-
-
-

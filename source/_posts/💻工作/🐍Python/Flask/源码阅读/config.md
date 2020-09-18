@@ -1,12 +1,12 @@
 ---
-title: "Flask 源码解析：Config"
+title: Flask 源码解析：Config
 toc: true
 tags:
   - Flask
   - web 开发
   - Python
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - "\U0001F40DPython"
   - Flask
   - 源码阅读

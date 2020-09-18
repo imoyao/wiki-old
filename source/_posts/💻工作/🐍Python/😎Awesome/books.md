@@ -5,7 +5,7 @@ tags:
   - 编码
   - Python
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - "\U0001F40DPython"
   - "\U0001F60EAwesome"
 date: 2020-05-23 18:21:46

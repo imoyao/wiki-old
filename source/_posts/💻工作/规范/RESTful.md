@@ -3,7 +3,7 @@ title: RESTful API 设计规范
 toc: true
 tags: RESTful
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 规范
 date: 2019-05-26 12:27:56
 ---

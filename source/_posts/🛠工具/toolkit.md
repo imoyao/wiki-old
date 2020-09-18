@@ -3,7 +3,7 @@ title: 一些自己在用的工具的记录及收集
 tags:
   - 工具
 categories:
-  - "\U0001F6E0 工具"
+  - "\U0001F6E0工具"
 hide: true
 date: 2020-04-21 23:19:29
 ---

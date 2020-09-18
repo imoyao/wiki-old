@@ -1,11 +1,11 @@
 ---
-title: "Leetcode 题解 - 动态规划"
+title: Leetcode 题解 - 动态规划
 toc: true
 tags:
   - 面试
   - 技术
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 技术面试
 date: 2019-08-07 12:27:56
 ---

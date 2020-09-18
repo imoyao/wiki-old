@@ -3,10 +3,10 @@ title: RGW 监控埋点.md
 toc: true
 tags: RGW
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
   - CEPH
-  - Ceph 监控
+  - Ceph监控
 date: 2020-05-23 11:02:28
 ---
 # 1. RADOS

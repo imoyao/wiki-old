@@ -3,7 +3,7 @@ title: rsync 知识总结
 toc: true
 tags: rsync
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - Linux
 date: 2020-05-26 12:27:56
 ---

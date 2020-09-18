@@ -3,7 +3,7 @@ title: 好“艹蛋”的 Python 呀！
 toc: true
 tags: python
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - "\U0001F40DPython"
 date: 2020-05-26 12:27:56
 ---

@@ -7,7 +7,7 @@ tags:
 cover: 'https://i1.wp.com/ceph.io/wp-content/uploads/2019/03/nautilus.svg_.png'
 subtitle: 人生苦短，不要把时间浪费在重复性工作上。本文主要以 ceph-deploy 为例实践了 ceph 集群的部署流程。
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
   - CEPH
   - 2-部署

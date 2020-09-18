@@ -6,7 +6,7 @@ tags:
   - drbdadm
   - 存储
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
   - DRBD
 date: 2018-09-16 12:27:56

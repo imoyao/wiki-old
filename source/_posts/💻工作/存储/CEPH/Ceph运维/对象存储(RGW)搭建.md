@@ -3,10 +3,10 @@ title: 对象存储（RGW）搭建
 toc: true
 tags: ceph
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
   - CEPH
-  - Ceph 运维
+  - Ceph运维
 date: 2020-05-23 11:02:28
 ---
 
