@@ -9,7 +9,7 @@ subtitle: "人人都有松鼠癖，人人都是马来人。\U0001F611"
 top: 10
 toc: true
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - "\U0001F40DPython"
   - PEP
 date: 2019-11-27 23:34:31

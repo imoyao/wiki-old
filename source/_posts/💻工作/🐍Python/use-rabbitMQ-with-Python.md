@@ -3,7 +3,7 @@ title: 如何使用 Python 操作 RabbitMQ
 tags:
   - RabbitMQ
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - "\U0001F40DPython"
 date: 2019-11-21 15:20:56
 ---

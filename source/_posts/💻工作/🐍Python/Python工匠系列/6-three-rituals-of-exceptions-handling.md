@@ -8,9 +8,9 @@ tags:
   - 异常
   - Exception
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - "\U0001F40DPython"
-  - Python工匠系列
+  - Python 工匠系列
 date: 2020-08-13 18:26:46
 ---
 

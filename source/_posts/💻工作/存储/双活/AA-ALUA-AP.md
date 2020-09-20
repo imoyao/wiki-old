@@ -28,12 +28,10 @@ AN 路径：次优 IO 访问路径，对应非工作控制器上的路径。
 ### 双活 ALUA 工作原理及故障切换
 - 当工作在负载均衡模式时
 主机多路径将选择双活存储的所有阵列的工作控制器上的路径为 AO 路径，其他所有控制器上的路径为 AN 路径；两端阵列的 AO 路径提供访问，当其中一条 AO 路径无法提供访问时，主机 I/O 将下发到另外的 AO 路径；当其中一台阵列 AO 路径所在控制器故障时，另一个控制器将转换为工作控制器，继续维持负载均衡;
-
+![负载均衡模式下的ALUA](/images/ALUA-load-balance.png)
 - 当工作在本端优选模式时
-
 主机多路径将选择本端阵列工作控制器上的路径为 AO 路径，保证 IO 只在本端阵列的工作控制器下发，减小链路消耗；当本端阵列工作控制器的所有 AO 路径断开无法提供访问时，主机 I/O 将从非工作控制器上的 AN 路径下发。当工作控制器故障时，另一个控制器将转换为工作控制器，继续维持本端优选。
-
-![对称双活下的ALUA](/images/ALUA-AS-AA.png)
+![本端优选模式下的ALUA](/images/ALUA-node-first.png)
 
 ### ALUA 的优点
 - ALUA 阵列和 Active/Passive 阵列的不同
@@ -64,5 +62,6 @@ Active/Passive，对于特定的 LUN 来说，在它的路径中，一个控制�
 
 ## 参考链接
 [关于 ALUA 详解_Mark-CSDN 博客](https://blog.csdn.net/xoopqy/article/details/19238463)
+[控制器双活 负载均衡_松猪的专栏-CSDN 博客](https://blog.csdn.net/songzhulikesleep/article/details/79184125)
 [ALUA 工作原理介绍 - 华为 SAN 存储在 AIX 系统下的主机连通性指南 - 华为](https://support.huawei.com/enterprise/zh/doc/EDOC1000158278/620be992)
 [iSCSI: ALUA 概述 - Code & Life](https://rjerk.xyz/index.php/archives/161/)

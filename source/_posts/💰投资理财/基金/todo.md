@@ -4,7 +4,7 @@ toc: true
 tags:
   - TODO
 categories:
-  - "\U0001F4B0投资理财"
+  - "\U0001F4B0 投资理财"
   - 基金
 date: 2020-08-26 12:27:56
 ---

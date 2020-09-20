@@ -6,7 +6,7 @@ tags:
   - SQLAlchemy
 top: 5
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - "\U0001F40DPython"
   - 全栈之路
   - 8-第三方库

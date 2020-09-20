@@ -5,7 +5,7 @@ tags:
   - Python
   - Stack Overflow
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - "\U0001F40DPython"
   - stackoverflow
 date: 2020-05-23 18:21:46
