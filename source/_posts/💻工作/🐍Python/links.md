@@ -40,3 +40,4 @@ date: 2020-05-23 18:21:46
 [Python 缓存神奇库 cacheout 全解 - 简书](https://www.jianshu.com/p/f03640646c9c)
 [python 缓存 - 掘金](https://juejin.im/post/6844903930476888071)
 [[python]@cached_property 缓存装饰器 - faithfu - 博客园](https://www.cnblogs.com/faithfu/p/10365868.html)
+装饰器模式也可以实现缓存[Python 设计模式: 装饰器模式(decorator pattern) - Huang Huang 的博客](https://mozillazg.com/2016/08/python-decorator-pattern.html)
