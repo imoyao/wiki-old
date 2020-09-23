@@ -128,3 +128,6 @@ var1 = {"k1": "1", "k2": 2, "k3": ["abc", 456]}
 如图所示：
 
 ![Python-Day04-03](/images/2016/12/1483017092.png)
+
+## 推荐阅读
+[Python学习系列之值类型与引用类型_answer3lin的博客-CSDN博客](https://blog.csdn.net/answer3lin/article/details/86430074)
