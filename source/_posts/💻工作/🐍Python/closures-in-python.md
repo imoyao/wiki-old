@@ -39,7 +39,7 @@ id(nth_power): 2C090C8
 >>> raised_to_4(2)
 16
 ```
-啊哈，居然没出现错误， `nth_power` 是怎么知道 `n` 的值是 4，而且现在 `generate_power_func` 甚至都不在这个命名空间了。对，这就是闭包的作用，外部函数的局部变量可以被内部函数引用，即使外部函数已经返回了。
+啊哈，居然没出现错误， `nth_power` 是怎么知道 `n` 的值是 4，而且现在 `generate_power_func` 甚至都不在这个命名空间了。对，这就是闭包的作用：外部函数的局部变量可以被内部函数引用，即使外部函数已经返回了。
 
 ## __closure__ 属性和 cell 对象
 
@@ -55,7 +55,7 @@ id(nth_power): 2C090C8
 就如刚才所说，在 `raised_to_4` 的 `__closure__` 属性中有外部函数变量 `n` 的引用，通过内存地址可以发现，引用的都是同一个 `n`。如果没用形成闭包，则 `__closure__` 属性为 `None`。对于 Python 具体是如何实现闭包的，可以查看 [Python 闭包详解](http://www.cnblogs.com/ChrisChen3121/p/3208119.html)，它通过分析 Python 字节码来讲述闭包的实现。
 
 ## 总结
-闭包特性有着非常多的作用，不过都是需要时才会不经意的用上，不要像使用设计模式一样去硬套这些法则。这篇文章按照自己的理解翻译至 [Python Closures Explained](http://www.shutupandship.com/2012/01/python-closures-explained.html)，可能和原文有些不同之处，如有疑惑，请查看原文。附上一些参考资料。
+闭包特性有着非常多的作用，不过都是需要时才会不经意的用上，不要像使用设计模式一样去硬套这些法则。这篇文章按照自己的理解翻译自 [Python Closures Explained](http://www.shutupandship.com/2012/01/python-closures-explained.html)，可能和原文有些不同之处，如有疑惑，请查看原文。附上一些参考资料。
 
 ## 参考链接
 - [浅显理解 Python 闭包 - I'm SErHo](https://serholiu.com/python-closures)
