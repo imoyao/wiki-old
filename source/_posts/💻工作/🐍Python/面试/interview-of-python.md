@@ -382,13 +382,13 @@ http://stackoverflow.com/questions/3394835/args-and-kwargs
 
 ## 新式类和旧式类
 
-这个面试官问了,我说了老半天,不知道他问的真正意图是什么.
+这个面试官问了，我说了老半天，不知道他问的真正意图是什么。
 
-[stackoverflow](http://stackoverflow.com/questions/54867/what-is-the-difference-between-old-style-and-new-style-classes-in-python)
+[class - What is the difference between old style and new style classes in Python? - Stack Overflow](https://stackoverflow.com/questions/54867/what-is-the-difference-between-old-style-and-new-style-classes-in-python)
 
 这篇文章很好的介绍了新式类的特性: http://www.cnblogs.com/btchenguang/archive/2012/09/17/2689146.html
 
-~~新式类很早在 2.2 就出现了,所以旧式类完全是兼容的问题,Python3 里的类全部都是新式类.这里有一个 MRO 问题可以了解下(新式类是广度优先,旧式类是深度优先),<Python 核心编程>里讲的也很多.~~
+~~新式类很早在 2.2 就出现了，所以旧式类完全是兼容的问题，Python3 里的类全部都是新式类。这里有一个 MRO 问题可以了解下(新式类是广度优先，旧式类是深度优先)，<Python 核心编程>里讲的也很多。~~
 
 在 Python 的新式类中，方法解析顺序并非是广度优先的算法，而是采用 C3 算法。
 
@@ -396,30 +396,33 @@ http://stackoverflow.com/questions/3394835/args-and-kwargs
 - [Python 中的 MRO 与多继承](https://blog.csdn.net/qwertyupoiuytr/article/details/56439134)
 - [Python 中 Class 类用法实例分析](http://www.jb51.net/article/74743.htm)
 - [python 多继承详解](http://www.pythontab.com/html/2013/pythonhexinbiancheng_0828/550.html)
-- [你真的理解 Python 中 MRO 算法吗](http://python.jobbole.com/85685/)
+- [你真的理解Python中MRO算法吗？ - Hello_BeautifulWorld - 博客园](https://www.cnblogs.com/devilmaycry812839668/p/13215612.html)
+- [Python多继承与super使用详解_涤生手记-CSDN博客](https://blog.csdn.net/qq_26442553/article/details/81775449)
 
 > 一个旧式类的深度优先的例子
 
 ```python
 class A():
     def foo1(self):
-        print "A"
+        print("A")
 class B(A):
     def foo2(self):
         pass
 class C(A):
     def foo1(self):
-        print "C"
+        print("C")
 class D(B, C):
     pass
 
 d = D()
 d.foo1()
-
+# py2
 # A
+# py3
+# C
 ```
 
-**按照经典类的查找顺序`从左到右深度优先`的规则，在访问`d.foo1()`的时候,D 这个类是没有的..那么往上查找,先找到 B,里面没有,深度优先,访问 A,找到了 foo1(),所以这时候调用的是 A 的 foo1()，从而导致 C 重写的 foo1()被绕过**
+**按照经典类的查找顺序`从左到右深度优先`的规则，在访问`d.foo1()`的时候,D 这个类是没有的。那么往上查找,先找到 B,里面没有,深度优先,访问 A,找到了 foo1(),所以这时候调用的是 A 的 foo1()，从而导致 C 重写的 foo1()被绕过**
 
 
 ## `__new__`和`__init__`和`__call__`的区别
@@ -719,7 +722,7 @@ d =  [1, 2, 3, 4, ['a', 'b']]
 
 ##  Python 垃圾回收机制
 
-[Python 中的垃圾回收机制](http://python.jobbole.com/87843/)
+[Python 垃圾回收机制 | Sutune](https://sutune.me/2018/10/14/python-GC/)
 
 Python GC 主要使用引用计数（reference counting）来跟踪和回收垃圾。在引用计数的基础上，通过“标记-清除”（mark and sweep）解决容器对象可能产生的循环引用问题，通过“分代回收”（generation collection）以空间换时间的方法提高垃圾回收效率。
 
@@ -736,6 +739,17 @@ PyObject 是每个对象必有的内容，其中`ob_refcnt`就是做为引用计
 
 1. 维护引用计数消耗资源
 2. 循环引用
+ ```python
+ def f2():
+    '''循环引用'''
+    while True:
+        c1=A()
+        c2=A()
+        c1.t=c2
+        c2.t=c1
+        del c1
+        del c2
+ ```
 
 ### 2 标记-清除机制
 

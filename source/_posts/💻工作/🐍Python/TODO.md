@@ -47,6 +47,7 @@ def get_cur_info():
     print(sys._getframe().f_lineno) # 当前行号
 ```
 [Python 程序如何高效地调试？ - 知乎](https://www.zhihu.com/question/21572891/answer/123220574)
+[打印日志 (log) 是比单步跟踪 (debugger) 更好的 Python 排错手段吗？ - 知乎](https://www.zhihu.com/question/20626825)
 
 ## 计算机书籍及知识体系
 （不会真有人看完了吧？）
