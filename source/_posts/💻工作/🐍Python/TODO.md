@@ -36,6 +36,18 @@ date: 2019-11-27 23:34:31
 ## 代码风格
 [Python 重构代码的一些模式 | Slient Plant](https://mpwang.github.io/2017/08/26/python-refactor-patterns/)
 
+## debug
+```python
+import sys
+
+def get_cur_info():
+    print(sys._getframe().f_code.co_filename)  # 当前文件名
+    print(sys._getframe(0).f_code.co_name)  # 当前函数名
+    print(sys._getframe(1).f_code.co_name)　# 调用该函数的函数的名字，如果没有被调用，则返回module
+    print(sys._getframe().f_lineno) # 当前行号
+```
+[Python 程序如何高效地调试？ - 知乎](https://www.zhihu.com/question/21572891/answer/123220574)
+
 ## 计算机书籍及知识体系
 （不会真有人看完了吧？）
 [NGTE Books](https://ng-tech.icu/books/)
