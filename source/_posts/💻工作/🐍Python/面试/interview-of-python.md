@@ -194,19 +194,33 @@ print Person.name  # [1]
 
 ~~参考:http://stackoverflow.com/questions/6470428/catch-multiple-exceptions-in-one-line-except-block~~
 
-## Python 自省
+## Python 自省与反射
 
-这个也是 Python 彪悍的特性.
+这个也是 Python 彪悍的特性。
 
-自省就是面向对象的语言所写的程序在运行时,所能知道对象的类型.简单一句就是运行时能够获得对象的类型.比如 type(),dir(),getattr(),hasattr(),isinstance().
+自省就是面向对象的语言所写的程序在运行时，所能知道对象的类型。简单一句就是运行时能够获得对象的类型。比如 type(),dir(),getattr(),hasattr(),isinstance()。
+自省是获取对象的能力，反射是操纵对象的能力，python 中使用`getattr()`和`setattr()`实现反射，而其他的则是自省。
+| 方法             | 作用               |
+|----------------|------------------|
+| help()       | 查看函数或模块用途的详细说明   |
+| dir()        | 返回对象所有属性         |
+| type()       | 查看对象类型           |
+| hasattr()    | 查看对象是否有特定属性      |
+| getattr()    | 得到对象的特定属性        |
+| seetattr()   | 设置对象的特定属性        |
+| isinstance() | 判断一个对象是否是一个已知的类型 |
+| issubclass() | 判断一个类是不是另一个类的子类  |
+| id()         | 返回地址值            |
+| callable()   | 判断对象是否可调用        |
 
 ```python
 a = [1,2,3]
 b = {'a':1,'b':2,'c':3}
 c = True
-print type(a),type(b),type(c) # <type 'list'> <type 'dict'> <type 'bool'>
-print isinstance(a,list)  # True
+print(type(a),type(b),type(c)) # <type 'list'> <type 'dict'> <type 'bool'>
+print(isinstance(a,list))  # True
 ```
+[python 自省与反射_面向对象的笔记-CSDN 博客](https://blog.csdn.net/zjbyough/article/details/96037399)
 
 ## 字典推导式
 
@@ -388,7 +402,7 @@ http://stackoverflow.com/questions/3394835/args-and-kwargs
 
 这篇文章很好的介绍了新式类的特性: http://www.cnblogs.com/btchenguang/archive/2012/09/17/2689146.html
 
-~~新式类很早在 2.2 就出现了，所以旧式类完全是兼容的问题，Python3 里的类全部都是新式类。这里有一个 MRO 问题可以了解下(新式类是广度优先，旧式类是深度优先)，<Python 核心编程>里讲的也很多。~~
+~~新式类很早在 2.2 就出现了，所以旧式类完全是兼容的问题，Python3 里的类全部都是新式类。这里有一个 MRO 问题可以了解下(新式类是广度优先，旧式类是深度优先)，《Python 核心编程》里讲的也很多。~~
 
 在 Python 的新式类中，方法解析顺序并非是广度优先的算法，而是采用 C3 算法。
 
@@ -396,8 +410,8 @@ http://stackoverflow.com/questions/3394835/args-and-kwargs
 - [Python 中的 MRO 与多继承](https://blog.csdn.net/qwertyupoiuytr/article/details/56439134)
 - [Python 中 Class 类用法实例分析](http://www.jb51.net/article/74743.htm)
 - [python 多继承详解](http://www.pythontab.com/html/2013/pythonhexinbiancheng_0828/550.html)
-- [你真的理解Python中MRO算法吗？ - Hello_BeautifulWorld - 博客园](https://www.cnblogs.com/devilmaycry812839668/p/13215612.html)
-- [Python多继承与super使用详解_涤生手记-CSDN博客](https://blog.csdn.net/qq_26442553/article/details/81775449)
+- [你真的理解 Python 中 MRO 算法吗？ - Hello_BeautifulWorld - 博客园](https://www.cnblogs.com/devilmaycry812839668/p/13215612.html)
+- [Python 多继承与 super 使用详解_涤生手记-CSDN 博客](https://blog.csdn.net/qq_26442553/article/details/81775449)
 
 > 一个旧式类的深度优先的例子
 
@@ -489,7 +503,7 @@ ps: `__metaclass__`是创建类时起作用.所以我们可以分别使用`__met
 
 ## 单例模式
 
-> ​ 单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。
+> 单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。
 >
 > `__new__()`在`__init__()`之前被调用，用于生成实例对象。利用这个方法和类的属性的特点可以实现设计模式的单例模式。单例模式是指创建唯一对象，单例模式设计的类只能实例
 **这个绝对常考啊.绝对要记住 1~2 个方法,当时面试官是让手写的.**
@@ -719,6 +733,19 @@ b =  [1, 2, 3, 4, ['a', 'b', 'c'], 5]
 c =  [1, 2, 3, 4, ['a', 'b', 'c']]
 d =  [1, 2, 3, 4, ['a', 'b']]
 ```
+## Python 内存管理机制
+Python 有内存池机制，Pymalloc 机制，用于对内存的申请和释放管理。
+### 为什么有内存池
+当创建大量消耗小内存的对象时，c 中频繁调用 new/malloc 会导致大量的内存碎片，致使效率降低。
+内存池的概念就是预先在内存中申请一定数量的，大小相等的内存块留作备用，当有新的内存需求时，就先从内存池中分配内存给这个需求，不够了之后再申请新的内存。这样做最显著的优势就是能够减少内存碎片，提升效率。
+![CPython(python解释器)的内存架构图](https://user-gold-cdn.xitu.io/2020/7/14/1734c82253759c7c?imageslim)
+
+python 中的内存管理机制为 Pymalloc，python 的对象管理主要位于 Level+1~Level+3 层
+Level+3 层：对于 python 内置的对象（比如 int,dict 等）都有独立的私有内存池，对象之间的内存池不共享，即 int 释放的内存，不会被分配给 float 使用
+Level+2 层：当申请的内存大小小于 256KB 时，内存分配主要由 Python 对象分配器（Python’s object allocator）实施
+Level+1 层：当申请的内存大小大于 256KB 时，由 Python 原生的内存分配器进行分配，本质上是调用 C 标准库中的 malloc/realloc 等函数
+
+[面试必备：Python 内存管理机制](https://juejin.im/post/6856235545220415496)
 
 ##  Python 垃圾回收机制
 
@@ -996,15 +1023,22 @@ Bulid 过程可以分解为 4 个步骤:预处理(Prepressing), 编译(Compilati
 3. 分页的作业地址空间是一维的.分段的地址空间是二维的.
 
 ## 页面置换算法
+1. 页是信息的物理单位,分页是为了实现非连续分配,以便解决内存碎片问题,或者说分页是由于系统管理的需要.段是信息的逻辑单位,它含有一组意义相对完整的信息,分段的目的是为了更好地实现共享,满足用户的需要.
+2. 页的大小固定,由系统确定,将逻辑地址划分为页号和页内地址是由机器硬件实现的.而段的长度却不固定,决定于用户所编写的程序,通常由编译程序在对源程序进行编译时根据信息的性质来划分。
+3. 分页的作业地址空间是一维的、分段的地址空间是二维的。
 
-1. 最佳置换算法 OPT:不可能实现
-2. 先进先出 FIFO
-3. 最近最久未使用算法 LRU:最近一段时间里最久没有使用过的页面予以置换.
-4. clock 算法
+## 页面置换算法
+
+页面置换：在地址映射过程中，若所要访问的页面不在内存中，则产生了‘缺页中断(page fault)’。此时操作系统必须在内存中选择一个页面将其移出内存，为即将调入的页面让出空间。
+1. 最佳置换算法 OPT (optional replacement)：被替换的页面为在未来最长时间内不会被访问的页面，可保证最低的缺页率，但不可能实现，主要用于评估算法。
+2. 先进先出 FIFO：最易实现，但会频繁换页，性能差。
+3. 最近最久未使用算法 LRU (Least Recently Used)：最近一段时间里最久没有使用过的页面予以置换。
+4. 时钟替换算法 (Clock)：依照使用位替换页面。
 
 ## 边沿触发和水平触发
 
-边缘触发是指每当状态变化时发生一个 io 事件，条件触发是只要满足条件就发生一个 io 事件
+1. 边沿触发 (Edge Trigger)：自上次状态改变后有新的 I/O 事件就会触发通知，需要尽可能多的执行 I/O 操作。
+2. 水平触发 (Level Trigger)：准备就绪时（可非阻塞地执行 I/O 系统调用）触发通知，可在任意时刻重复检测 I/O 状态。
 
 # 数据库
 
@@ -1509,7 +1543,7 @@ def fib(i):
 
 ```python
 def fib(n):
-    a, b = 0, 1
+    a, b = 1,0
     for _ in xrange(n):
         a, b = b, a + b
     return b

@@ -129,5 +129,5 @@ def bar(n):
 ## 更多
 
 [白话算法：时间复杂度和大 O 表示法](https://www.jianshu.com/p/59d09b9cee58)
-
+[TimeComplexity](https://wiki.python.org/moin/TimeComplexity)
 [常见算法复杂度-大 O 小抄](http://bigocheatsheet.com/)
