@@ -10,7 +10,7 @@ categories:
 date: 2020-05-24 18:21:46
 ---
 在 Python 世界中将对象分为两种：一种是定长对象，比如整数，整数对象定义的时候就能确定它所占用的内存空间大小，另一种是变长对象，在对象定义时并不知道是多少，比如：str，list, set, dict 等。
-
+```plain
 \>>> import sys
 \>>> sys.getsizeof(1000)
 28
@@ -20,7 +20,7 @@ date: 2020-05-24 18:21:46
 55
 \>>> sys.getsizeof("java")
 53
-
+```
 如上，整数对象所占用的内存都是 28 字节，和具体的值没关系，而同样都是字符串对象，不同字符串对象所占用的内存是不一样的，这就是变长对象，对于变长对象，在对象定义时是不知道对象所占用的内存空间是多少的。
 
 字符串对象在 Python 内部用 PyStringObject 表示，PyStringObject 和 PyIntObject 一样都属于不可变对象，对象一旦创建就不能改变其值。（注意：**变长对象**和**不可变对象**是两个不同的概念）。PythonStringObject 的定义：
@@ -178,9 +178,9 @@ void PyString\_InternInPlace(PyObject \*\*p)
 ## 字符串的缓冲池
 
 字符串除了有 intern 机制缓存字符串之外，字符串还有一种专门的短字符串缓冲池`characters`。用于缓存字符串长度为 1 的 PyStringObject 对象。
-
-    static PyStringObject \*characters\[UCHAR\_MAX + 1\];   //UCHAR\_MAX = 255plainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplain
-
+```c
+    static PyStringObject \*characters\[UCHAR\_MAX + 1\];   //UCHAR\_MAX = 255
+```
 创建长度为 1 的字符串时流程：
 ```c
 ...
@@ -210,11 +210,3 @@ void PyString\_InternInPlace(PyObject \*\*p)
 - [Python 整数对象实现原理](http://foofish.net/blog/89/python_int_implement) 
 - [Python 列表对象实现原理](http://foofish.net/blog/91/python-list-implements)
 - [Python 字典对象实现原理](http://foofish.net/blog/92/python_dict_implements)
-
-  
-
-有问题可以扫描二维码和我交流
-
-关注公众号「Python 之禅」，回复「1024」免费获取 Python 资源
-
-![python之禅](https://foofish.net/images/weixin.jpg)
