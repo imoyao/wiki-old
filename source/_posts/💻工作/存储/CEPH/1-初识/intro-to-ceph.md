@@ -23,6 +23,22 @@ Ceph 元数据服务器存储代表 Ceph 文件系统（Ceph FS）的元数据�
 Ceph 将数据作为对象存储在逻辑存储池（VG）中。 使用`CRUSH算法`，Ceph 计算哪个放置组应包含该对象，并进一步计算哪个 Ceph OSD 守护程序应存储该放置组。 CRUSH 算法使 Ceph 存储集群能够动态扩展，重新平衡和恢复。
 - 对象网关（ceph-radosgw）
 Ceph 对象网关节点上运行 Ceph RADOS 网关守护程序（ceph-radosgw）。它是一个构建在 librados 之上的对象存储接口，也是一个为应用程序提供 Ceph 存储集群的 RESTful 网关。Ceph 对象网关支持两个接口：S3 和 OpenStack Swift。
+## 架构
+![Ceph基础架构组件](https://images2017.cnblogs.com/blog/1302233/201712/1302233-20171223155452631-121429135.jpg)
+从架构图中可以看到最底层的是 RADOS，RADOS 自身是一个完整的分布式对象存储系统，它具有可靠、智能、分布式等特性，Ceph 的高可靠、高可拓展、高性能、高自动化都是由这一层来提供的，用户数据的存储最终也都是通过这一层来进行存储的，RADOS 可以说就是 Ceph 的核心。
+
+RADOS 系统主要由两部分组成，分别是 OSD 和 Monitor。
+
+基于 RADOS 层的上一层是 LIBRADOS，LIBRADOS 是一个库，它允许应用程序通过访问该库来与 RADOS 系统进行交互，支持多种编程语言，比如 C、C++、Python 等。
+
+基于 LIBRADOS 层开发的又可以看到有三层，分别是 RADOSGW、RBD 和 CEPH FS。
+
+RADOSGW：RADOSGW 是一套基于当前流行的 RESTFUL 协议的网关，并且兼容 S3 和 Swift。
+
+RBD：RBD 通过 Linux 内核客户端和 QEMU/KVM 驱动来提供一个分布式的块设备。
+
+CEPH FS：CEPH FS 通过 Linux 内核客户端和 FUSE 来提供一个兼容 POSIX 的文件系统。
+
 ## 网站记录
 [twt 企业 IT 交流平台 - talkwithtrend，企业 IT 技术社区，帮助您融入同行](http://www.talkwithtrend.com/)
 ---
