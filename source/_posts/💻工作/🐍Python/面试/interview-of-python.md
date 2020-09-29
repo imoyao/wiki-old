@@ -284,13 +284,23 @@ http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
 
 ## 迭代器和生成器
 
-这个是 stackoverflow 里 Python 排名第一的问题,值得一看: http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python
+- 迭代器
+它是一个带状态的对象，他能在你调用next()方法的时候返回容器中的下一个值，任何实现了__iter__和__next__()（python2中实现next()）方法的对象都是迭代器，__iter__返回迭代器自身，__next__返回容器中的下一个值，如果容器中没有更多元素了，则抛出StopIteration异常。
+
+- 生成器(generator)
+生成器其实是一种特殊的迭代器，不过这种迭代器更加优雅。它不需要再像上面的类一样写__iter__()和__next__()方法了，只需要一个yiled关键字。 生成器一定是迭代器（反之不成立），因此任何生成器也是以一种懒加载的模式生成值。
+
+[完全理解Python迭代对象、迭代器、生成器 - FooFish-Python之禅](https://foofish.net/iterators-vs-generators.html)
+[如何更好地理解Python迭代器和生成器？ - 知乎](https://www.zhihu.com/question/20829330)
+[python 生成器和迭代器有这篇就够了 - 战争热诚 - 博客园](https://www.cnblogs.com/wj-1314/p/8490822.html)
+
+这个是 stackoverflow 里 Python 排名第一的问题，值得一看: http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python
 
 这是中文版: http://python.jobbole.com/83610/
 
 这里有个关于生成器的创建问题面试官有考：
-问：  将列表生成式中[]改成()之后数据结构是否改变？
-答案：是，从列表变为生成器
+Q：将列表生成式中`[]`改成`()`之后数据结构是否改变？
+A：是，从列表变为生成器
 
 ```python
 >>> L = [x*x for x in range(10)]
@@ -300,6 +310,7 @@ http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
 >>> g
 <generator object <genexpr> at 0x0000028F8B774200>
 ```
+- 生成器的优势？
 通过列表生成式，可以直接创建一个列表。但是，受到内存限制，列表容量肯定是有限的。而且，创建一个包含百万元素的列表，不仅是占用很大的内存空间，如：我们只需要访问前面的几个元素，后面大部分元素所占的空间都是浪费的。因此，没有必要创建完整的列表（节省大量内存空间）。在 Python 中，我们可以采用生成器：边循环，边计算的机制—>generator
 
 ## `*args` 和 `**kwargs`
