@@ -51,7 +51,7 @@ typedef struct {
     Py\_ssize\_t allocated;
 } PyListObject;
 ```
-咋一看 PyListObject 对象的定义非常简单，除了通用对象都有的引用计数（ob\_refcnt）、类型信息（ob\_type），以及变长对象的长度（ob\_size）之外，剩下的只有 ob\_item，和 allocated，ob\_item 是真正存放列表元素容器的指针，专门有一块内存用来存储列表元素，这块内存的大小就是 allocated 所能容纳的空间。alloocated 是列表所能容纳的元素大小，而且满足条件：
+乍一看 PyListObject 对象的定义非常简单，除了通用对象都有的引用计数（ob\_refcnt）、类型信息（ob\_type），以及变长对象的长度（ob\_size）之外，剩下的只有 ob\_item，和 allocated，ob\_item 是真正存放列表元素容器的指针，专门有一块内存用来存储列表元素，这块内存的大小就是 allocated 所能容纳的空间。alloocated 是列表所能容纳的元素大小，而且满足条件：
 
 *   0 <= ob\_size <= allocated
 *   len(list) == ob\_size
@@ -241,5 +241,5 @@ list\_resize(PyListObject \*self, Py\_ssize\_t newsize)
 - [Python 列表对象实现原理 - FooFish-Python 之禅](https://foofish.net/python-list-implements.html)
 
 ## 更多阅读
-
+[Python list implementation – Laurent Luce's Blog](http://www.laurentluce.com/posts/python-list-implementation/)
 [Python 内存分析:list 和 array](https://www.cnblogs.com/hellcat/p/8795841.html)

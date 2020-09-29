@@ -255,9 +255,9 @@ AttributeError: myClass instance has no attribute '__superprivate'
 
 `__foo`:这个有真正的意义:解析器用`_classname__foo`来代替这个名字,以区别和其他类相同的命名,它无法直接像公有成员一样随便访问,通过对象名._类名__xxx 这样的方式可以访问.
 
-详情见:http://stackoverflow.com/questions/1301346/the-meaning-of-a-single-and-a-double-underscore-before-an-object-name-in-python
+详见:
 
-或者: http://www.zhihu.com/question/19754941
+[关于 Python 中的下划线用法的记录 | 别院牧志](https://www.masantu.com/blog/2018-04-28/the-underline-of-Python/)
 
 ## 字符串格式化:%和.format
 
@@ -285,13 +285,13 @@ http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
 ## 迭代器和生成器
 
 - 迭代器
-它是一个带状态的对象，他能在你调用next()方法的时候返回容器中的下一个值，任何实现了__iter__和__next__()（python2中实现next()）方法的对象都是迭代器，__iter__返回迭代器自身，__next__返回容器中的下一个值，如果容器中没有更多元素了，则抛出StopIteration异常。
+它是一个带状态的对象，他能在你调用 next()方法的时候返回容器中的下一个值，任何实现了__iter__和__next__()（python2 中实现 next()）方法的对象都是迭代器，__iter__返回迭代器自身，__next__返回容器中的下一个值，如果容器中没有更多元素了，则抛出 StopIteration 异常。
 
 - 生成器(generator)
-生成器其实是一种特殊的迭代器，不过这种迭代器更加优雅。它不需要再像上面的类一样写__iter__()和__next__()方法了，只需要一个yiled关键字。 生成器一定是迭代器（反之不成立），因此任何生成器也是以一种懒加载的模式生成值。
+生成器其实是一种特殊的迭代器，不过这种迭代器更加优雅。它不需要再像上面的类一样写__iter__()和__next__()方法了，只需要一个 yiled 关键字。 生成器一定是迭代器（反之不成立），因此任何生成器也是以一种懒加载的模式生成值。
 
-[完全理解Python迭代对象、迭代器、生成器 - FooFish-Python之禅](https://foofish.net/iterators-vs-generators.html)
-[如何更好地理解Python迭代器和生成器？ - 知乎](https://www.zhihu.com/question/20829330)
+[完全理解 Python 迭代对象、迭代器、生成器 - FooFish-Python 之禅](https://foofish.net/iterators-vs-generators.html)
+[如何更好地理解 Python 迭代器和生成器？ - 知乎](https://www.zhihu.com/question/20829330)
 [python 生成器和迭代器有这篇就够了 - 战争热诚 - 博客园](https://www.cnblogs.com/wj-1314/p/8490822.html)
 
 这个是 stackoverflow 里 Python 排名第一的问题，值得一看: http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python
@@ -547,7 +547,7 @@ class Singleton:
 
     def __new__(cls,*args,**kwargs):
         if not cls._instance:
-            cls._instance = super(Singleton,cls).__new__(cls,*args,**kwargs)
+            cls._instance = super().__new__(cls,*args,**kwargs)
 
         return cls._instance
 
@@ -555,6 +555,24 @@ class Singleton:
 a = Singleton()
 b = Singleton()
 
+print(a is b)
+
+# 变种实现
+class SingleTon:
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if not hasattr(cls, '_instance'):
+            cls._instance = super().__new__(cls, *args, **kwargs)
+
+        return cls._instance
+
+
+a = SingleTon()
+b = SingleTon()
 print(a is b)
 
 ```
@@ -581,17 +599,30 @@ class MyClass2(Borg):
 ### 装饰器版本
 
 ```python
+from functools import wraps
+
+
 def singleton(cls):
-    instances = {}
-    def wrapper(*args, **kw):
-        if cls not in instances:
-            instances[cls] = cls(*args, **kw)
-        return instances[cls]
+    _instance = {}
+
+    @wraps(cls)
+    def wrapper(*args, **kwargs):
+        if cls not in _instance:
+            _instance[cls] = cls(*args, **kwargs)
+
+        return _instance[cls]
+
     return wrapper
 
+
 @singleton
-class MyClass:
+class Singleton:
     pass
+
+
+a = Singleton()
+b = Singleton()
+print(a is b)
 ```
 
 ### import 方法
@@ -617,6 +648,7 @@ my_singleton.foo()
 ### 修改元类
 
 ```python
+# python2
 class Singleton(type):
     _instance = {}
 
@@ -625,20 +657,31 @@ class Singleton(type):
             cls._instance[cls] = super(Singleton, cls).__call__(*args, **kwargs)
         return cls._instance[cls]
 
-# python2
+
 class A(object):
     __metaclass__ = Singleton
 
-
 # Python3
-class B(metaclass=Singleton):
+class Singleton(type):
+
+    def __init__(self, *args, **kwargs):
+        self._instance = None
+        super().__init__(*args, **kwargs)
+
+    def __call__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super().__call__(*args, **kwargs)
+        return cls._instance
+
+
+class A(metaclass=Singleton):
     pass
 
 
 a = A()
 b = A()
-
 print(a is b)
+
 ```
 * [单例模式伯乐在线详细解释](http://python.jobbole.com/87294/)
 * [Python 中的单例模式的几种实现方式的及优化](http://www.cnblogs.com/huchong/p/8244279.html)
@@ -647,13 +690,11 @@ print(a is b)
 
 Python 中，一个变量的作用域总是由在代码中被赋值的地方所决定的。
 
-
-
 在一个 python 程序中，直接访问一个变量，会从内到外依次访问所有的作用域直到找到，否则会报未定义的错误。
 
 Python 中，程序的变量并不是在哪个位置都可以访问的，访问权限决定于这个变量是在哪里赋值的。
 
-变量的作用域决定了在哪一部分程序可以访问哪个特定的变量名称。Python一共有四种作用域，分别是：
+变量的作用域决定了在哪一部分程序可以访问哪个特定的变量名称。Python 一共有四种作用域，分别是：
 - L（Local）：最内层，包含局部变量，比如一个函数/方法内部。
 - E（Enclosing）：包含了非局部(non-local)也非全局(non-global)的变量。比如两个嵌套函数，一个函数（或类） A 里面又包含了一个函数 B ，那么对于 B 中的名称来说 A 中的作用域就为 nonlocal。
 - G（Global）：当前脚本的最外层，比如当前模块的全局变量。
@@ -824,24 +865,31 @@ Python 默认定义了三代对象集合，索引数越大，对象存活时间�
 举例：
 当某些内存块 M 经过了 3 次垃圾收集的清洗之后还存活时，我们就将内存块 M 划到一个集合 A 中去，而新分配的内存都划分到集合 B 中去。当垃圾收集开始工作时，大多数情况都只对集合 B 进行垃圾回收，而对集合 A 进行垃圾回收要隔相当长一段时间后才进行，这就使得垃圾收集机制需要处理的内存少了，效率自然就提高了。在这个过程中，集合 B 中的某些内存块由于存活时间长而会被转移到集合 A 中，当然，集合 A 中实际上也存在一些垃圾，这些垃圾的回收会因为这种分代的机制而被延迟。
 
-## 25 Python 的 List
+- 什么时候触发 GC?
+1. 调用 gc.collect()，需要先导入 gc 模块；
+2. 当 gc 模块的计数器达到阈值的时候；
+3. 程序退出的时候；
+### 总结
+为了解决“引用计数”导致的循环引用问题，引入了“标记清除”方案，而为了解决“标记清除”中的问题，又引入了“分代回收”技术。
 
-推荐: http://www.jianshu.com/p/J4U6rR
+## Python 的 List
 
-## 26 Python 的 is
+推荐: [Python 中 list 的实现 - 简书](https://www.jianshu.com/p/J4U6rR)
 
-is 是对比地址,==是对比值
+## Python 的 is
 
-## 27 read,readline 和 readlines
+is 是对比地址，==是对比值
+
+##  read,readline 和 readlines
 
 * read        读取整个文件
 * readline    读取下一行,使用生成器方法
 * readlines   读取整个文件到一个列表以供我们遍历
 
-## 28 Python2 和 3 的区别
+##  Python2 和 3 的区别
 推荐：[Python 2.7.x 与 Python 3.x 的主要差异](http://chenqx.github.io/2014/11/10/Key-differences-between-Python-2-7-x-and-Python-3-x/)
 
-## 29 super()与`__init__`
+##  super()与`__init__`
 
 使用 super()可以避免显式引用基类，这可能是个不错的主意。 但主要优势在于多重继承，可以发生[各种有趣的事情](http://www.artima.com/weblogs/viewpost.jsp?thread=236275)。 请参阅[标准文档上的 super()章节](https://docs.python.org/2/library/functions.html#super)，如果您还没有来得及阅读的话。
 
@@ -904,10 +952,7 @@ init in A
 - [what does `super`do in Python](https://stackoverflow.com/questions/222877/what-does-super-do-in-python)
 - [Python2.7 中的`super`方法浅见](http://blog.csdn.net/mrlevo520/article/details/51712440)
 
-## 30 range 和 xrange
-都在循环时使用，xrange 内存性能更好。
-for i in range(0, 20):
-for i in xrange(0, 20):
+## range 和 xrange
 
 在 Python2.*中 range()和 xrange()有什么区别？
 
@@ -1094,7 +1139,7 @@ Bulid 过程可以分解为 4 个步骤:预处理(Prepressing), 编译(Compilati
 
 ### Redis 数据库
 
-> ​ 通常局限点来说，Redis 也以消息队列的形式存在，作为内嵌的 List 存在，满足实时的高并发需求。在使用缓存的时候，redis 比 memcached 具有更多的优势，并且支持更多的数据类型，把 redis 当作一个中间存储系统，用来处理高并发的数据库操作。
+> 通常局限点来说，Redis 也以消息队列的形式存在，作为内嵌的 List 存在，满足实时的高并发需求。在使用缓存的时候，redis 比 memcached 具有更多的优势，并且支持更多的数据类型，把 redis 当作一个中间存储系统，用来处理高并发的数据库操作。
 
 - 速度快：使用标准 C 写，所有数据都在内存中完成，读写速度分别达到 10 万/20 万
 - 持久化：对数据的更新采用 Copy-on-write 技术，可以异步地保存到磁盘上，主要有两种策略，一是根据时间，更新次数的快照（save 300 10 ）二是基于语句追加方式(Append-only file，aof)
@@ -1129,7 +1174,7 @@ Cache Aside Pattern
 
 ## MVCC
 
-> ​ 全称是 Multi-Version Concurrent Control，即多版本并发控制，在 MVCC 协议下，每个读操作会看到一个一致性的 snapshot，并且可以实现非阻塞的读。MVCC 允许数据具有多个版本，这个版本可以是时间戳或者是全局递增的事务 ID，在同一个时间点，不同的事务看到的数据是不同的。
+> 全称是 Multi-Version Concurrent Control，即多版本并发控制，在 MVCC 协议下，每个读操作会看到一个一致性的 snapshot，并且可以实现非阻塞的读。MVCC 允许数据具有多个版本，这个版本可以是时间戳或者是全局递增的事务 ID，在同一个时间点，不同的事务看到的数据是不同的。
 
 ### [MySQL](http://lib.csdn.net/base/mysql)的 innodb 引擎是如何实现 MVCC 的
 
@@ -1144,7 +1189,7 @@ innodb 会为每一行添加两个字段，分别表示该行**创建的版本**
 
 其中，写操作（insert、delete 和 update）执行时，需要将系统版本号递增。
 
-​   由于旧数据并不真正的删除，所以必须对这些数据进行清理，innodb 会开启一个后台线程执行清理工作，具体的规则是将删除版本号小于当前系统版本的行删除，这个过程叫做 purge。
+   由于旧数据并不真正的删除，所以必须对这些数据进行清理，innodb 会开启一个后台线程执行清理工作，具体的规则是将删除版本号小于当前系统版本的行删除，这个过程叫做 purge。
 
 通过 MVCC 很好的实现了事务的隔离性，可以达到 repeated read 级别，要实现 serializable 还必须加锁。
 
