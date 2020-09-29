@@ -6,7 +6,7 @@ tags:
 categories:
   - "\U0001F4BB 工作"
   - "\U0001F40DPython"
-  - 魔法方法
+  - 类
 date: 2020-08-06 12:27:56
 ---
 

@@ -260,7 +260,7 @@ Monitor 通常是轻量级进程，但它们会频繁调用 `fsync()` ，这会�
 
 ### OLD REQUESTS 或 SLOW REQUESTS
 
-如果某 `ceph-osd` 守护进程对一请求响应很慢，它会生成日志消息来抱怨请求耗费的时间过长。默认警告阀值是 30 秒，可以通过 `osd op complaint time` 选项来配置。这种情况发生时，集群日志会收到这些消息。
+如果某 `ceph-osd` 守护进程对一请求响应很慢，它会生成日志消息来抱怨请求耗费的时间过长。默认警告阈值是 30 秒，可以通过 `osd op complaint time` 选项来配置。这种情况发生时，集群日志会收到这些消息。
 
 很老的版本抱怨 “old requests” ：
 ```plain

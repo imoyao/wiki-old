@@ -246,7 +246,7 @@ mysql>   select * from runoob_transaction_test;   # 因为回滚所以数据没�
     
     *   该选项值可以是：
         
-            – READ-UNCOMMITTEDplainplainplainplainplainplain
+            – READ-UNCOMMITTEDplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplain
             – READ-COMMITTED
             – REPEATABLE-READ
             – SERIALIZABLE
@@ -276,7 +276,7 @@ mysql>   select * from runoob_transaction_test;   # 因为回滚所以数据没�
 
 ## 隔离级别的作用范围
 
-    •   事务隔离级别的作用范围分为两种：plainplainplainplainplainplainplain
+    •   事务隔离级别的作用范围分为两种：plainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplain
     –   全局级：对所有的会话有效 
     –   会话级：只对当前的会话有效 
     •   例如，设置会话级隔离级别为READ COMMITTED ：
@@ -293,7 +293,7 @@ mysql>   select * from runoob_transaction_test;   # 因为回滚所以数据没�
     ```
 ## 查看隔离级别
 
-    •   事务隔离级别的作用范围分为两种：plainplainplainplainplainplainplain
+    •   事务隔离级别的作用范围分为两种：plainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplain
     –   全局级：对所有的会话有效 
     –   会话级：只对当前的会话有效 
     •   例如，设置会话级隔离级别为READ COMMITTED ：
