@@ -262,58 +262,52 @@ transaction-isolation = READ-COMMITTED
 ### 方式二
 
 *   通过命令动态设置隔离级别  
-• 隔离级别也可以在运行的服务器中动态设置，应使用 SET TRANSACTION ISOLATION LEVEL 语句。  
-• 其语法模式为：
-```sql
-SET [GLOBAL | SESSION] TRANSACTION ISOLATION LEVEL <isolation-level>
-```
-其中的<isolation-level>可以是：
-–   READ UNCOMMITTED
-–   READ COMMITTED
-–   REPEATABLE READ
-–   SERIALIZABLE
-
-例如： 
-```sql
-SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
-```
+    • 隔离级别也可以在运行的服务器中动态设置，应使用 SET TRANSACTION ISOLATION LEVEL 语句。  
+    • 其语法模式为：
+    ```sql
+    SET [GLOBAL | SESSION] TRANSACTION ISOLATION LEVEL <isolation-level>
+    ```
+      其中的<isolation-level>可以是：
+    –   READ UNCOMMITTED
+    –   READ COMMITTED
+    –   REPEATABLE READ
+    –   SERIALIZABLE
+    •   例如： SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 
 ## 隔离级别的作用范围
 
-- 事务隔离级别的作用范围分为两种：
-–  全局级：对所有的会话有效 
-–  会话级：只对当前的会话有效 
-- 例如，设置会话级隔离级别为READ COMMITTED ：
-```sql
-mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
-```
-或：
-```sql
-mysql> SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;
-```
-- 设置全局级隔离级别为READ COMMITTED ： 
-```sql
-mysql> SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED;
-```
+•   事务隔离级别的作用范围分为两种：
+    –   全局级：对所有的会话有效 
+    –   会话级：只对当前的会话有效 
+    •   例如，设置会话级隔离级别为READ COMMITTED ：
+    ```sql
+    mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED；
+    ```
+    或：
+    ```sql
+    mysql> SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED；
+    ```
+    •   设置全局级隔离级别为READ COMMITTED ： 
+    ```sql
+    mysql> SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED；
+    ```
 ## 查看隔离级别
 
-- 事务隔离级别的作用范围分为两种：
-
-– 全局级：对所有的会话有效 
-– 会话级：只对当前的会话有效 
-
-例如，设置会话级隔离级别为`READ COMMITTED`：
-```sql
-mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
-```
-或：
-```sql
-mysql> SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;
-```
-- 设置全局级隔离级别为READ COMMITTED ： 
-```sql
-mysql> SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED;
-```
+•   事务隔离级别的作用范围分为两种：
+    –   全局级：对所有的会话有效 
+    –   会话级：只对当前的会话有效 
+    •   例如，设置会话级隔离级别为READ COMMITTED ：
+    ```sql
+    mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED；
+    ```
+    或：
+    ```sql
+    mysql> SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED；
+    ```
+    •   设置全局级隔离级别为READ COMMITTED ： 
+    ```sql
+    mysql> SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED；
+    ```
 
 ## 参考来源
 [MySQL——事务(Transaction)详解_浅然的专栏-CSDN 博客](https://blog.csdn.net/w_linux/article/details/79666086)
