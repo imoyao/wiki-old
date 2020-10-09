@@ -2,10 +2,10 @@
 title: PG 数量相关
 toc: true
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
   - CEPH
-  - Ceph 运维
+  - Ceph运维
 ---
 PG 数量的设置牵扯到数据分布的均匀性问题。
 

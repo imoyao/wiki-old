@@ -5,7 +5,7 @@ tags:
   - SCST
   - 存储
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
 date: 2019-05-26 12:27:56
 ---

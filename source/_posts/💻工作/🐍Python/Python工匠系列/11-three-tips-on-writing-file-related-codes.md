@@ -6,9 +6,9 @@ tags:
   - Python
   - 文件操作
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - "\U0001F40DPython"
-  - Python 工匠系列
+  - Python工匠系列
 date: 2020-08-13 18:31:46
 ---
 

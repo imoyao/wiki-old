@@ -6,7 +6,7 @@ tags:
   - 面向对象
 top: 8
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - "\U0001F40DPython"
   - 全栈之路
   - 7-标准库

@@ -5,7 +5,7 @@ tags:
   - 面试
   - Python
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - "\U0001F40DPython"
   - 面试
 date: 2020-05-23 18:21:46

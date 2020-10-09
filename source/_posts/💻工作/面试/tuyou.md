@@ -1,16 +1,16 @@
 ---
-title: 项目产品面试
+title: 途游面试
 toc: true
 tags:
   - 面试
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 面试
 date: 2020-05-26 12:27:56
 ---
-1. python 生成器，迭代器，装饰器
+1. python 生成器，迭代器，装饰器   
 [Python 面试 | 别院牧志](https://wiki.masantu.com/wiki/%F0%9F%92%BB%E5%B7%A5%E4%BD%9C/%F0%9F%90%8DPython/%E9%9D%A2%E8%AF%95/interview-of-python/#%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B-AOP-%E5%92%8C%E8%A3%85%E9%A5%B0%E5%99%A8)
-2. strip/lstrip/rstrip 用法
+2. strip/lstrip/rstrip 用法   
 strip： 用来去除头尾字符、空白符(包括\n、\r、\t、' '，即：换行、回车、制表符、空格)
 lstrip：用来去除开头字符、空白符(包括\n、\r、\t、' '，即：换行、回车、制表符、空格)
 rstrip：用来去除结尾字符、空白符(包括\n、\r、\t、' '，即：换行、回车、制表符、空格)
@@ -36,17 +36,17 @@ rstrip：用来去除结尾字符、空白符(包括\n、\r、\t、' '，即：�
 >>> str2.rstrip('12') #删除结尾的1和2
 '1a2b12c'
 ```
-3. map/reduce/filter 用法
+3. map/reduce/filter 用法 
 [Python 面试 | 别院牧志](https://wiki.masantu.com/wiki/%F0%9F%92%BB%E5%B7%A5%E4%BD%9C/%F0%9F%90%8DPython/%E9%9D%A2%E8%AF%95/interview-of-python/#Python-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B)
-4. 解释并实现单例模式
+4. 解释并实现单例模式    
 [Python 面试 | 别院牧志](https://wiki.masantu.com/wiki/%F0%9F%92%BB%E5%B7%A5%E4%BD%9C/%F0%9F%90%8DPython/%E9%9D%A2%E8%AF%95/interview-of-python/#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F)
-5. 查看 linux 版本如何查看，几种方法
+5. 查看 linux 版本如何查看，几种方法 
 ```bash
  cat /etc/redhat-release
  /proc/version
- username -r
+ uname -r
 ```
-6. 如何查看 linux 系统的配置？什么时候生效的？
+6. 如何查看 linux 系统的配置？什么时候生效的？    
 ```bash
 # cpu
 cat /proc/cpuinfo
@@ -160,15 +160,16 @@ Python 在解释代码时，是将代码块加载为一个叫 PyFrameObject 的�
 
 之所以选这么个方案原因如下：
 
-    1. 我们用 AWS S3 存储。(key-value存储)plainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplain
-    2. 假设是对于用户头像这类文件，文件名不重要，扩展名也不重要，因为显示在页面上唯一依赖的就是 URL 和 S3 服务器返回的 content-type header，而后者在上传的时候已经建立。
-    3. 要维持一致性，变量越少越好。比如说如果你要维持 1.jpg 和 https://s3.bucket.com/1.jpg 就没有维持 1.jpg 容易。对于 S3 来说，URL 大部分都是确定的，因此真正会变化的部分只是文件名（key 名）。
-    4. 因为扩展名不重要，所以维持 1.jpg 不如维持 1。
-    5. 因为文件名不重要，所以维持 1 不如维持文件指纹，也就是 MD5/SHA512 之类的。
-    6. 使用 SHA512 直接作为数据库主键、S3 Key 可以最小化需要一致性的变量。
-    7. 使用 SHA512 的更大的好处是免除了维持一致性的必要，因为 SHA512 的特性几乎可以认为一个特别的 SHA512 对应了一个特别的文件，因此算法天然保证了在任何地方对应同一个文件都有一致性，无论是 S3 Key，数据库还是别的地方。
+1. 我们用 AWS S3 存储。(key-value存储)
+2. 假设是对于用户头像这类文件，文件名不重要，扩展名也不重要，因为显示在页面上唯一依赖的就是 URL 和 S3 服务器返回的 content-type header，而后者在上传的时候已经建立。
+3. 要维持一致性，变量越少越好。比如说如果你要维持 1.jpg 和 `https://s3.bucket.com/1.jpg` 就没有维持 1.jpg 容易。对于 S3 来说，URL 大部分都是确定的，因此真正会变化的部分只是文件名（key 名）。
+4. 因为扩展名不重要，所以维持 1.jpg 不如维持 1。
+5. 因为文件名不重要，所以维持 1 不如维持文件指纹，也就是 MD5/SHA512 之类的。
+6. 使用 SHA512 直接作为数据库主键、S3 Key 可以最小化需要一致性的变量。
+7. 使用 SHA512 的更大的好处是免除了维持一致性的必要，因为 SHA512 的特性几乎可以认为一个特别的 SHA512 对应了一个特别的文件，因此算法天然保证了在任何地方对应同一个文件都有一致性，无论是 S3 Key，数据库还是别的地方。
+    
 事实上我们的系统使用这个方案存储所有文件，不只是用户头像。因为 SHA512 几乎与文件一一对应的特性从而天然维持了一致性，实在是太方便了。比如用这种存储如果两个用户上传了同一个图片做头像，那你就直接避免了重复存储的问题（它们会有相同的键值）。代价是对于删除处理你需要采用别的策略判断依赖性，比如只有在一个文件不被任何地方引用的时候才能删除。
-[数据库字段应该如何储存用户头像 URL？ - 知乎](https://www.zhihu.com/question/333821544)
+参见：[数据库字段应该如何储存用户头像 URL？ - 知乎](https://www.zhihu.com/question/333821544)
 
 10. 你的 uwsgi 怎么用的多线程实现的
 11. 手写个代码 ：迷宫问题

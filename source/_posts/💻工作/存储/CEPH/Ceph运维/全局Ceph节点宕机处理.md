@@ -1,10 +1,10 @@
 ---
 title: 全局 Ceph 节点宕机处理
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
   - CEPH
-  - Ceph 运维
+  - Ceph运维
 ---
 # 4. 全局 Ceph 节点宕机处理
 

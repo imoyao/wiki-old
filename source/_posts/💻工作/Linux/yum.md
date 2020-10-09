@@ -5,7 +5,7 @@ tags:
   - Linux
   - Yum
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - Linux
 date: 2020-05-23 18:21:46
 ---

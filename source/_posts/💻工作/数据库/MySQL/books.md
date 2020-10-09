@@ -4,7 +4,7 @@ tags:
   - MySQL
   - 数据库
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 数据库
   - MySQL
 date: 2019-08-21 12:27:56

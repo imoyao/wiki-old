@@ -7,7 +7,7 @@ tags:
   - StackOverflow
   - TODO
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - "\U0001F40DPython"
   - 类
 date: 2020-09-26 12:27:56
@@ -150,7 +150,8 @@ Python 中的**元类（metaclass）**是一个深度魔法，平时我们可能
 
 **元类（metaclass）是用来创建类（对象）的可调用对象。**这里的可调用对象可以是函数或者类等。但一般情况下，我们使用类作为元类。对于实例对象、类和元类，我们可以用下面的图来描述：
 
-    类是实例对象的模板，元类是类的模板plainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplain
+类是实例对象的模板，元类是类的模板
+    
 ```plain
     +----------+             +----------+             +----------+
     |          |             |          |             |          |

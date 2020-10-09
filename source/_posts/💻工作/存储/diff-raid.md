@@ -5,7 +5,7 @@ tags:
   - RAID
   - 存储
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 存储
 date: 2018-07-26 12:27:56
 ---
