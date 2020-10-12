@@ -4,7 +4,7 @@ toc: true
 tags:
   - Python
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - "\U0001F40DPython"
   - 类
 date: 2020-08-06 12:27:56
