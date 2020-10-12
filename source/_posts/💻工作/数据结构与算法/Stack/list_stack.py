@@ -22,7 +22,7 @@ class Stack:
         return str(self.__items)
 
     def is_empty(self):
-        return len(self.__items) == 0
+        return self.size() == 0
 
     def peek(self):
         if not self.is_empty():

@@ -5,7 +5,7 @@ tags:
   - 面试
   - Python
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
 date: 2020-05-23 18:21:46
 ---
@@ -17,18 +17,18 @@ date: 2020-05-23 18:21:46
 从模块上划分为三部分：
 
 > *   **digidiskmap.py** 磁盘名和磁盘位置对应关系模块。
-> *   **digidiskproduct.py** 背板厂商判定模块，包含背板上磁盘位置和phyid对应关系，包含背板磁盘灯和磁盘状态对应关系。
+> *   **digidiskproduct.py** 背板厂商判定模块，包含背板上磁盘位置和 phyid 对应关系，包含背板磁盘灯和磁盘状态对应关系。
 > *   **digidisklight.py** 磁盘灯设置模块。
 
 ## 设计实现说明
 
 ### 磁盘名和磁盘位置对应关系模块 - digidiskmap.py
 
-盘位对应关系获取的原理依据背板上phyid的位置不变化（**固件需要一致，因为厂家更新固件时有可能会改变该对应关系**）。
+盘位对应关系获取的原理依据背板上 phyid 的位置不变化（**固件需要一致，因为厂家更新固件时有可能会改变该对应关系**）。
 
-在该原理的前提下，将背板上磁盘位置的顺序也规定下来（**从下到上，从左到右，依次增加**），这样就能生成磁盘位置和phyid的对应关系。
+在该原理的前提下，将背板上磁盘位置的顺序也规定下来（**从下到上，从左到右，依次增加**），这样就能生成磁盘位置和 phyid 的对应关系。
 
-背板插入磁盘后，磁盘名称和phyid之间也形成对应，这样通过**phyid**的衔接，就能找到磁盘名称和磁盘位置的对应关系。
+背板插入磁盘后，磁盘名称和 phyid 之间也形成对应，这样通过**phyid**的衔接，就能找到磁盘名称和磁盘位置的对应关系。
 
 如下表：
 {%raw%}
@@ -143,17 +143,17 @@ date: 2020-05-23 18:21:46
 {%endraw%}
 
 
-#### 磁盘位置和phyid
+#### 磁盘位置和 phyid
 
-磁盘位置和phyid对应关系的获取，目前是通过sg3_utils工具包里的sg_ses命令来实现。
+磁盘位置和 phyid 对应关系的获取，目前是通过 sg3_utils 工具包里的 sg_ses 命令来实现。
 
-执行如下命令，将指定的phyid对应的led灯点亮，获取磁盘位置和phyid之间的对应。
+执行如下命令，将指定的 phyid 对应的 led 灯点亮，获取磁盘位置和 phyid 之间的对应。
 
-sg_ses --set=fault --index=phyid sg设备
+sg_ses --set=fault --index=phyid sg 设备
 
-*   –set=fault 将phyid对应位置的led灯设置为fault状态（红色常亮状态）
-*   –index=phyid 指定要设置的phyid。一般来说，phyid的索引从0开始，如果背板有24盘位，那么背板的phyid就是0~23。
-*   sg设备 背板对应的设备，可以通过多种方式获取，最简单的方式是通过sg3_utils工具包里的sg_map命令获取，没有磁盘对应的sg设备就是背板的sg设备。如下例，/dev/sg4就是背板的sg设备。
+*   –set=fault 将 phyid 对应位置的 led 灯设置为 fault 状态（红色常亮状态）
+*   –index=phyid 指定要设置的 phyid。一般来说，phyid 的索引从 0 开始，如果背板有 24 盘位，那么背板的 phyid 就是 0~23。
+*   sg 设备 背板对应的设备，可以通过多种方式获取，最简单的方式是通过 sg3_utils 工具包里的 sg_map 命令获取，没有磁盘对应的 sg 设备就是背板的 sg 设备。如下例，/dev/sg4 就是背板的 sg 设备。
 ```bash
 [root@Storage ~]# sg_map
 /dev/sg0  /dev/sda
@@ -162,9 +162,9 @@ sg_ses --set=fault --index=phyid sg设备
 /dev/sg3  /dev/sdd
 /dev/sg4
 ```
-#### 磁盘名称和phyid
+#### 磁盘名称和 phyid
 
-磁盘名称和phyid之间的对应关系，是通过目录的遍历来完成（/sys/class/sas_device/），先找到插到背板上所有的磁盘。
+磁盘名称和 phyid 之间的对应关系，是通过目录的遍历来完成（/sys/class/sas_device/），先找到插到背板上所有的磁盘。
 ```bash
 [root@Storage ~]# ls -1d /sys/class/sas_device/expander-0:0/device/phy-*/port/end_device-*/target*/*/block/*
 /sys/class/sas_device/expander-0:0/device/phy-0:0:13/port/end_device-0:0:0/target0:0:0/0:0:0:0/block/sdb
@@ -176,21 +176,21 @@ sg_ses --set=fault --index=phyid sg设备
 1.  每行记录截取到/port/之前的位置，比如”/sys/class/sas_device/expander-0:0/device/phy-0:0:13/port/end_device-0:0:0/target0:0:0/0:0:0:0/block/sdb”，截取的路径为”/sys/class/sas_device/expander-0:0/device/phy-0:0:13”。
 2.  进入截取目录位置，找到子目录”sas_phy”。
 3.  进入”sas_phy”目录，找到以字符”phy-“开始的子目录，一般和第一步截取后目录名相同，这里就是”phy-0:0:13”。
-4.  进入”phy-0:0:13”，读取该目录下的”phy_identifier”文件，获取到的值即为磁盘对应的phyid。
+4.  进入”phy-0:0:13”，读取该目录下的”phy_identifier”文件，获取到的值即为磁盘对应的 phyid。
 
-则磁盘”sdb”对应的phyid文件全路径为”/sys/class/sas_device/expander-0:0/device/phy-0:0:13/sas_phy/phy-0:0:13/phy_identifier”，对应的phyid为”13”。
+则磁盘”sdb”对应的 phyid 文件全路径为”/sys/class/sas_device/expander-0:0/device/phy-0:0:13/sas_phy/phy-0:0:13/phy_identifier”，对应的 phyid 为”13”。
 
 ### 背板厂商判定模块 - digidiskproduct.py
 
-背板厂商判定模块其实是Phyid和磁盘位置关系的固化，当某个固件的背板把Phyid和磁盘位置关系找出来以后，在固件不发生大的改变的情况下，这种对应关系是稳定的，为了避免重复性工作，需要将这种关系固化下来。
+背板厂商判定模块其实是 Phyid 和磁盘位置关系的固化，当某个固件的背板把 Phyid 和磁盘位置关系找出来以后，在固件不发生大的改变的情况下，这种对应关系是稳定的，为了避免重复性工作，需要将这种关系固化下来。
 
-这样就又需要一种关系映射，也就是需要一个标示、关键字，python里讲就是需要一个key，因为这种关系是同背板固件相关，所以就想着从背板上获取这个标示，最后选择根据背板的product_id（/sys/class/sas_expander/expander-X/product_id）来判断。
+这样就又需要一种关系映射，也就是需要一个标示、关键字，python 里讲就是需要一个 key，因为这种关系是同背板固件相关，所以就想着从背板上获取这个标示，最后选择根据背板的 product_id（/sys/class/sas_expander/expander-X/product_id）来判断。
 
-还有一个状态会体现在这个key里，背板上的插槽数量，也就是这个背板是多少盘位的（8、12、16还是24）。
+还有一个状态会体现在这个 key 里，背板上的插槽数量，也就是这个背板是多少盘位的（8、12、16 还是 24）。
 
-**注意**：这里key没有直接使用product_id的值，因为可读性太差，根据不同的product_id，生成一个厂家和盘位的组合，这个组合被用来当做key。
+**注意**：这里 key 没有直接使用 product_id 的值，因为可读性太差，根据不同的 product_id，生成一个厂家和盘位的组合，这个组合被用来当做 key。
 
-比如product_id为80H10341807A0，根据适配的过程，可以知道这是一款勤诚的24盘位的背板，那么key就是 **CHENBROPHYIDMAP24** ，**CHENBRO** 表示勤诚，**PHYIDMAP** 表示这是通过phyid找位置的映射（phyid是key，位置是value），**24** 表示24盘位。
+比如 product_id 为 80H10341807A0，根据适配的过程，可以知道这是一款勤诚的 24 盘位的背板，那么 key 就是 **CHENBROPHYIDMAP24** ，**CHENBRO** 表示勤诚，**PHYIDMAP** 表示这是通过 phyid 找位置的映射（phyid 是 key，位置是 value），**24** 表示 24 盘位。
 ```plain
 CHENBROPHYIDMAP24 = {
     '20' : '21','21' : '22','22' : '23','23' : '24',
@@ -203,11 +203,11 @@ CHENBROPHYIDMAP24 = {
 ```
 ### 磁盘灯设置模块 - digidisklight.py
 
-磁盘灯设置也是使用sg3_utils工具包里的sg_ses命令来实现（和获取磁盘位置和phyid对应关系方法一样）。
+磁盘灯设置也是使用 sg3_utils 工具包里的 sg_ses 命令来实现（和获取磁盘位置和 phyid 对应关系方法一样）。
 
-模块在通过phyid设置led灯的基础上进行了扩展，允许通过磁盘位置和磁盘名称来设置led灯（对应关系固化前提下）。
+模块在通过 phyid 设置 led 灯的基础上进行了扩展，允许通过磁盘位置和磁盘名称来设置 led 灯（对应关系固化前提下）。
 
-sg_ses命令功能很强大，查看它的帮助信息，可以看到如下：
+sg_ses 命令功能很强大，查看它的帮助信息，可以看到如下：
 ```bash
 [root@Storage ~]# sg_ses --help
 Usage: sg_ses [--byte1=B1] [--clear=STR] [--control] [--data=H,H...]
@@ -217,7 +217,7 @@ Usage: sg_ses [--byte1=B1] [--clear=STR] [--control] [--data=H,H...]
               [--nickid=SEID] [--page=PG] [--raw] [--set=STR]
               [--status] [--verbose] [--version] DEVICE
 ```
-我们只使用了其中的led灯点亮/熄灭功能。
+我们只使用了其中的 led 灯点亮/熄灭功能。
 
 设置磁盘灯命令如下：
 ```bash
@@ -227,12 +227,12 @@ sg_ses --set=STR --index=TIA,II DEVICE
 ```bash
 sg_ses --clear=STR --index=TIA,II DEVICE
 ```
-通过控制背板的led灯闪烁的频率或是常亮，我们可以实现不同的组合，对每个组合进行定义，就能表达我们想要的内容。（由于每个背板固件对led灯控制的支持不尽相同，所以实际效果是有出入的，需要保证的一点是 **损坏** 状态一定要明确的表现出来，以便于坏盘的更换。）
+通过控制背板的 led 灯闪烁的频率或是常亮，我们可以实现不同的组合，对每个组合进行定义，就能表达我们想要的内容。（由于每个背板固件对 led 灯控制的支持不尽相同，所以实际效果是有出入的，需要保证的一点是 **损坏** 状态一定要明确的表现出来，以便于坏盘的更换。）
 
-和phyid和磁盘位置关系的固化一样，这里也是通过背板厂家来区分不同背板led灯对应不同的状态，目前已支持的状态如下：
+和 phyid 和磁盘位置关系的固化一样，这里也是通过背板厂家来区分不同背板 led 灯对应不同的状态，目前已支持的状态如下：
 
 - 鲸鲨背板
-```
+```plain
 {
     '1' : '',           #使用中
     '2' : 'missing',    #未使用
@@ -243,7 +243,7 @@ sg_ses --clear=STR --index=TIA,II DEVICE
 }
 ```
 - 迎广背板：
-```
+```plain
 {
     '1' : '',           #使用中
     '2' : 'ok',         #未使用
@@ -254,7 +254,7 @@ sg_ses --clear=STR --index=TIA,II DEVICE
 }
 ```
 - 勤诚背板：
-```
+```plain
 {
     '1' : '',           #使用中
     '2' : '',           #未使用
@@ -266,11 +266,11 @@ sg_ses --clear=STR --index=TIA,II DEVICE
 ```
 ### 使用方法
 
-磁盘模块使用时主要是调用磁盘名和磁盘位置对应关系模块（digidiskmap.py）和磁盘灯设置模块（digidisklight.py），digidiskproduct.py基本是常量模块，只有在新的背板适配时才会修改。
+磁盘模块使用时主要是调用磁盘名和磁盘位置对应关系模块（digidiskmap.py）和磁盘灯设置模块（digidisklight.py），digidiskproduct.py 基本是常量模块，只有在新的背板适配时才会修改。
 
 ### 磁盘名和磁盘位置对应关系模块 - digidiskmap.py
 
-该模块会获取所有的背板和磁盘信息，从固化的磁盘位置和phyid映射中查找，匹配成功会返回磁盘和盘位的对应关系，磁盘和phyid的对应关系，背板信息。
+该模块会获取所有的背板和磁盘信息，从固化的磁盘位置和 phyid 映射中查找，匹配成功会返回磁盘和盘位的对应关系，磁盘和 phyid 的对应关系，背板信息。
  
 {%raw%}
 <table class="docutils field-list" frame="void" rules="none">
@@ -368,7 +368,7 @@ sg_ses --clear=STR --index=TIA,II DEVICE
 
 ### 磁盘灯设置模块 - digidisklight.py
 
-该模块会根据用户传入的phyid、磁盘位置、磁盘名称，状态等参数，设置或清除对应位置的led灯状态。
+该模块会根据用户传入的 phyid、磁盘位置、磁盘名称，状态等参数，设置或清除对应位置的 led 灯状态。
 
 传入的状态可以为具体的状态值（string），也可以预定义的状态值对应的数字。
 

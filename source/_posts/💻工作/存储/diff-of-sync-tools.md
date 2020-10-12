@@ -7,7 +7,7 @@ tags:
   - Linux
   - SCP
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
 date: 2020-08-07 12:27:56
 ---

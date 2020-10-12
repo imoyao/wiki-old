@@ -4,7 +4,7 @@ tags:
   - ceph
   - processing
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
   - CEPH
   - troubleshooting

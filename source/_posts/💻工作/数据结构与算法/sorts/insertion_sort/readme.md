@@ -4,7 +4,7 @@ toc: true
 tags:
   - 算法
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 数据结构与算法
   - sorts
   - insertion_sort

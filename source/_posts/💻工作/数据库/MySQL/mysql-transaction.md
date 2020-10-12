@@ -5,7 +5,7 @@ tags:
   - 面试
   - 事务
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 数据库
   - MySQL
 date: 2019-08-07 12:27:56
@@ -279,8 +279,8 @@ transaction-isolation = READ-COMMITTED
 •   事务隔离级别的作用范围分为两种：
     –   全局级：对所有的会话有效 
     –   会话级：只对当前的会话有效 
-    •   例如，设置会话级隔离级别为READ COMMITTED ：
-    ```sql
+    •   例如，设置会话级隔离级别为 READ COMMITTED ：
+    ```sqlplainplainplainplainplainplainplainplainplainplainplainplain
     mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED；
     ```
     或：
@@ -296,8 +296,8 @@ transaction-isolation = READ-COMMITTED
 •   事务隔离级别的作用范围分为两种：
     –   全局级：对所有的会话有效 
     –   会话级：只对当前的会话有效 
-    •   例如，设置会话级隔离级别为READ COMMITTED ：
-    ```sql
+    •   例如，设置会话级隔离级别为 READ COMMITTED ：
+    ```sqlplainplainplainplainplainplainplainplain
     mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED；
     ```
     或：

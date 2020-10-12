@@ -2,7 +2,7 @@
 title: Ceph MDS 问题分析
 toc: true
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
   - CEPH
   - troubleshooting
