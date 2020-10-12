@@ -110,7 +110,6 @@ mysql>   select * from runoob_transaction_test;   # 因为回滚所以数据没�
 | 6    |
 +------+
 2 rows in set (0.01 sec)
- 
 ```
 
 ## 和事务相关的两条重要的 SQL 语句(TCL)
@@ -128,186 +127,187 @@ mysql>   select * from runoob_transaction_test;   # 因为回滚所以数据没�
 
 ### 结束标志(提交或者回滚)
 
-  -  提交：成功的结束，将所有的 DML 语句操作历史记录和底层硬盘数据来一次同步
-  -  回滚：失败的结束，将所有的 DML 语句操作历史记录全部清空
+-  提交：成功的结束，将所有的 DML 语句操作历史记录和底层硬盘数据来一次同步
+-  回滚：失败的结束，将所有的 DML 语句操作历史记录全部清空
     
 
 
 ## 事务与数据库底层数据
 
 
-> 在事物进行过程中，未结束之前，DML 语句是不会更改底层数据，只是将历史操作记录一下，在内存中完成记录。只有在事物结束的时候，而且是成功的结束的时候，才会修改底层硬盘文件中的数据
+> 在事务进行过程中，未结束之前，DML 语句是不会更改底层数据，只是将历史操作记录一下，在内存中完成记录。只有在事务结束的时候，而且是成功的结束的时候，才会修改底层硬盘文件中的数据
 
 
 ## 在 MySQL 中，事务提交与回滚
 
-> 在 MySQL 中，默认情况下，事务是自动提交的，也就是说，只要执行一条 DML 语句就开启了事物，并且提交了事务
+> 在 MySQL 中，默认情况下，事务是自动提交的，也就是说，只要执行一条 DML 语句就开启了事务，并且提交了事务
 
 ### 以上的自动提交机制是可以关闭的
 
 ### 对`t_user`进行提交和回滚操作
 
 ### 提交操作(事务成功)
+- start transaction
+- DML 语句
+- commit
 
-*   start transaction
-*   DML 语句
-*   commit
-``` sql   
-        mysql> start transaction;#手动开启事务
-        mysql> insert into t_user(name) values('pp');
-        mysql> commit;#commit之后即可改变底层数据库数据
-        mysql> select * from t_user;
-        +----+------+
-        | id | name |
-        +----+------+
-        |  1 | jay  |
-        |  2 | man  |
-        |  3 | pp   |
-        +----+------+
-        3 rows in set (0.00 sec)
-```      
-    
+```sql   
+mysql> start transaction; //手动开启事务
+mysql> insert into t_user(name) values('pp');
+mysql> commit; // commit之后即可改变底层数据库数据
+mysql> select * from t_user;
++----+------+
+| id | name |
++----+------+
+|  1 | jay  |
+|  2 | man  |
+|  3 | pp   |
++----+------+
+3 rows in set (0.00 sec)
+```
 
 ### 回滚操作(事务失败)
 
-*   start transaction
-*   DML 语句
-*   rollback
+- start transaction
+- DML 语句
+- rollback
+
 ```sql 
-        mysql> start transaction;
-        mysql> insert into t_user(name) values('yy');
-        mysql> rollback;
-        mysql> select * from t_user;
-        +----+------+
-        | id | name |
-        +----+------+
-        |  1 | jay  |
-        |  2 | man  |
-        |  3 | pp   |
-        +----+------+
-        3 rows in set (0.00 sec)
-```      
+mysql> start transaction;
+mysql> insert into t_user(name) values('yy');
+mysql> rollback;
+mysql> select * from t_user;
++----+------+
+| id | name |
++----+------+
+|  1 | jay  |
+|  2 | man  |
+|  3 | pp   |
++----+------+
+3 rows in set (0.00 sec)
+```
     
 
-## 事务四大特性之一————隔离性(isolation)
+## 事务四大特性之一——隔离性(isolation)
 
-1.  事物 A 和事物 B 之间具有一定的隔离性
+1.  事务 A 和事务 B 之间具有一定的隔离性
 2.  隔离性有隔离级别(4 个)  
-    *   读未提交：read uncommitted
-    *   读已提交：read committed
-    *   可重复读：repeatable read
-    *   串行化：serializable
+*   读未提交：read uncommitted
+*   读已提交：read committed
+*   可重复读：repeatable read
+*   串行化：serializable
 
 1. read uncommitted
 
-    - 事物 A 和事物 B，事物 A 未提交的数据，事物 B 可以读取到
-    - 这里读取到的数据叫做“脏数据”
-    - 这种隔离级别最低，这种级别一般是在理论上存在，数据库隔离级别一般都高于该级别
+- 事务 A 和事务 B，事务 A 未提交的数据，事务 B 可以读取到
+- 这里读取到的数据叫做“脏数据”
+- 这种隔离级别最低，这种级别一般是在理论上存在，数据库隔离级别一般都高于该级别
     
 
 2. read committed
 
-    - 事物 A 和事物 B，事物 A 提交的数据，事物 B 才能读取到
-    - 这种隔离级别高于读未提交
-    - 换句话说，对方事物提交之后的数据，我当前事物才能读取到
-    - 这种级别可以避免“脏数据”
-    - 这种隔离级别会导致“不可重复读取”
-    - Oracle 默认隔离级别
-    
+- 事务 A 和事务 B，事务 A 提交的数据，事务 B 才能读取到
+- 这种隔离级别高于读未提交
+- 换句话说，对方事务提交之后的数据，我当前事务才能读取到
+- 这种级别可以避免“脏数据”
+- 这种隔离级别会导致“不可重复读取”
+- Oracle 默认隔离级别
 
 3. repeatable read
 
-    - 事务 A 和事务 B，事务 A 提交之后的数据，事务 B 读取不到
-    - 事务 B 是可重复读取数据
-    - 这种隔离级别高于读已提交
-    - 换句话说，对方提交之后的数据，我还是读取不到
-    - 这种隔离级别可以避免“不可重复读取”，达到可重复读取
-    - 比如 1 点和 2 点读到数据是同一个
-    - MySQL 默认级别
-    - 虽然可以达到可重复读取，但是会导致“幻像读”
+- 事务 A 和事务 B，事务 A 提交之后的数据，事务 B 读取不到
+- 事务 B 是可重复读取数据
+- 这种隔离级别高于读已提交
+- 换句话说，对方提交之后的数据，我还是读取不到
+- 这种隔离级别可以避免“不可重复读取”，达到可重复读取
+- 比如 1 点和 2 点读到数据是同一个
+- MySQL 默认级别
+- 虽然可以达到可重复读取，但是会导致“幻像读”
     
-
 4. serializable
 
-    - 事务 A 和事务 B，事务 A 在操作数据库时，事务 B 只能排队等待
-    - 这种隔离级别很少使用，吞吐量太低，用户体验差
-    - 这种级别可以避免“幻像读”，每一次读取的都是数据库中真实存在数据，事务 A 与事务 B 串行，而不并发
+- 事务 A 和事务 B，事务 A 在操作数据库时，事务 B 只能排队等待
+- 这种隔离级别很少使用，吞吐量太低，用户体验差
+- 这种级别可以避免“幻像读”，每一次读取的都是数据库中真实存在数据，事务 A 与事务 B 串行，而不并发
     
 
 ## 隔离级别与一致性关系
-------------
-![这里写图片描述](https://img-blog.csdn.net/2018032313015577?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dfbGludXg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+![隔离级别](https://img-blog.csdn.net/2018032313015577)
 
 ## 设置事务隔离级别
 
 ### 方式一
 
-*   可以在 my.ini 文件中使用 transaction-isolation 选项来设置服务器的缺省事务隔离级别。
+* 可以在 my.ini 文件中使用 transaction-isolation 选项来设置服务器的缺省事务隔离级别。
     
-*   该选项值可以是：
+* 该选项值可以是：
     
 – READ-UNCOMMITTED
 – READ-COMMITTED
 – REPEATABLE-READ
 – SERIALIZABLE
 
-•  例如：
+例如
+
 ```plain
 [mysqld]
 transaction-isolation = READ-COMMITTED
 ```
 
-        
-
 ### 方式二
 
 *   通过命令动态设置隔离级别  
-    • 隔离级别也可以在运行的服务器中动态设置，应使用 SET TRANSACTION ISOLATION LEVEL 语句。  
-    • 其语法模式为：
-    ```sql
-    SET [GLOBAL | SESSION] TRANSACTION ISOLATION LEVEL <isolation-level>
-    ```
-      其中的<isolation-level>可以是：
-    –   READ UNCOMMITTED
-    –   READ COMMITTED
-    –   REPEATABLE READ
-    –   SERIALIZABLE
-    •   例如： SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+ 隔离级别也可以在运行的服务器中动态设置，应使用 SET TRANSACTION ISOLATION LEVEL 语句。  
+其语法模式为：
 
+```sql
+SET [GLOBAL | SESSION] TRANSACTION ISOLATION LEVEL <isolation-level>
+```
+其中的<isolation-level>可以是：
+– READ UNCOMMITTED
+– READ COMMITTED
+– REPEATABLE READ
+– SERIALIZABLE
+
+例如： `SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;`
+        
 ## 隔离级别的作用范围
 
-•   事务隔离级别的作用范围分为两种：
-    –   全局级：对所有的会话有效 
-    –   会话级：只对当前的会话有效 
-    •   例如，设置会话级隔离级别为READ COMMITTED ：
-    ```sql
-    mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED；
-    ```
-    或：
-    ```sql
-    mysql> SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED；
-    ```
-    •   设置全局级隔离级别为READ COMMITTED ： 
-    ```sql
-    mysql> SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED；
-    ```
+事务隔离级别的作用范围分为两种：
+–   全局级：对所有的会话有效 
+–   会话级：只对当前的会话有效 
+例如，设置会话级隔离级别为 `READ COMMITTED` ：
+```sql
+mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+```
+或：
+```sql
+mysql> SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;
+```
+设置全局级隔离级别为`READ COMMITTED`： 
+```sql
+mysql> SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED;
+```
 ## 查看隔离级别
 
-•   事务隔离级别的作用范围分为两种：
-    –   全局级：对所有的会话有效 
-    –   会话级：只对当前的会话有效 
-    •   例如，设置会话级隔离级别为READ COMMITTED ：
-    ```sql
-    mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED；
-    ```
-    或：
-    ```sql
-    mysql> SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED；
-    ```
-    •   设置全局级隔离级别为READ COMMITTED ： 
-    ```sql
-    mysql> SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED；
-    ```
+事务隔离级别的作用范围分为两种：
+
+– 全局级：对所有的会话有效 
+– 会话级：只对当前的会话有效 
+
+例如，设置会话级隔离级别为`READ COMMITTED`：
+```sql
+mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+```
+或：
+```sql
+mysql> SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;
+```
+设置全局级隔离级别为READ COMMITTED ： 
+```sql
+mysql> SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED;
+```
 
 ## 参考来源
 [MySQL——事务(Transaction)详解_浅然的专栏-CSDN 博客](https://blog.csdn.net/w_linux/article/details/79666086)

@@ -17,7 +17,7 @@ date: 2020-08-13 18:30:46
 > 这是 “Python 工匠”系列的第 10 篇文章。[[查看系列所有文章]](https://github.com/piglei/one-python-craftsman)
 
 <div style="text-align: center; color: #999; margin: 14px 0 14px;font-size: 12px;">
-<img src="https://www.zlovezl.cn/static/uploaded/2019/05/jeshoots-com-632498-unsplash_w1280.jpg" width="100%" />
+<img src="https://www.zlovezl.cn/static/uploaded/2019/05/jeshoots-com-632498-unsplash_w1280.jpg)
 </div>
 
 编程，其实和玩电子游戏有一些相似之处。你在玩不同游戏前，需要先学习每个游戏的不同规则，只有熟悉和灵活运用游戏规则，才更有可能在游戏中获胜。

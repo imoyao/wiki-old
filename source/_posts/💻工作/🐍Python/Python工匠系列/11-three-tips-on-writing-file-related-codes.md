@@ -17,7 +17,7 @@ date: 2020-08-13 18:31:46
 > 这是 “Python 工匠”系列的第 11 篇文章。[[查看系列所有文章]](https://github.com/piglei/one-python-craftsman)
 
 <div style="text-align: center; color: #999; margin: 14px 0 14px;font-size: 12px;">
-<img src="https://www.zlovezl.cn/static/uploaded/2019/06/devon-divine-1348025-unsplash_1280.jpg" width="100%" />
+<img src="https://www.zlovezl.cn/static/uploaded/2019/06/devon-divine-1348025-unsplash_1280.jpg)
 </div>
 
 在这个世界上，人们每天都在用 Python 完成着不同的工作。而文件操作，则是大家最常需要解决的任务之一。使用 Python，你可以轻松为他人生成精美的报表，也可以用短短几行代码快速解析、整理上万份数据文件。

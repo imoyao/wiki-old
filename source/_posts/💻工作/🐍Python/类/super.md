@@ -3,6 +3,8 @@ title: Python 受推崇的 super！
 toc: true
 tags:
   - Python
+  - Mixin
+  - super
 categories:
   - "\U0001F4BB工作"
   - "\U0001F40DPython"
@@ -225,3 +227,9 @@ class LoggingDict(dict):
 
 译者：[Wray Zheng](http://www.codebelief.com)  
 译文来源： [[译]Python 受推崇的 super！ - 掘金](https://juejin.im/post/6844903466322657288)
+
+## 推荐阅读
+[Things to Know About Python Super [1 of 3]](https://www.artima.com/weblogs/viewpost.jsp?thread=236275)
+[关于 Python 的 Mixin 模式 | 思诚之道](http://www.bjhee.com/python-mixin.html)
+[Multiple inheritance and mixin classes in Python - The Digital Cat](https://www.thedigitalcatonline.com/blog/2020/03/27/mixin-classes-in-python/)
+[8.18 利用 Mixins 扩展类功能 — python3-cookbook 3.0.0 文档](https://python3-cookbook.readthedocs.io/zh_CN/latest/c08/p18_extending_classes_with_mixins.html)

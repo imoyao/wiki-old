@@ -18,7 +18,7 @@ date: 2020-08-13 18:32:46
 > 这是 “Python 工匠”系列的第 12 篇文章。[[查看系列所有文章]](https://github.com/piglei/one-python-craftsman)
 
 <div style="text-align: center; color: #999; margin: 14px 0 14px;font-size: 12px;">
-<img src="https://www.zlovezl.cn/static/uploaded/2019/06/kelly-sikkema-Z9AU36chmQI-unsplash_w1280.jpg" width="100%" />
+<img src="https://www.zlovezl.cn/static/uploaded/2019/06/kelly-sikkema-Z9AU36chmQI-unsplash_w1280.jpg)
 </div>
 
 Python 是一门支持多种编程风格的语言，面对相同的需求，拥有不同背景的程序员可能会写出风格迥异的 Python 代码。比如一位习惯编写 C 语言的程序员，通常会定义一大堆函数来搞定所有事情，这是[“过程式编程”](https://en.wikipedia.org/wiki/Procedural_programming)的思想。而一位有 Java 背景的程序员则更倾向于设计许多个相互关联的类*（class）*，这是 [“面向对象编程（后简称 OOP）”](https://en.wikipedia.org/wiki/Object-oriented_programming)。
