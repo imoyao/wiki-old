@@ -292,10 +292,8 @@ mysql> SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED;
 ## 查看隔离级别
 
 事务隔离级别的作用范围分为两种：
-
 – 全局级：对所有的会话有效 
 – 会话级：只对当前的会话有效 
-
 例如，设置会话级隔离级别为`READ COMMITTED`：
 ```sql
 mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
