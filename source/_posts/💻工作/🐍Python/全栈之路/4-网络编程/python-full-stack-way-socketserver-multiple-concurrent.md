@@ -101,6 +101,6 @@ if __name__ == "__main__":
 
 效果图
 
-![socker-04](https://blog.ansheng.me/images/2016/12/1483021949.png)
+![socker-04](https://ansheng.me/wp-content/uploads/2016/12/1483021949.png)
 
 同时打开多个客户端，服务端也不会出现错误

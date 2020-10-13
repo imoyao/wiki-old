@@ -49,7 +49,7 @@ obj.ret()
 
 类的内存地址对应关系
 
-![object-oriented-basis-01](https://blog.ansheng.me/images/2016/12/1483020680.png)
+![object-oriented-basis-01](https://ansheng.me/wp-content/uploads/2016/12/1483020680.png)
 
 ## 面向对象之 self
 
@@ -88,7 +88,7 @@ Process finished with exit code 0
 
 如图
 
-![object-oriented-basis-02](https://blog.ansheng.me/images/2016/12/1483020708.png)
+![object-oriented-basis-02](https://ansheng.me/wp-content/uploads/2016/12/1483020708.png)
 
 `self`是形式参数，有 Python 自行传递。
 
@@ -371,8 +371,8 @@ Process finished with exit code 0
 
 - **顶层两个类没有父类的情况**
 
-![object-oriented-basis-03](https://blog.ansheng.me/images/2016/12/1483020761.png)
+![object-oriented-basis-03](https://ansheng.me/wp-content/uploads/2016/12/1483020761.png)
 
 - **顶层两个类有父类的情况**
 
-![object-oriented-basis-04](https://blog.ansheng.me/images/2016/12/1483020781.png)
+![object-oriented-basis-04](https://ansheng.me/wp-content/uploads/2016/12/1483020781.png)

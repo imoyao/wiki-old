@@ -81,7 +81,7 @@ pika：https://pypi.python.org/pypi/pika
 
 如果你启动了多个消费者，那么生产者生产的任务会根据顺序的依次让消费者来执行，这就是`Work Queues`模式
 
-![rabbitmq-work-queues](https://blog.ansheng.me/images/2016/12/1483068957.png)
+![rabbitmq-work-queues](https://ansheng.me/wp-content/uploads/2016/12/1483068957.png)
 
 生产者代码
 
@@ -249,7 +249,7 @@ fanout(发布订阅)
 
 只要有消费者，那么我生产者发布一条消息的时候所有的消费者都会被收到
 
-![rabbitmq-fanout](https://blog.ansheng.me/images/2016/12/1483069006.png)
+![rabbitmq-fanout](https://ansheng.me/wp-content/uploads/2016/12/1483069006.png)
 
 ```python
 # 消费者
@@ -284,7 +284,7 @@ connection.close()
 
 RabbitMQ 还支持根据关键字发送，即：队列绑定关键字，发送者将数据根据关键字发送到消息 exchange，exchange 根据 关键字 判定应该将数据发送至指定队列。
 
-![rabbitmq-direct](https://blog.ansheng.me/images/2016/12/1483069041.png)
+![rabbitmq-direct](https://ansheng.me/wp-content/uploads/2016/12/1483069041.png)
 
 生产者代码
 
@@ -429,7 +429,7 @@ connection.close()
 
 客户端发送一个任务到服务端，服务端把任务的执行结果再返回给客户端
 
-![rabbitmq-rpc](https://blog.ansheng.me/images/2016/12/1483069085.png)
+![rabbitmq-rpc](https://ansheng.me/wp-content/uploads/2016/12/1483069085.png)
 
 - RPC Server
 

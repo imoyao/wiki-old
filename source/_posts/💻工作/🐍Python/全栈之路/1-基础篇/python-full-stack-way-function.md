@@ -95,7 +95,7 @@ Hello Word
 ```
 
 如图所示:
-![Python-Day04-04](https://blog.ansheng.me/images/2016/12/1483016903.png)
+![Python-Day04-04](https://ansheng.me/wp-content/uploads/2016/12/1483016903.png)
 
 ret 小括号内的值会被传入到函数 ret 里面都能做 x 的值，结果差不多就是`print("Hello Word")`
 
@@ -372,7 +372,7 @@ Lambda（Lambda expressions）表达式是用 lambda 关键字创建的匿名函
 
 lambda 创建的函数和 def 创建的函数对应关系如图所示：
 
-![Python-Day05-01](https://blog.ansheng.me/images/2016/12/1483017178.png)
+![Python-Day05-01](https://ansheng.me/wp-content/uploads/2016/12/1483017178.png)
 
 ### 嵌套 lambda 和作用域
 

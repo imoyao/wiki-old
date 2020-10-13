@@ -19,7 +19,7 @@ Python 常用的几种数据类型就是以下几种，其实 Python 内部的�
 
 那么接下来我们会学到那些内置的数据类型呢？
 
-![Python-basic-data-types](https://blog.ansheng.me/images/2016/12/1483016670.png)
+![Python-basic-data-types](https://ansheng.me/wp-content/uploads/2016/12/1483016670.png)
 
 虽然说我们是在学习数据类型，但其实只是在学习每一个类型所提供的 API 而已，你所需要的大部分功能，Python 都已经帮我们封装好了，不需要担心任何效率的问题，当你熟悉了这些 API 之后，灵活的组合应用，因为这在开发的过程中是必不可少的，那么接下来就让我们开始漫长的数据类型 API 学习之旅吧。
 
@@ -29,7 +29,7 @@ Python 常用的几种数据类型就是以下几种，其实 Python 内部的�
 
 如图：
 
-![python-day02-07](https://blog.ansheng.me/images/2016/12/1483016406.png)
+![python-day02-07](https://ansheng.me/wp-content/uploads/2016/12/1483016406.png)
 
 ## 可变类型与不可变类型
 
@@ -93,7 +93,7 @@ Python 常用的几种数据类型就是以下几种，其实 Python 内部的�
 
 构造方法每个数据类型中都会有，这是 Python 内部所定义的，如下图所示：
 
-![Python-Day03-02](https://blog.ansheng.me/images/2016/12/1483016717.png)
+![Python-Day03-02](https://ansheng.me/wp-content/uploads/2016/12/1483016717.png)
 
 `__init__`
 
@@ -126,7 +126,7 @@ def __init__(self, x, base=10): # known special case of int.__init__
 
 下图中我们可以很清楚的看到 int 类型在创建对象时内存所分配空间的情况
 
-![Python-Day03-03](https://blog.ansheng.me/images/2016/12/1483016740.png)
+![Python-Day03-03](https://ansheng.me/wp-content/uploads/2016/12/1483016740.png)
 
 首先我们知道当我们创建第一个对象 var1 的时候会在内存中开辟一块空间作为存放 var1 对象的值用的，当我们创建第二个对象 var2 的时候也会在内存中开辟一块空间来作为 var2 对象的值，那如果这样说，那是不是说对象 var1 和 var2 的值内存是否会同时开辟两块呢？我们通过下面的实例可以得到答案：
 
@@ -157,7 +157,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 可以看到 var2 的内存地址已经改变了（废话），因为对象的值不一样了，所以他才不会改变，OK，我们可以得到一个结论就是：当两个或者多个对象的值都是同一个的时候，那么这些对象都会使用同一个内存地址，这里的值是是有范围的，默认范围是`-5~257`，得到这个结论之后我们继续往下看。
 
-![Python-Day03-04](https://blog.ansheng.me/images/2016/12/1483016781.png)
+![Python-Day03-04](https://ansheng.me/wp-content/uploads/2016/12/1483016781.png)
 
 这张图我们同样创建了两个对象，但是唯一不同的是我把第一个创建的对象的值作为第二个对象的值，这里他们肯定使用的是同一个内存地址，但是如果我把第一个对象的值改动了呢？
 

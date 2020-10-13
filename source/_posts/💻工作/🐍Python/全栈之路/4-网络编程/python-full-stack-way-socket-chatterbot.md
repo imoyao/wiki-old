@@ -108,4 +108,4 @@ obj.close()
 
 执行结果
 
-![socket-02](https://blog.ansheng.me/images/2016/12/1483021707.png)
+![socket-02](https://ansheng.me/wp-content/uploads/2016/12/1483021707.png)

@@ -136,4 +136,4 @@ obj.connect(('127.0.0.1', 6254, ))
 obj.close()
 ```
 输出的结果:
-![socket-01](https://blog.ansheng.me/images/2016/12/1483021625.png)
+![socket-01](https://ansheng.me/wp-content/uploads/2016/12/1483021625.png)

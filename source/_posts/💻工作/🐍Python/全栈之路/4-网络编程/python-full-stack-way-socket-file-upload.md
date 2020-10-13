@@ -23,14 +23,14 @@ date: 2020-05-23 18:21:46
 
 - 正常情况下发送文件
 
-![socket-sticky-package-01](https://blog.ansheng.me/images/2016/12/1483021785.png)
+![socket-sticky-package-01](https://ansheng.me/wp-content/uploads/2016/12/1483021785.png)
 
 1. **第一步：** 客户端把获取到的文件总大小(size=65426)先放到缓冲区，然后发送给服务端
 2. **第二步：** 此时客户端接收到的文件总大小就是 65426
 
 - 粘包的问题下发送文件
 
-![socket-sticky-package-02](https://blog.ansheng.me/images/2016/12/1483021810.png)
+![socket-sticky-package-02](https://ansheng.me/wp-content/uploads/2016/12/1483021810.png)
 
 1. **第一步：** 客户端把获取到的文件总大小(size=65426)先放到缓冲区
 2. **第二步：** 此时可能由于文件读取太快，导致缓存区的内容还没有发送到服务端，客户端就把读取到的文件内容(hello)也放到缓存区；
@@ -40,7 +40,7 @@ date: 2020-05-23 18:21:46
 
 如果出现粘包的问题，那么传输的数据就有问题了，如何解决这个问题呢？看下图：
 
-![socket-sticky-package-03](https://blog.ansheng.me/images/2016/12/1483021831.png)
+![socket-sticky-package-03](https://ansheng.me/wp-content/uploads/2016/12/1483021831.png)
 
 1. **第一步：** 客户端把文件大小放到缓冲区
 2. **第二步：** 放入缓冲区之后立刻陷入阻塞的状态，登台服务端回复已收到文件大小，此时是不会再向服务端发送任何数据的
@@ -51,7 +51,7 @@ date: 2020-05-23 18:21:46
 
 执行结果如下
 
-![socket-03](https://blog.ansheng.me/images/2016/12/1483021854.png)
+![socket-03](https://ansheng.me/wp-content/uploads/2016/12/1483021854.png)
 
 `client.py`文件内容
 

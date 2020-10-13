@@ -217,7 +217,7 @@ else:
 即： {'k1': 大于 66 的所有值, 'k2': 小于 66 的所有值}
 
 图解流程:
-![python-day02-06](https://blog.ansheng.me/images/2016/12/1483016438.png)
+![python-day02-06](https://ansheng.me/wp-content/uploads/2016/12/1483016438.png)
 
 解答：
 ```python
@@ -367,7 +367,7 @@ goods = [
 
 - 逻辑图
 
-![python-day02-08](https://blog.ansheng.me/images/2016/12/1483016473.png)
+![python-day02-08](https://ansheng.me/wp-content/uploads/2016/12/1483016473.png)
 
 - 代码部分
 
@@ -619,7 +619,7 @@ dic = {
 
 - 流程图解
 
-![python-day02-09](https://blog.ansheng.me/images/2016/12/1483016506.png)
+![python-day02-09](https://ansheng.me/wp-content/uploads/2016/12/1483016506.png)
 
 - 代码如下
 

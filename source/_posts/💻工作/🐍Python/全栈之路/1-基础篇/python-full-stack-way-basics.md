@@ -16,7 +16,7 @@ date: 2020-05-23 18:21:46
 
 Python 是著名的"`龟叔`"`Guido van Rossum(吉多·范罗苏姆)`在 1989 年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言。
 
-![guide](https://blog.ansheng.me/images/2016/12/1483014338667.jpg "guide")
+![guide](https://ansheng.me/wp-content/uploads/2016/12/1483014338667.jpg)
 
 Python 语法很多来自 C，但又受到 ABC 语言的强烈影响，来自 ABC 语言的一些规定直到今天还富有争议，比如强制缩进，但这些语法规定让 Python 变得更易读。
 
@@ -24,7 +24,7 @@ Python 语法很多来自 C，但又受到 ABC 语言的强烈影响，来自 AB
 
 截至到目前`2017年1月6日`，Python 在`Tiobe`的排名还是很靠前的，而且近几年来说 Python 上升的趋势还是特别稳定的，这两年一直保持在第四位，甚至已经超越 PHP 和 C#。
 
-![Tiobe](https://blog.ansheng.me/images/2017/01/1483685458.png "Tiobe")
+![Tiobe](https://ansheng.me/wp-content/uploads/2017/01/1483685458.png)
 
 查询网站：http://www.tiobe.com/tiobe_index?page=index
 
@@ -68,13 +68,13 @@ Python 唯一的缺点就是他的性能，它达不到像 C 和 C++这种编译
 
 下载下来之后双击安装，在安装的时候稍微需要注意一下就是需要修改默认的安装路径和和自动注册到系统环境变量勾选上。
 
-![python](https://blog.ansheng.me/images/2017/01/1483690871.png "python")
+![python](https://ansheng.me/wp-content/uploads/2017/01/1483690871.png)
 
-![python](https://blog.ansheng.me/images/2017/01/1483691055.png "python")
+![python](https://ansheng.me/wp-content/uploads/2017/01/1483691055.png)
 
 然后就可以点击`Install`按钮进行安装了。
 
-![python](https://blog.ansheng.me/images/2017/01/1483691189.png "python")
+![python](https://ansheng.me/wp-content/uploads/2017/01/1483691189.png)
 
 > 因为我们已经勾选自动注册环境变量，所以在这里就不需要修改环境变量，直接运行即可；
 
@@ -82,13 +82,13 @@ Python 唯一的缺点就是他的性能，它达不到像 C 和 C++这种编译
 
 右键开始菜单选择`命令提示符`，打开 CMD 窗口，
 
-![python](https://blog.ansheng.me/images/2017/01/1483691401.png "python")
+![python](https://ansheng.me/wp-content/uploads/2017/01/1483691401.png)
 
-![python](https://blog.ansheng.me/images/2017/01/1483691480.png "python")
+![python](https://ansheng.me/wp-content/uploads/2017/01/1483691480.png)
 
 在 cmd 窗口中输入`python -V`指令查看安装的 Python 版本：
 
-![python](https://blog.ansheng.me/images/2017/01/1483691631.png "python")
+![python](https://ansheng.me/wp-content/uploads/2017/01/1483691631.png)
 
 如果你得到的结果和我一样，那么你就安装好了`windows`下的`python`环境。
 
@@ -110,7 +110,7 @@ Python 的实现方式主要分为三大类
 
 当执行 Python 执行代码的时候，会启用一个 Python 解释器，将源码`(.py)`文件读取到内存当中，然后编译成字节码`(.pyc)`文件，最后交给 Python 的虚拟机`(PVM)`逐行解释并执行其内容，然后释放内存，退出程序。
 
-![python-day01-04](https://blog.ansheng.me/images/2016/12/1483015581.png)
+![python-day01-04](https://ansheng.me/wp-content/uploads/2016/12/1483015581.png)
 
 当第二次在执行当前程序的时候，会先在当前目录下寻找有没有同名的 pyc 文件，如果找到了，则直接进行运行，否则重复上面的工作。
 
@@ -544,7 +544,7 @@ num等于5
 while 语句用于循环执行程序，即在某条件下，循环执行某段程序，以处理需要重复处理的相同任务。
 执行流程图如下
 
-![while](https://blog.ansheng.me/images/2016/12/1483015647.png)
+![while](https://ansheng.me/wp-content/uploads/2016/12/1483015647.png)
 
 实例：
 
@@ -867,7 +867,7 @@ print(num)
 
 - 图解用户登录流程
 
-![python-day01-10](https://blog.ansheng.me/images/2016/12/1483015715.png)
+![python-day01-10](https://ansheng.me/wp-content/uploads/2016/12/1483015715.png)
 
 - 代码
 
