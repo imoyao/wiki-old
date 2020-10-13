@@ -12,8 +12,7 @@ categories:
 date: 2020-05-26 12:27:56
 ---
 
-摘要
-==
+## 摘要
 
 本文以 MySQL 数据库为研究对象，讨论与数据库索引相关的一些话题。特别需要说明的是，MySQL 支持诸多存储引擎，而各种存储引擎对索引的支持也各不相同，因此 MySQL 数据库支持多种索引类型，如 BTree 索引，哈希索引，全文索引等等。为了避免混乱，本文将只关注于 BTree 索引，因为这是平常使用 MySQL 时主要打交道的索引，至于哈希索引和全文索引本文暂不讨论。
 
@@ -25,11 +24,9 @@ date: 2020-05-26 12:27:56
 
 第三部分根据上面的理论基础，讨论 MySQL 中高性能使用索引的策略。
 
-数据结构及算法基础
-=========
+## 数据结构及算法基础
 
-索引的本质
------
+### 索引的本质
 
 MySQL 官方对索引的定义为：索引（Index）是帮助 MySQL 高效获取数据的数据结构。提取句子主干，就可以得到索引的本质：索引是数据结构。
 
@@ -43,8 +40,7 @@ MySQL 官方对索引的定义为：索引（Index）是帮助 MySQL 高效获�
 
 虽然这是一个货真价实的索引，但是实际的数据库系统几乎没有使用二叉查找树或其进化品种[红黑树](http://en.wikipedia.org/wiki/Red-black_tree)（red-black tree）实现的，原因会在下文介绍。
 
-B-Tree 和 B+Tree
--------------
+### B-Tree 和 B+Tree
 
 目前大部分数据库系统及文件系统都采用 B-Tree 或其变种 B+Tree 作为索引结构，在本文的下一节会结合存储器原理及计算机存取原理讨论为什么 B-Tree 和 B+Tree 在被如此广泛用于索引，这一节先单纯从数据结构角度描述它们。
 
@@ -121,12 +117,11 @@ B-Tree 有许多变种，其中最常见的是 B+Tree，例如 MySQL 就普遍�
 
 ![图4](http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/4.png)
 
-如图 4 所示，在 B+Tree 的每个叶子节点增加一个指向相邻叶子节点的指针，就形成了带有顺序访问指针的 B+Tree。做这个优化的目的是为了提高区间访问的性能，例如图 4 中如果要查询 key 为从 18 到 49 的所有数据记录，当找到 18 后，只需顺着节点和指针顺序遍历就可以一次性访问到所有数据节点，极大提到了区间查询效率。
+如图 4 所示，在 B+Tree 的每个叶子节点增加一个指向相邻叶子节点的指针，就形成了带有顺序访问指针的 B+Tree。做这个优化的目的是为了**提高区间访问的性能**，例如图 4 中如果要查询 key 为从 18 到 49 的所有数据记录，当找到 18 后，只需顺着节点和指针顺序遍历就可以一次性访问到所有数据节点，极大提到了区间查询效率。
 
 这一节对 B-Tree 和 B+Tree 进行了一个简单的介绍，下一节结合存储器存取原理介绍为什么目前 B+Tree 是数据库系统实现索引的首选数据结构。
 
-为什么使用 B-Tree（B+Tree）
--------------------
+- 为什么使用 B-Tree（B+Tree）
 
 上文说过，红黑树等数据结构也可以用来实现索引，但是文件系统及数据库系统普遍采用 B-/+Tree 作为索引结构，这一节将结合计算机组成原理相关知识讨论 B-/+Tree 作为索引的理论基础。
 
@@ -200,13 +195,11 @@ floor 表示向下取整。由于 B+Tree 内节点去掉了 data 域，因此可
 
 这一章从理论角度讨论了与索引相关的数据结构与算法问题，下一章将讨论 B+Tree 是如何具体实现为 MySQL 中索引，同时将结合 MyISAM 和 InnDB 存储引擎介绍非聚集索引和聚集索引两种不同的索引实现形式。
 
-MySQL 索引实现
-=========
+## MySQL 索引实现
 
 在 MySQL 中，索引属于存储引擎级别的概念，不同存储引擎对索引的实现方式是不同的，本文主要讨论 MyISAM 和 InnoDB 两个存储引擎的索引实现方式。
 
-MyISAM 索引实现
-----------
+### MyISAM 索引实现
 
 MyISAM 引擎使用 B+Tree 作为索引结构，叶节点的 data 域存放的是数据记录的地址。下图是 MyISAM 索引的原理图：
 
@@ -220,8 +213,7 @@ MyISAM 引擎使用 B+Tree 作为索引结构，叶节点的 data 域存放的�
 
 MyISAM 的索引方式也叫做“非聚集”的，之所以这么称呼是为了与 InnoDB 的聚集索引区分。
 
-InnoDB 索引实现
-----------
+### InnoDB 索引实现
 
 虽然 InnoDB 也使用 B+Tree 作为索引结构，但具体实现方式却与 MyISAM 截然不同。
 
@@ -243,13 +235,11 @@ InnoDB 索引实现
 
 下一章将具体讨论这些与索引有关的优化策略。
 
-索引使用策略及优化
-=========
+## 索引使用策略及优化
 
 MySQL 的优化主要分为结构优化（Scheme optimization）和查询优化（Query optimization）。本章讨论的高性能索引策略主要属于结构优化范畴。本章的内容完全基于上文的理论基础，实际上一旦理解了索引背后的机制，那么选择高性能的策略就变成了纯粹的推理，并且可以理解这些策略背后的逻辑。
 
-示例数据库
------
+### 示例数据库
 
 为了讨论索引策略，需要一个数据量不算小的数据库作为示例。本文选用 MySQL 官方文档中提供的示例数据库之一：employees。这个数据库关系复杂度适中，且数据量较大。下图是这个数据库的 E-R 关系图（引用自 MySQL 官方手册）：
 
@@ -259,24 +249,24 @@ MySQL 的优化主要分为结构优化（Scheme optimization）和查询优化�
 
 MySQL 官方文档中关于此数据库的页面为[http://dev.mysql.com/doc/employee/en/employee.html](http://dev.mysql.com/doc/employee/en/employee.html "http://dev.mysql.com/doc/employee/en/employee.html")。里面详细介绍了此数据库，并提供了下载地址和导入方法，如果有兴趣导入此数据库到自己的 MySQL 可以参考文中内容。
 
-最左前缀原理与相关优化
------------
+### 最左前缀原理与相关优化
 
 高效使用索引的首要条件是知道什么样的查询会使用到索引，这个问题和 B+Tree 中的“最左前缀原理”有关，下面通过例子说明最左前缀原理。
 
 这里先说一下联合索引的概念。在上文中，我们都是假设索引只引用了单个的列，实际上，MySQL 中的索引可以以一定顺序引用多个列，这种索引叫做联合索引，一般的，一个联合索引是一个有序元组<a1, a2, ……, an>，其中各个元素均为数据表的一列，实际上要严格定义索引需要用到关系代数，但是这里我不想讨论太多关系代数的话题，因为那样会显得很枯燥，所以这里就不再做严格定义。另外，单列索引可以看成联合索引元素数为 1 的特例。
 
 以 employees.titles 表为例，下面先查看其上都有哪些索引：
-
-1.  SHOW INDEX FROM employees.titles;
-2.  +--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+
-3.  | Table | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Null | Index_type |
-4.  +--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+
-5.  | titles | 0 | PRIMARY | 1 | emp_no | A | NULL | | BTREE |
-6.  | titles | 0 | PRIMARY | 2 | title | A | NULL | | BTREE |
-7.  | titles | 0 | PRIMARY | 3 | from_date | A | 443308 | | BTREE |
-8.  | titles | 1 | emp_no | 1 | emp_no | A | 443308 | | BTREE |
-9.  +--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+
+```sql
+  SHOW INDEX FROM employees.titles;
+  +--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+
+  | Table | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Null | Index_type |
+  +--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+
+  | titles | 0 | PRIMARY | 1 | emp_no | A | NULL | | BTREE |
+  | titles | 0 | PRIMARY | 2 | title | A | NULL | | BTREE |
+  | titles | 0 | PRIMARY | 3 | from_date | A | 443308 | | BTREE |
+  | titles | 1 | emp_no | 1 | emp_no | A | 443308 | | BTREE |
+  +--------+------------+----------+--------------+-------------+-----------+-------------+------+------------+
+```
 
 从结果中可以到 titles 表的主索引为<emp_no, title, from_date>，还有一个辅助索引<emp_no>。为了避免多个索引使事情变复杂（MySQL 的 SQL 优化器在多索引时行为比较复杂），这里我们将辅助索引 drop 掉：
 
@@ -285,162 +275,162 @@ MySQL 官方文档中关于此数据库的页面为[http://dev.mysql.com/doc/emp
 这样就可以专心分析索引 PRIMARY 的行为了。
 
 ### 情况一：全列匹配
-```plain
-1.  EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND title='Senior Engineer' AND from_date='1986-06-26';
-2.  +----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
-3.  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
-4.  +----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
-5.  | 1 | SIMPLE | titles | const | PRIMARY | PRIMARY | 59 | const,const,const | 1 | |
-6.  +----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
+```sql
+  EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND title='Senior Engineer' AND from_date='1986-06-26';
+  +----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
+  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
+  +----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
+  | 1 | SIMPLE | titles | const | PRIMARY | PRIMARY | 59 | const,const,const | 1 | |
+  +----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
 ```
 很明显，当按照索引中所有列进行精确匹配（这里精确匹配指“=”或“IN”匹配）时，索引可以被用到。这里有一点需要注意，理论上索引对顺序是敏感的，但是由于 MySQL 的查询优化器会自动调整 where 子句的条件顺序以使用适合的索引，例如我们将 where 中的条件顺序颠倒：
-```plain
-1.  EXPLAIN SELECT * FROM employees.titles WHERE from_date='1986-06-26' AND emp_no='10001' AND title='Senior Engineer';
-2.  +----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
-3.  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
-4.  +----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
-5.  | 1 | SIMPLE | titles | const | PRIMARY | PRIMARY | 59 | const,const,const | 1 | |
-6.  +----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
+```sql
+  EXPLAIN SELECT * FROM employees.titles WHERE from_date='1986-06-26' AND emp_no='10001' AND title='Senior Engineer';
+  +----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
+  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
+  +----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
+  | 1 | SIMPLE | titles | const | PRIMARY | PRIMARY | 59 | const,const,const | 1 | |
+  +----+-------------+--------+-------+---------------+---------+---------+-------------------+------+-------+
 ```
 效果是一样的。
 
 ### 情况二：最左前缀匹配
-```plain
-1.  EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001';
-2.  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------+
-3.  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
-4.  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------+
-5.  | 1 | SIMPLE | titles | ref | PRIMARY | PRIMARY | 4 | const | 1 | |
-6.  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------+
+```sql
+  EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001';
+  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------+
+  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
+  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------+
+  | 1 | SIMPLE | titles | ref | PRIMARY | PRIMARY | 4 | const | 1 | |
+  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------+
 ```
 当查询条件精确匹配索引的左边连续一个或几个列时，如<emp_no>或<emp_no, title>，所以可以被用到，但是只能用到一部分，即条件所组成的最左前缀。上面的查询从分析结果看用到了 PRIMARY 索引，但是 key_len 为 4，说明只用到了索引的第一列前缀。
 
 ### 情况三：查询条件用到了索引中列的精确匹配，但是中间某个条件未提供
-```plain
-1.  EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND from_date='1986-06-26';
-2.  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
-3.  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
-4.  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
-5.  | 1 | SIMPLE | titles | ref | PRIMARY | PRIMARY | 4 | const | 1 | Using where |
-6.  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
+```sql
+  EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND from_date='1986-06-26';
+  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
+  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
+  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
+  | 1 | SIMPLE | titles | ref | PRIMARY | PRIMARY | 4 | const | 1 | Using where |
+  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
 ```
 此时索引使用情况和情况二相同，因为 title 未提供，所以查询只用到了索引的第一列，而后面的 from_date 虽然也在索引中，但是由于 title 不存在而无法和左前缀连接，因此需要对结果进行扫描过滤 from_date（这里由于 emp_no 唯一，所以不存在扫描）。如果想让 from_date 也使用索引而不是 where 过滤，可以增加一个辅助索引<emp_no, from_date>，此时上面的查询会使用这个索引。除此之外，还可以使用一种称之为“隔离列”的优化方法，将 emp_no 与 from_date 之间的“坑”填上。
 
 首先我们看下 title 一共有几种不同的值：
-```plain
-1.  SELECT DISTINCT(title) FROM employees.titles;
-2.  +--------------------+
-3.  | title |
-4.  +--------------------+
-5.  | Senior Engineer |
-6.  | Staff |
-7.  | Engineer |
-8.  | Senior Staff |
-9.  | Assistant Engineer |
-10.  | Technique Leader |
-11.  | Manager |
-12.  +--------------------+
+```sql
+  SELECT DISTINCT(title) FROM employees.titles;
+  +--------------------+
+  | title |
+  +--------------------+
+  | Senior Engineer |
+  | Staff |
+  | Engineer |
+  | Senior Staff |
+  | Assistant Engineer |
+  | Technique Leader |
+  | Manager |
+  +--------------------+
 ```
 只有 7 种。在这种成为“坑”的列值比较少的情况下，可以考虑用“IN”来填补这个“坑”从而形成最左前缀：
-```plain
-1.  EXPLAIN SELECT * FROM employees.titles
-2.  WHERE emp_no='10001'
-3.  AND title IN ('Senior Engineer', 'Staff', 'Engineer', 'Senior Staff', 'Assistant Engineer', 'Technique Leader', 'Manager')
-4.  AND from_date='1986-06-26';
-5.  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
-6.  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
-7.  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
-8.  | 1 | SIMPLE | titles | range | PRIMARY | PRIMARY | 59 | NULL | 7 | Using where |
-9.  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+```sql
+  EXPLAIN SELECT * FROM employees.titles
+  WHERE emp_no='10001'
+  AND title IN ('Senior Engineer', 'Staff', 'Engineer', 'Senior Staff', 'Assistant Engineer', 'Technique Leader', 'Manager')
+  AND from_date='1986-06-26';
+  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
+  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+  | 1 | SIMPLE | titles | range | PRIMARY | PRIMARY | 59 | NULL | 7 | Using where |
+  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
 ```
 这次 key_len 为 59，说明索引被用全了，但是从 type 和 rows 看出 IN 实际上执行了一个 range 查询，这里检查了 7 个 key。看下两种查询的性能比较：
-```plain
-1.  SHOW PROFILES;
-2.  +----------+------------+-------------------------------------------------------------------------------+
-3.  | Query_ID | Duration | Query |
-4.  +----------+------------+-------------------------------------------------------------------------------+
-5.  | 10 | 0.00058000 | SELECT * FROM employees.titles WHERE emp_no='10001' AND from_date='1986-06-26'|
-6.  | 11 | 0.00052500 | SELECT * FROM employees.titles WHERE emp_no='10001' AND title IN ... |
-7.  +----------+------------+-------------------------------------------------------------------------------+
+```sql
+  SHOW PROFILES;
+  +----------+------------+-------------------------------------------------------------------------------+
+  | Query_ID | Duration | Query |
+  +----------+------------+-------------------------------------------------------------------------------+
+  | 10 | 0.00058000 | SELECT * FROM employees.titles WHERE emp_no='10001' AND from_date='1986-06-26'|
+  | 11 | 0.00052500 | SELECT * FROM employees.titles WHERE emp_no='10001' AND title IN ... |
+  +----------+------------+-------------------------------------------------------------------------------+
 ```
 “填坑”后性能提升了一点。如果经过 emp_no 筛选后余下很多数据，则后者性能优势会更加明显。当然，如果 title 的值很多，用填坑就不合适了，必须建立辅助索引。
 
 ### 情况四：查询条件没有指定索引第一列
-```plain
-1.  EXPLAIN SELECT * FROM employees.titles WHERE from_date='1986-06-26';
-2.  +----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
-3.  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
-4.  +----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
-5.  | 1 | SIMPLE | titles | ALL | NULL | NULL | NULL | NULL | 443308 | Using where |
-6.  +----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
+```sql
+  EXPLAIN SELECT * FROM employees.titles WHERE from_date='1986-06-26';
+  +----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
+  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
+  +----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
+  | 1 | SIMPLE | titles | ALL | NULL | NULL | NULL | NULL | 443308 | Using where |
+  +----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
 ```
 由于不是最左前缀，索引这样的查询显然用不到索引。
 
 ### 情况五：匹配某列的前缀字符串
-```plain
-1.  EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND title LIKE 'Senior%';
-2.  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
-3.  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
-4.  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
-5.  | 1 | SIMPLE | titles | range | PRIMARY | PRIMARY | 56 | NULL | 1 | Using where |
-6.  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+```sql
+  EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND title LIKE 'Senior%';
+  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
+  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+  | 1 | SIMPLE | titles | range | PRIMARY | PRIMARY | 56 | NULL | 1 | Using where |
+  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
 ```
 此时可以用到索引，但是如果通配符不是只出现在末尾，则无法使用索引。（原文表述有误，如果通配符%不出现在开头，则可以用到索引，但根据具体情况不同可能只会用其中一个前缀）
 
 ### 情况六：范围查询
-```plain
-1.  EXPLAIN SELECT * FROM employees.titles WHERE emp_no < '10010' and title='Senior Engineer';
-2.  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
-3.  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
-4.  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
-5.  | 1 | SIMPLE | titles | range | PRIMARY | PRIMARY | 4 | NULL | 16 | Using where |
-6.  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+```sql
+  EXPLAIN SELECT * FROM employees.titles WHERE emp_no < '10010' and title='Senior Engineer';
+  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
+  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+  | 1 | SIMPLE | titles | range | PRIMARY | PRIMARY | 4 | NULL | 16 | Using where |
+  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
 ```
 范围列可以用到索引（必须是最左前缀），但是范围列后面的列无法用到索引。同时，索引最多用于一个范围列，因此如果查询条件中有两个范围列则无法全用到索引。
-```plain
-1.  EXPLAIN SELECT * FROM employees.titles
-2.  WHERE emp_no < '10010'
-3.  AND title='Senior Engineer'
-4.  AND from_date BETWEEN '1986-01-01' AND '1986-12-31';
-5.  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
-6.  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
-7.  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
-8.  | 1 | SIMPLE | titles | range | PRIMARY | PRIMARY | 4 | NULL | 16 | Using where |
-9.  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+```sql
+  EXPLAIN SELECT * FROM employees.titles
+  WHERE emp_no < '10010'
+  AND title='Senior Engineer'
+  AND from_date BETWEEN '1986-01-01' AND '1986-12-31';
+  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
+  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+  | 1 | SIMPLE | titles | range | PRIMARY | PRIMARY | 4 | NULL | 16 | Using where |
+  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
 ```
 可以看到索引对第二个范围索引无能为力。这里特别要说明 MySQL 一个有意思的地方，那就是仅用 explain 可能无法区分范围索引和多值匹配，因为在 type 中这两者都显示为 range。同时，用了“between”并不意味着就是范围查询，例如下面的查询：
-```plain
-1.  EXPLAIN SELECT * FROM employees.titles
-2.  WHERE emp_no BETWEEN '10001' AND '10010'
-3.  AND title='Senior Engineer'
-4.  AND from_date BETWEEN '1986-01-01' AND '1986-12-31';
-5.  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
-6.  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
-7.  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
-8.  | 1 | SIMPLE | titles | range | PRIMARY | PRIMARY | 59 | NULL | 16 | Using where |
-9.  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+```sql
+  EXPLAIN SELECT * FROM employees.titles
+  WHERE emp_no BETWEEN '10001' AND '10010'
+  AND title='Senior Engineer'
+  AND from_date BETWEEN '1986-01-01' AND '1986-12-31';
+  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
+  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
+  | 1 | SIMPLE | titles | range | PRIMARY | PRIMARY | 59 | NULL | 16 | Using where |
+  +----+-------------+--------+-------+---------------+---------+---------+------+------+-------------+
 ```
 看起来是用了两个范围查询，但作用于 emp_no 上的“BETWEEN”实际上相当于“IN”，也就是说 emp_no 实际是多值精确匹配。可以看到这个查询用到了索引全部三个列。因此在 MySQL 中要谨慎地区分多值匹配和范围匹配，否则会对 MySQL 的行为产生困惑。
 
 ### 情况七：查询条件中含有函数或表达式
 
 很不幸，如果查询条件中含有函数或表达式，则 MySQL 不会为这列使用索引（虽然某些在数学意义上可以使用）。例如：
-```plain
-1.  EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND left(title, 6)='Senior';
-2.  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
-3.  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
-4.  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
-5.  | 1 | SIMPLE | titles | ref | PRIMARY | PRIMARY | 4 | const | 1 | Using where |
-6.  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
+```sql
+  EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND left(title, 6)='Senior';
+  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
+  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
+  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
+  | 1 | SIMPLE | titles | ref | PRIMARY | PRIMARY | 4 | const | 1 | Using where |
+  +----+-------------+--------+------+---------------+---------+---------+-------+------+-------------+
 ```
 虽然这个查询和情况五中功能相同，但是由于使用了函数 left，则无法为 title 列应用索引，而情况五中用 LIKE 则可以。再如：
-```plain
-1.  EXPLAIN SELECT * FROM employees.titles WHERE emp_no - 1='10000';
-2.  +----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
-3.  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
-4.  +----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
-5.  | 1 | SIMPLE | titles | ALL | NULL | NULL | NULL | NULL | 443308 | Using where |
-6.  +----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
+```sql
+  EXPLAIN SELECT * FROM employees.titles WHERE emp_no - 1='10000';
+  +----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
+  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
+  +----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
+  | 1 | SIMPLE | titles | ALL | NULL | NULL | NULL | NULL | 443308 | Using where |
+  +----+-------------+--------+------+---------------+------+---------+------+--------+-------------+
 ```
 显然这个查询等价于查询 emp_no 为 10001 的函数，但是由于查询条件是一个表达式，MySQL 无法为其使用索引。看来 MySQL 还没有智能到自动优化常量表达式的程度，因此在写查询语句时尽量避免表达式出现在查询中，而是先手工私下代数运算，转换为无表达式的查询语句。
 
@@ -452,78 +442,78 @@ MySQL 官方文档中关于此数据库的页面为[http://dev.mysql.com/doc/emp
 第一种情况是表记录比较少，例如一两千条甚至只有几百条记录的表，没必要建索引，让查询做全表扫描就好了。至于多少条记录才算多，这个个人有个人的看法，我个人的经验是以 2000 作为分界线，记录数不超过 2000 可以考虑不建索引，超过 2000 条可以酌情考虑索引。
 
 另一种不建议建索引的情况是索引的选择性较低。所谓索引的选择性（Selectivity），是指不重复的索引值（也叫基数，Cardinality）与表记录数（#T）的比值：
-```plain
+```sql
 Index Selectivity = Cardinality / #T
 ```
 显然选择性的取值范围为(0, 1]，选择性越高的索引价值越大，这是由 B+Tree 的性质决定的。例如，上文用到的 employees.titles 表，如果 title 字段经常被单独查询，是否需要建索引，我们看一下它的选择性：
-```plain
-1.  SELECT count(DISTINCT(title))/count(*) AS Selectivity FROM employees.titles;
-2.  +-------------+
-3.  | Selectivity |
-4.  +-------------+
-5.  | 0.0000 |
-6.  +-------------+
+```sql
+  SELECT count(DISTINCT(title))/count(*) AS Selectivity FROM employees.titles;
+  +-------------+
+  | Selectivity |
+  +-------------+
+  | 0.0000 |
+  +-------------+
 ```
 title 的选择性不足 0.0001（精确值为 0.00001579），所以实在没有什么必要为其单独建索引。
 
 有一种与索引选择性有关的索引优化策略叫做前缀索引，就是用列的前缀代替整个列作为索引 key，当前缀长度合适时，可以做到既使得前缀索引的选择性接近全列索引，同时因为索引 key 变短而减少了索引文件的大小和维护开销。下面以 employees.employees 表为例介绍前缀索引的选择和使用。
 
 从图 12 可以看到 employees 表只有一个索引<emp_no>，那么如果我们想按名字搜索一个人，就只能全表扫描了：
-```plain
-1.  EXPLAIN SELECT * FROM employees.employees WHERE first_name='Eric' AND last_name='Anido';
-2.  +----+-------------+-----------+------+---------------+------+---------+------+--------+-------------+
-3.  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
-4.  +----+-------------+-----------+------+---------------+------+---------+------+--------+-------------+
-5.  | 1 | SIMPLE | employees | ALL | NULL | NULL | NULL | NULL | 300024 | Using where |
-6.  +----+-------------+-----------+------+---------------+------+---------+------+--------+-------------+
+```sql
+  EXPLAIN SELECT * FROM employees.employees WHERE first_name='Eric' AND last_name='Anido';
+  +----+-------------+-----------+------+---------------+------+---------+------+--------+-------------+
+  | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
+  +----+-------------+-----------+------+---------------+------+---------+------+--------+-------------+
+  | 1 | SIMPLE | employees | ALL | NULL | NULL | NULL | NULL | 300024 | Using where |
+  +----+-------------+-----------+------+---------------+------+---------+------+--------+-------------+
 ```
 如果频繁按名字搜索员工，这样显然效率很低，因此我们可以考虑建索引。有两种选择，建<first_name>或<first_name, last_name>，看下两个索引的选择性：
-```plain
-1.  SELECT count(DISTINCT(first_name))/count(*) AS Selectivity FROM employees.employees;
-2.  +-------------+
-3.  | Selectivity |
-4.  +-------------+
-5.  | 0.0042 |
-6.  +-------------+
-7.  SELECT count(DISTINCT(concat(first_name, last_name)))/count(*) AS Selectivity FROM employees.employees;
-8.  +-------------+
-9.  | Selectivity |
-10.  +-------------+
-11.  | 0.9313 |
-12.  +-------------+
+```sql
+  SELECT count(DISTINCT(first_name))/count(*) AS Selectivity FROM employees.employees;
+  +-------------+
+  | Selectivity |
+  +-------------+
+  | 0.0042 |
+  +-------------+
+  SELECT count(DISTINCT(concat(first_name, last_name)))/count(*) AS Selectivity FROM employees.employees;
+  +-------------+
+  | Selectivity |
+  +-------------+
+1  | 0.9313 |
+1  +-------------+
 ```
 <first_name>显然选择性太低，<first_name, last_name>选择性很好，但是 first_name 和 last_name 加起来长度为 30，有没有兼顾长度和选择性的办法？可以考虑用 first_name 和 last_name 的前几个字符建立索引，例如<first_name, left(last_name, 3)>，看看其选择性：
-```plain
-1.  SELECT count(DISTINCT(concat(first_name, left(last_name, 3))))/count(*) AS Selectivity FROM employees.employees;
-2.  +-------------+
-3.  | Selectivity |
-4.  +-------------+
-5.  | 0.7879 |
-6.  +-------------+
+```sql
+  SELECT count(DISTINCT(concat(first_name, left(last_name, 3))))/count(*) AS Selectivity FROM employees.employees;
+  +-------------+
+  | Selectivity |
+  +-------------+
+  | 0.7879 |
+  +-------------+
 ```
 选择性还不错，但离 0.9313 还是有点距离，那么把 last_name 前缀加到 4：
-```plain
-1.  SELECT count(DISTINCT(concat(first_name, left(last_name, 4))))/count(*) AS Selectivity FROM employees.employees;
-2.  +-------------+
-3.  | Selectivity |
-4.  +-------------+
-5.  | 0.9007 |
-6.  +-------------+
+```sql
+  SELECT count(DISTINCT(concat(first_name, left(last_name, 4))))/count(*) AS Selectivity FROM employees.employees;
+  +-------------+
+  | Selectivity |
+  +-------------+
+  | 0.9007 |
+  +-------------+
 ```
 这时选择性已经很理想了，而这个索引的长度只有 18，比<first_name, last_name>短了接近一半，我们把这个前缀索引 建上：
-```plain
-1.  ALTER TABLE employees.employees
-2.  ADD INDEX `first_name_last_name4` (first_name, last_name(4));
+```sql
+  ALTER TABLE employees.employees
+  ADD INDEX `first_name_last_name4` (first_name, last_name(4));
 ```
 此时再执行一遍按名字查询，比较分析一下与建索引前的结果：
-```plain
-1.  SHOW PROFILES;
-2.  +----------+------------+---------------------------------------------------------------------------------+
-3.  | Query_ID | Duration | Query |
-4.  +----------+------------+---------------------------------------------------------------------------------+
-5.  | 87 | 0.11941700 | SELECT * FROM employees.employees WHERE first_name='Eric' AND last_name='Anido' |
-6.  | 90 | 0.00092400 | SELECT * FROM employees.employees WHERE first_name='Eric' AND last_name='Anido' |
-7.  +----------+------------+---------------------------------------------------------------------------------+
+```sql
+  SHOW PROFILES;
+  +----------+------------+---------------------------------------------------------------------------------+
+  | Query_ID | Duration | Query |
+  +----------+------------+---------------------------------------------------------------------------------+
+  | 87 | 0.11941700 | SELECT * FROM employees.employees WHERE first_name='Eric' AND last_name='Anido' |
+  | 90 | 0.00092400 | SELECT * FROM employees.employees WHERE first_name='Eric' AND last_name='Anido' |
+  +----------+------------+---------------------------------------------------------------------------------+
 ```
 性能的提升是显著的，查询速度提高了 120 多倍。
 
@@ -556,8 +546,7 @@ InnoDB 的主键选择与插入优化
 
 因此，只要可以，请尽量在 InnoDB 上采用自增字段做主键。
 
-后记
-==
+## 后记
 
 这篇文章断断续续写了半个月，主要内容就是上面这些了。不可否认，这篇文章在一定程度上有纸上谈兵之嫌，因为我本人对 MySQL 的使用属于菜鸟级别，更没有太多数据库调优的经验，在这里大谈数据库索引调优有点大言不惭。就当是我个人的一篇学习笔记了。
 
@@ -565,8 +554,7 @@ InnoDB 的主键选择与插入优化
 
 另外，MySQL 索引及其优化涵盖范围非常广，本文只是涉及到其中一部分。如与排序（ORDER BY）相关的索引优化及覆盖索引（Covering index）的话题本文并未涉及，同时除 B-Tree 索引外 MySQL 还根据不同引擎支持的哈希索引、全文索引等等本文也并未涉及。如果有机会，希望再对本文未涉及的部分进行补充吧。
 
-参考文献
-====
+## 参考文献
 
 [1] Baron Scbwartz 等 著，王小东等 译；高性能 MySQL（High Performance MySQL）；电子工业出版社，2010
 

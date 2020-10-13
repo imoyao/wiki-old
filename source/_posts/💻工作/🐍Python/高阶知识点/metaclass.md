@@ -1,5 +1,5 @@
 ---
-title: Python 中的元类！
+title: Python 中的元类
 toc: true
 tags:
   - Python
@@ -9,7 +9,7 @@ tags:
 categories:
   - "\U0001F4BB工作"
   - "\U0001F40DPython"
-  - 类
+  - 高阶知识点
 date: 2020-09-26 12:27:56
 ---
 

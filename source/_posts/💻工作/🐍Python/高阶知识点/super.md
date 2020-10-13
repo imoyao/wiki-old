@@ -1,5 +1,5 @@
 ---
-title: Python 受推崇的 super！
+title: Python 受推崇的 super
 toc: true
 tags:
   - Python
@@ -8,7 +8,7 @@ tags:
 categories:
   - "\U0001F4BB工作"
   - "\U0001F40DPython"
-  - 类
+  - 高阶知识点
 date: 2020-08-06 12:27:56
 ---
 
