@@ -7,6 +7,7 @@ tags:
 categories:
   - "\U0001F4BB工作"
   - 数据库
+  - redis
 date: 2019-08-07 12:27:56
 ---
 

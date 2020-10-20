@@ -1,12 +1,12 @@
 ---
-title: 买入并持有策略（适当装死）
+title: 买入并持有策略（适当装死）✨
 toc: true
 tags: 基金
 categories:
   - "\U0001F4B0投资理财"
   - 基金
   - 投资策略
-date: 2020-08-17 12:27:56
+date: 2020-08-10 12:27:56
 ---
 ![给我顶住！](https://vignette.wikia.nocookie.net/asoiaf/images/7/7c/Bran_Stark_and_Hodor_HBO.jpg/revision/latest?cb=20120215024248&path-prefix=zh)
 

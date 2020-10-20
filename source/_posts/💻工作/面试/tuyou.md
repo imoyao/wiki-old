@@ -302,7 +302,7 @@ str,Number（数字）Python3 支持 int、float、bool、complex（复数）,li
 19. 对比一下 Django 和 Flask 有什么优缺点？
 ## 本人面试题目
 - 基础知识
-1. tuple和list区别并举例
+1. tuple 和 list 区别并举例
 2. 深拷贝和浅拷贝的区别并举例
 3. 列表推导式
  内字典列表将字典的 value 组成新列表
@@ -311,14 +311,14 @@ str,Number（数字）Python3 支持 int、float、bool、complex（复数）,li
 4. 查找含有指定字符的文件名
 5. 查找含有指定字符内容的文件
 - 编程
-6.内字典列表中字典的指定key按照顺序排列（使用lambda）
+6.内字典列表中字典的指定 key 按照顺序排列（使用 lambda）
 ```python
 a_list.sort(key=lambda x:x.get('name'))
 ```
 7. 装饰器及其两种调用方式
-- 数据库和sql
-8. redis的存储类型及应用举例
-9. 用户充值表pay_tb（uid,payment,time）
-查询2018年充值金额总额小于1万元的用户的uid及其充值总额前10的数据
+- 数据库和 sql
+8. redis 的存储类型及应用举例
+9. 用户充值表 pay_tb（uid,payment,time）
+查询 2018 年充值金额总额小于 1 万元的用户的 uid 及其充值总额前 10 的数据
 10. 找出（？忘了）电话号码并且将中间四位用**代替
-11. 索引原则及MySQL除了innoDB之外的引擎并对比
+11. 索引原则及 MySQL 除了 innoDB 之外的引擎并对比

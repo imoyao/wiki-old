@@ -113,7 +113,7 @@ a=A()
 更多关于这个问题:
 1. http://stackoverflow.com/questions/136097/what-is-the-difference-between-staticmethod-and-classmethod-in-python
 2. https://realpython.com/blog/python/instance-class-and-static-methods-demystified/
-3. [Python 实例方法、类方法和静态方法_Leo的博客-CSDN博客](https://blog.csdn.net/lihao21/article/details/79762681)
+3. [Python 实例方法、类方法和静态方法_Leo 的博客-CSDN 博客](https://blog.csdn.net/lihao21/article/details/79762681)
 ```python
 
 class DateMaker:

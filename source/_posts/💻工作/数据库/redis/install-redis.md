@@ -9,6 +9,7 @@ toc: true
 categories:
   - "\U0001F4BB工作"
   - 数据库
+  - redis
 date: 2019-04-11 10:03:08
 ---
 `Redis`是一款高性能的`key-value`数据库，本文主要记录如何在`Linux`系统上进行安装，以及为`Python`开发安装对应的`redis`模块。

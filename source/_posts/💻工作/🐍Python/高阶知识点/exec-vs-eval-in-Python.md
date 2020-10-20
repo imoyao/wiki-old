@@ -4,12 +4,12 @@ tags:
   - Python
   - 动态执行
   - exec
-  - TODO
 categories:
   - "\U0001F4BB工作"
   - "\U0001F40DPython"
-  - 辨析
+  - 高阶知识点
 date: 2017-11-17 15:23:17
+thumbnail:
 ---
 
 Python 动态执行字符串代码片段（也可以是文件）， 一般会用到 exec，eval。那么这两个方法有什么区别呢？
@@ -111,10 +111,6 @@ print a     # >>12
 b = eval('3*4')     #不支持表达式 有返回值
 print b     # >>12
 ```
-## 参考来源
+参考来源：
 
 [python 的 exec、eval 详解 - 疯狂奔跑的猪](http://www.coolpython.com/index.php?aid=12)
-## TODO
-[Python 中的 eval()、exec()及其相关函数 - 云游道士 - 博客园](https://www.cnblogs.com/yyds/p/6276746.html)
-[深度辨析 Python 的 eval() 与 exec()](https://juejin.im/post/6844903805931225095)
-[python - What's the difference between eval, exec, and compile? - Stack Overflow](https://stackoverflow.com/questions/2220699/whats-the-difference-between-eval-exec-and-compile)
