@@ -33,6 +33,7 @@ date: 2019-11-27 23:34:31
  [functional programming - Python: Why is functools.partial necessary? - Stack Overflow](https://stackoverflow.com/questions/3252228/python-why-is-functools-partial-necessary)
  - [ ] assert 
  [notes/when-to-use-assert.md at master · emre/notes](https://github.com/emre/notes/blob/master/python/when-to-use-assert.md)
+ 
 ## 代码风格
 [Python 重构代码的一些模式 | Slient Plant](https://mpwang.github.io/2017/08/26/python-refactor-patterns/)
 
