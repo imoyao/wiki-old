@@ -31,7 +31,7 @@ date: 2019-11-27 23:34:31
 - [ ] 偏函数
  [python - How does functools partial do what it does? - Stack Overflow](https://stackoverflow.com/questions/15331726/how-does-functools-partial-do-what-it-does)
  [functional programming - Python: Why is functools.partial necessary? - Stack Overflow](https://stackoverflow.com/questions/3252228/python-why-is-functools-partial-necessary)
- - [ ] assert 
+- [ ] assert
  [notes/when-to-use-assert.md at master · emre/notes](https://github.com/emre/notes/blob/master/python/when-to-use-assert.md)
  
 ## 代码风格
