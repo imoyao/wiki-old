@@ -55,3 +55,6 @@ def get_cur_info():
 [NGTE Books](https://ng-tech.icu/books/)
 ## WSGI
 [python wsgi 简介 | Cizixs Write Here](https://cizixs.com/2014/11/08/understand-wsgi/)
+
+## Python 用法
+[multithreading - What is the use of join() in Python threading? - Stack Overflow](https://stackoverflow.com/questions/15085348/what-is-the-use-of-join-in-python-threading)
