@@ -8,14 +8,17 @@ categories:
 date: 2020-08-26 12:27:56
 ---
 
-## 二鸟说
-
-![二鸟说](https://open.weixin.qq.com/qr/code?username=twobird2017)
-
 ## EncounterAlpha
 
 ![EncounterAlpha](https://open.weixin.qq.com/qr/code?username=EncounterAlpha)
 
+## 睿远基金
+
+![睿远 FUND](https://open.weixin.qq.com/qr/code?username=foresightfund)
+
+## 二鸟说
+
+![二鸟说](https://open.weixin.qq.com/qr/code?username=twobird2017)
 ## 孟岩
 
 ![孟岩](https://open.weixin.qq.com/qr/code?username=DreamyTalks)
