@@ -209,7 +209,7 @@ print Person.name  # [1]
 | type()       | 查看对象类型           |
 | hasattr()    | 查看对象是否有特定属性      |
 | getattr()    | 得到对象的特定属性        |
-| seetattr()   | 设置对象的特定属性        |
+| setattr()    | 设置对象的特定属性        |
 | isinstance() | 判断一个对象是否是一个已知的类型 |
 | issubclass() | 判断一个类是不是另一个类的子类  |
 | id()         | 返回地址值            |
