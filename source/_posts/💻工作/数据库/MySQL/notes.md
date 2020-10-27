@@ -54,7 +54,6 @@ B+ Tree 是基于 B Tree 和叶子节点顺序访问指针进行实现，它具�
 [The Difference Between B-trees and B+trees | Baeldung on Computer Science](https://www.baeldung.com/cs/b-trees-vs-btrees)
 
  B 树和 B+树之间最明显的比较点：
-
 - 在 B+树中，搜索键可以重复，但 B 树不是；
 - B+树只允许将卫星数据存储在叶节点中，而 B 树则将数据存储在叶节点和内部节点中；
 - 在 B+树中，存储在叶节点上的数据使搜索更加高效，因为我们可以在内部节点中存储更多键——而这意味着我们需要访问更少的节点；
