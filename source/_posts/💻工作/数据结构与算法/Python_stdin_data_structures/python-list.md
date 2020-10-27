@@ -4,7 +4,7 @@ toc: true
 tags:
   - 算法
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 数据结构与算法
   - Python_stdin_data_structures
 date: 2020-05-26 18:21:46

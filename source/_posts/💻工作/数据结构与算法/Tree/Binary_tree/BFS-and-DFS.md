@@ -5,7 +5,7 @@ tags:
   - 算法
   - 二叉树
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 数据结构与算法
   - Tree
   - Binary_tree

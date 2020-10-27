@@ -7,7 +7,7 @@ tags:
   - HOWTO
 toc: true
 categories:
-  - "\U0001F4BB 工作"
+  - "\U0001F4BB工作"
   - 数据库
   - redis
 date: 2019-04-11 10:03:08
