@@ -1,5 +1,5 @@
 ---
-title: 基金是什么？
+title: What | 基金是什么？
 toc: true
 tags: others
 categories:

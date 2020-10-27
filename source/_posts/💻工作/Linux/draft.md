@@ -17,8 +17,8 @@ echo '- - -' > /sys/class/scsi_host/host0/scan  # 有几个host就扫面几个�
 ## 指令查询
 [jaywcjlove/linux-command: Linux 命令大全搜索工具，内容包含 Linux 命令手册、详解、学习、搜集。https://git.io/linux](https://github.com/jaywcjlove/linux-command)
 
-## python3编译成pyc文件
+## python3 编译成 pyc 文件
 ```shell
 python3 -m compileall -b .
 ```
-[python3编译成pyc文件_kriszhang的博客-CSDN博客](https://blog.csdn.net/kriszhang/article/details/78773285)
+[python3 编译成 pyc 文件_kriszhang 的博客-CSDN 博客](https://blog.csdn.net/kriszhang/article/details/78773285)
