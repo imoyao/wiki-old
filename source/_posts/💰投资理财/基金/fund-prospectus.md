@@ -1,5 +1,5 @@
 ---
-title: How | 如何读懂基金的招募说明书?
+title: How | 如何读懂基金招募说明书？
 toc: true
 tags:
   - 筛选基金

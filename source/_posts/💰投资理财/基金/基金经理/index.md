@@ -302,3 +302,4 @@ date: 2020-08-26 12:27:56
 [有哪些好的基金经理可以推荐？ - 知乎](https://www.zhihu.com/question/373427508)
 [国内有哪些有名的基金经理，个人经历如何？ - 知乎](https://www.zhihu.com/question/23547712)
 [宝刀未老：全市场“双十”基金经理盘点](https://mp.weixin.qq.com/s/rqjtpYvuXghig-DheGINlw)
+[重磅！买基金就是选基金经理！最牛基金经理在此：第七届中国基金业英华奖榜单_天天基金网](http://fund.eastmoney.com/a/202010281679699073.html)
