@@ -18,12 +18,12 @@ Python 动态执行字符串代码片段（也可以是文件）， 一般会用
 
 ## exec 方法
 
-注意：`exec` 是一个语法声明，不是一个函数。也就是说和`if`、`for`一样。
+注意：`exec` 是一个语法声明，不是一个函数。也就是说和`if`、`for`一样。它的作用是可以支持Python代码的动态执行。
 
 官方文档对于 exec 的解释
 > This statement supports dynamic execution of Python code.
 
-exec 的第一个表达式可以是：
+exec 后面跟的第一个表达式可以是：
 
 1. 代码字符串
 2. 文件对象

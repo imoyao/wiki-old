@@ -21,9 +21,9 @@ date: 2020-08-06 12:27:56
 *   对于使用 `super()` 来创建类给出具体建议
 *   给出有帮助的真实示例而不是抽象的 ABCD [钻石图表](http://en.wikipedia.org/wiki/Diamond_problem)
 
-这篇文章中的示例包含 [Python 2 语法](http://code.activestate.com/recipes/577721-how-to-use-super-effectively-python-27-version/) 及 [Python 3 语法](http://code.activestate.com/recipes/577720-how-to-use-super-effectively/) 两种版本。
+这篇文章中的示例兼容 [Python 2 语法](http://code.activestate.com/recipes/577721-how-to-use-super-effectively-python-27-version/) 及 [Python 3 语法](http://code.activestate.com/recipes/577720-how-to-use-super-effectively/) 两种版本。
 
-我们使用 Python 3 语法，从一个基础的示例开始，一个扩展了 Python 内置类型方法的子类。
+我们使用 Python 3 语法，从一个基础的扩展了 Python 内置类型方法的子类示例开始。
 
 ```python 
 class LoggingDict(dict):
@@ -34,7 +34,7 @@ class LoggingDict(dict):
 
 这个类拥有与它父类（字典）相同的所有功能，不过它扩展了 `__setitem__` 方法，无论哪一个键被更新，该条目都会被记录下来。记录完更新的条目之后，该方法使用 `super()` 将更新键值对的实际工作委托给它的父类。
 
-在介绍 `super()` 之前，我们可能会使用具体的类名来调用 `dict.__setitem__(self, key, value)` .但是， `super()` 会更好一些，因为它是通过计算得到的非直接引用。
+在介绍 `super()` 之前，我们可能会使用具体的类名来调用 `dict.__setitem__(self, key, value)` 。但是， `super()` 会更好一些，因为它是通过计算得到的而非直接引用。
 
 非直接引用的好处之一是我们不必通过具体的类名来指定执行操作的对象。如果你修改源代码，将原来的基类变成别的类，那么 `super()` 引用会自动变成对应的基类。下面这个实例可以说明这一点：
  ```python
@@ -45,11 +45,11 @@ class LoggingDict(dict):
             # no change needed
             super().__setitem__(key, value)
  ```
-除了与外界相独立的改变之外，非直接引用还有一个主要的好处，而那些使用静态语言的人对此可能比较不熟悉。既然非直接引用是运行时才进行计算，那我们就可以自由地改变计算过程，让它指向其它类。
+除了隔离更改之外，计算间接性还有另一个主要好处，即来自静态语言的人可能不熟悉的间接性。由于间接计算是在运行时计算的，因此我们可以自由地改变计算过程，以便间接指向其他类。
 
 这个计算由调用 `super` 的类和它的祖先树共同决定。第一个要素，也就是调用 `super` 的类，是由实现这个类的源代码所决定。在我们的示例中， `super()` 是在 `LoggingDict.__setitem__` 方法中被调用。这个要素是固定的。第二个要素，也是更有趣的要素，就是变量（我们可以创建新的子类，让这个子类具有丰富的祖先树））。
 
-我们使用这个对我们有利的方法，来构建一个 logging ordered dictionary，而不用修改已经存在的代码。
+我们使用这个对我们有利的方法，来构建一个日志记录排序字典（logging ordered dictionary），而不用修改已经存在的代码。
 ```python
     class LoggingOD(LoggingDict, collections.OrderedDict):
         pass
@@ -60,7 +60,7 @@ class LoggingDict(dict):
 
 ### 搜索顺序
 
-我所说的搜索顺序或者祖先树，正式的名称是 **方法解析顺序**，简称 **MRO**。通过打印 `__mro__` 属性，我们很容易就能获取 MRO。
+我所说的搜索顺序或者祖先树，正式的名称是 **方法解析顺序**（Method Resolution Order），简称 **MRO**。通过打印 `__mro__` 属性，我们很容易就能获取 MRO。
  ```plain
     >>> pprint(LoggingOD.__mro__)
     (<class '__main__.LoggingOD'>,
@@ -229,6 +229,7 @@ class LoggingDict(dict):
 译文来源： [[译]Python 受推崇的 super！ - 掘金](https://juejin.im/post/6844903466322657288)
 
 ## 推荐阅读
+
 [Things to Know About Python Super [1 of 3]](https://www.artima.com/weblogs/viewpost.jsp?thread=236275)
 [关于 Python 的 Mixin 模式 | 思诚之道](http://www.bjhee.com/python-mixin.html)
 [Multiple inheritance and mixin classes in Python - The Digital Cat](https://www.thedigitalcatonline.com/blog/2020/03/27/mixin-classes-in-python/)

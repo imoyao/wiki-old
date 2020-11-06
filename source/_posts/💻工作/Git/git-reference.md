@@ -108,28 +108,35 @@ $ ls -a
 
 ```
 $ git clone git://github.com/schacon/simplegit.git
-
+```
+```
 Initialized empty Git repository in /private/tmp/simplegit/.git/
 remote: Counting objects: 100, done.
 remote: Compressing objects: 100% (86/86), done.
 remote: Total 100 (delta 35), reused 0 (delta 0)
 Receiving objects: 100% (100/100), 9.51 KiB, done.
 Resolving deltas: 100% (35/35), done.
-**$ cd simplegit/**
-**$ ls**
+```
+$ cd simplegit/
+$ ls
+```
+```
 README   Rakefile lib
 ```
 
 上述操作将复制该项目的全部记录，让你本地拥有这些。并且该操作将拷贝该项目的主分支， 使你能够查看代码，或编辑、修改。进到该目录中，你会看到 `.git` 子目录。 所有的项目数据都存在那里。
 
 ```
-**$ ls -a**
-
+$ ls -a
+```
+```
 .        ..       .git     README   Rakefile lib
-
-**$ cd .git**
-**$ ls**
-
+```
+```
+$ cd .git
+$ ls
+```
+```
 HEAD        description info        packed-refs
 branches    hooks       logs        refs
 config      index       objects
@@ -149,7 +156,9 @@ Git 的工作就是创建和保存你的项目的快照及与之后的快照进�
 
 **简而言之**，使用 `git add` 添加需要追踪的新文件和待提交的更改， 然后使用 `git status` 和 `git diff` 查看有何改动， 最后用 `git commit` 将你的快照记录。这就是你要用的基本流程，绝大部分时候都是这样的。
 
-### git add 添加文件到缓存
+### git add 
+
+> 添加文件到缓存
 
 [文档](http://git-scm.com/docs/git-add)   [git add](http://git-scm.com/book/en/Git-Basics-Recording-Changes-to-the-Repository)
 
@@ -259,7 +268,9 @@ MM README
 
 `git diff` 有两个主要的应用场景。我们将在此介绍其一， 在 [检阅与对照](http://gitref.justjavac.com/inspect) 一章中，我们将介绍其二。 我们这里介绍的方式是用此命令描述已临时提交的或者已修改但尚未提交的改动。
 
-#### git diff #尚未缓存的改动
+#### git diff 
+
+> 尚未缓存的改动
 
 如果没有其他参数，`git diff` 会以规范化的 diff 格式（一个补丁）显示自从你上次提交快照之后尚未缓存的所有更改。
 
@@ -285,28 +296,41 @@ index d62ac43..8d15d50 100644
 
 所以，`git status`显示你上次提交更新至后所更改或者写入缓存的改动， 而 `git diff` 一行一行地显示这些改动具体是啥。 通常执行完 `git status` 之后接着跑一下 `git diff` 是个好习惯。
 
-#### git diff --cached #查看已缓存的改动
+#### git diff --cached 
+
+> 查看已缓存的改动
 
 `git diff --cached` 命令会告诉你有哪些内容已经写入缓存了。 也就是说，此命令显示的是接下来要写入快照的内容。所以，如果你将上述示例中的 `hello.rb` 写入缓存，因为 `git diff` 显示的是尚未缓存的改动，所以在此执行它不会显示任何信息。
 
 ```
-**$ git status -s**
+$ git status -s
+```
+```
  M hello.rb
-**$ git add hello.rb** 
-**$ git status -s**
+ ```
+$ git add hello.rb 
+$ git status -s
+```
 M  hello.rb
-**$ git diff**
-**$** 
+```
+```
+$ git diff
+$ 
 ```
 
 如果你想看看已缓存的改动，你需要执行的是 `git diff --cached`。
 
 ```
-**$ git status -s**
+$ git status -s
+```
 M  hello.rb
-**$ git diff**
-**$** 
-**$ git diff --cached**
+```
+```
+$ git diff
+$ 
+$ git diff --cached
+```
+```
 diff --git a/hello.rb b/hello.rb
 index d62ac43..8d15d50 100644
 --- a/hello.rb
@@ -322,13 +346,17 @@ index d62ac43..8d15d50 100644
  end
 ```
 
-#### git diff HEAD 查看已缓存的与未缓存的所有改动
+#### git diff HEAD 
+
+> 查看已缓存的与未缓存的所有改动
 
 如果你想一并查看已缓存的与未缓存的改动，可以执行 `git diff HEAD` —— 也就是说你要看到的是工作目录与上一次提交的更新的区别，无视缓存。 假设我们又改了些 `ruby.rb` 的内容，那缓存的与未缓存的改动我们就都有了。 以上三个 `diff` 命令的结果如下：
 
 ```
-**$ vim hello.rb** 
-**$ git diff**
+$ vim hello.rb 
+$ git diff
+```
+```
 diff --git a/hello.rb b/hello.rb
 index 4f40006..2ae9ba4 100644
 --- a/hello.rb
@@ -342,7 +370,9 @@ index 4f40006..2ae9ba4 100644
    end
 
  end
-**$ git diff --cached**
+```
+```
+$ git diff --cached
 diff --git a/hello.rb b/hello.rb
 index 2aabb6e..4f40006 100644
 --- a/hello.rb
@@ -356,7 +386,11 @@ index 2aabb6e..4f40006 100644
    end
 
  end
-**$ git diff HEAD**
+```
+```
+$ git diff HEAD
+```
+```
 diff --git a/hello.rb b/hello.rb
 index 2aabb6e..2ae9ba4 100644
 --- a/hello.rb
@@ -373,20 +407,36 @@ index 2aabb6e..2ae9ba4 100644
  end
 ```
 
-#### git diff --stat 显示摘要而非整个 diff
+#### git diff --stat 
+
+> 显示摘要而非整个 diff
 
 如果我们不想要看整个 diff 输出，但是又想比 `git status` 详细点， 就可以用 `--stat` 选项。该选项使它显示摘要而非全文。上文示例在使用 `--stat` 选项时，输出如下：
 
 ```
-**$ git status -s**
+$ git status -s
+```
+```
 MM hello.rb
-**$ git diff --stat**
+```
+```
+$ git diff --stat
+```
+```
  hello.rb |    1 +
  1 files changed, 1 insertions(+), 0 deletions(-)
-**$ git diff --cached --stat**
+ ```
+```
+$ git diff --cached --stat
+```
+```
  hello.rb |    2 +\-
  1 files changed, 1 insertions(+), 1 deletions(-)
-**$ git diff HEAD --stat**
+```
+```
+$ git diff HEAD --stat
+```
+```
  hello.rb |    3 ++\-
  1 files changed, 2 insertions(+), 1 deletions(-)
 ```
@@ -404,17 +454,23 @@ MM hello.rb
 现在你使用 `git add` 命令将想要快照的内容写入了缓存， 执行 `git commit` 就将它实际存储快照了。 Git 为你的每一个提交都记录你的名字与电子邮箱地址，所以第一步是告诉 Git 这些都是啥。
 
 ```
-**$ git config --global user.name 'Your Name'**
-**$ git config --global user.email you@somedomain.com**
+$ git config --global user.name 'Your Name'
+$ git config --global user.email you@somedomain.com
 ```
 
 让我们写入缓存，并提交对 `hello.rb` 的所有改动。在首个例子中，我们使用 `-m` 选项以在命令行中提供提交注释。
 
 ```
-**$ git add hello.rb** 
-**$ git status -s**
+$ git add hello.rb 
+$ git status -s
+```
+```
 M  hello.rb
-**$ git commit -m 'my hola mundo changes'**
+```
+```
+$ git commit -m 'my hola mundo changes'
+```
+```
 \[master 68aa034\] my hola mundo changes
  1 files changed, 2 insertions(+), 1 deletions(-)
 ```
@@ -422,7 +478,9 @@ M  hello.rb
 现在我们已经记录了快照。如果我们再执行 `git status`，会看到我们有一个“干净的工作目录”。 这意味着我们在最近一次提交之后，没有做任何改动 —— 在我们的项目中没有未快照的工作。
 
 ```
-**$ git status**
+$ git status
+```
+```
 # On branch master
 nothing to commit (working directory clean)
 ```
@@ -478,15 +536,25 @@ nothing to commit (working directory clean)
 
 提交注解是很重要的。因为 Git 很大一部分能耐就是它在组织本地提交和与他人分享的弹性， 它很给力地能够让你为逻辑独立的改变写三到四条提交注解，以便你的工作被同仁审阅。因为提交与推送改动是有区别的， 请务必花时间将各个逻辑独立的改动放到另外一个提交，并附上一份良好的提交注解， 以使与你合作的人能够方便地了解你所做的，以及你为何要这么做。
 
-#### git commit -a 自动将在提交前将已记录、修改的文件放入缓存区
+#### git commit -a 
+
+> 自动将在提交前将已记录、修改的文件放入缓存区
 
 如果你觉得 `git add` 提交缓存的流程太过繁琐，Git 也允许你用 `-a` 选项跳过这一步。 基本上这句话的意思就是，为任何已有记录的文件执行 `git add` —— 也就是说，任何在你最近的提交中已经存在，并且之后被修改的文件。 这让你能够用更 Subversion 方式的流程，修改些文件，然后想要快照所有所做的改动的时候执行 `git commit -a`。 不过你仍然需要执行 `git add` 来添加新文件，就像 Subversion 一样。
 
 ```
-**$ vim hello.rb**
-**$ git status -s**
+$ vim hello.rb
+```
+```
+$ git status -s
+```
+```
  M  hello.rb
-**$ git commit -m 'changes to hello file'**
+ ```
+```
+$ git commit -m 'changes to hello file'
+```
+```
 # On branch master
 # Changed but not updated:
 #   (use "git add <file>..." to update what will be committed)
@@ -495,7 +563,11 @@ nothing to commit (working directory clean)
 # modified:   hello.rb
 #
 no changes added to commit (use "git add" and/or "git commit -a")
-**$ git commit -am 'changes to hello file'**
+```
+```
+$ git commit -am 'changes to hello file'
+```
+```
 \[master 78b2670\] changes to hello file
  1 files changed, 2 insertions(+), 1 deletions(-)
 ```
@@ -519,17 +591,31 @@ no changes added to commit (use "git add" and/or "git commit -a")
 好，让我们看看取消缓存是什么样子的。这里我们有两个最近提交之后又有所改动的文件。我们将两个都缓存，并取消缓存其中一个。
 
 ```
-**$ git status -s**
+$ git status -s
+```
+```
  M README
  M hello.rb
-**$ git add .**
-**$ git status -s**
+ ```
+```
+$ git add .
+$ git status -s
+```
+```
 M  README
 M  hello.rb
-**$ git reset HEAD -- hello.rb** 
+```
+```
+$ git reset HEAD -- hello.rb 
+```
+```
 Unstaged changes after reset:
 M hello.rb
-**$ git status -s**
+```
+```
+$ git status -s
+```
+```
 M  README
  M hello.rb
 ```
@@ -543,7 +629,9 @@ M  README
 如果你忘了取消缓存的命令，Git 的常规 `git status` 输出的提示会很有帮助。 例如，在你有已缓存的文件时，如果你不带 `-s` 执行 `git status`，它将告诉你怎样取消缓存：
 
 ```
-**$ git status**
+$ git status
+```
+```
 # On branch master
 # Changes to be committed:
 #   (use "git reset HEAD <file>..." to unstage)
@@ -573,8 +661,6 @@ M  README
 
 **简而言之**， 执行 `git rm` 来删除 Git 追踪的文件。它还会删除你的工作目录中的相应文件。
 
-
-
 ## 分支与合并
 
 [书](http://git-scm.com/book/en/Git-Branching) 
@@ -597,14 +683,18 @@ M  README
 
 `git branch` 命令是 Git 中的通用分支管理工具，可以通过它完成多项任务。 我们先说你会用到的最多的命令 —— 列出分支、创建分支和删除分支。 我们还会介绍用来切换分支的 `git checkout` 命令。
 
-#### git branch 列出可用的分支
+#### git branch 
+
+> 列出可用的分支
 
 没有参数时，`git branch` 会列出你在本地的分支。你所在的分支的行首会有个星号作标记。 如果你开启了[master](http://git-scm.com/book/en/Customizing-Git-Git-Configuration)，当前分支会用绿色显示。
 
 
 此例的意思就是，我们有一个叫做“master”的分支，并且该分支是当前分支。 当你执行 `git init` 的时候，缺省情况下 Git 就会为你创建“master”分支。 但是这名字一点特殊意味都没有 —— 事实上你并不非得要一个叫做“master”的分支。 不过由于它是缺省分支名的缘故，绝大部分项目都有这个分支。
 
-#### git branch (branchname) 创建新分支
+#### git branch (branchname) 
+
+> 创建新分支
 
 我们动手创建一个分支，并切换过去。执行 `git branch (branchname)` 即可。
 
@@ -617,75 +707,155 @@ $ git branch
 
 现在我们可以看到，有了一个新分支。当你以此方式在上次提交更新之后创建了新分支，如果后来又有更新提交， 然后又切换到了“testing”分支，Git 将还原你的工作目录到你创建分支时候的样子 —— 你可以把它看作一个记录你当前进度的书签。让我们实际运用看看 —— 我们用 `git checkout (branch)` 切换到我们要修改的分支。
 
-```plain
+```shell
 $ ls
+```
+```
 README   hello.rb
+```
+```
 $ echo 'test content' > test.txt
 $ echo 'more content' > more.txt
 $ git add \*.txt
 $ git commit -m 'added two files'
+```
+```
 \[master 8bd6d8b\] added two files
  2 files changed, 2 insertions(+), 0 deletions(-)
  create mode 100644 more.txt
  create mode 100644 test.txt
-**$ ls**
+ ```
+```
+$ ls
+```
+```
 README   hello.rb more.txt test.txt
-**$ git checkout testing**
+```
+```
+$ git checkout testing
+```
+```
 Switched to branch 'testing'
-**$ ls**
+```
+```
+$ ls
+```
+```
 README   hello.rb
 ```
 
 当我们切换到“测试”分支的时候，我们添加的新文件被移除了。切换回“master”分支的时候，它们又重新出现了。
 
-**$ ls**
+```
+$ ls
+```
+```
 README   hello.rb
-**$ git checkout master**
+```
+```
+$ git checkout master
+```
+```
 Switched to branch 'master'
-**$ ls**
+```
+```
+$ ls
+```
+```
 README   hello.rb more.txt test.txt
+```
 
-#### git checkout -b (branchname) 创建新分支，并立即切换到它
+#### git checkout -b (branchname) 
+
+> 创建新分支，并立即切换到它
 
 通常情况下，你会更希望立即切换到新分支，从而在该分支中操作，然后当此分支的开发日趋稳定时， 将它合并到稳定版本的分支（例如“master”）中去。 执行 `git branch newbranch; git checkout newbranch` 也很简单， 不过 Git 还为你提供了快捷方式：`git checkout -b newbranch`。
 
-**$ git branch**
+```
+$ git branch
+```
+```
 \* master
-**$ ls**
+```
+```
+$ ls
+```
+```
 README   hello.rb more.txt test.txt
-**$ git checkout -b removals**
+```
+```
+$ git checkout -b removals
+```
+```
 Switched to a new branch 'removals'
-**$ git rm more.txt** 
+```
+```
+$ git rm more.txt 
+```
+```
 rm 'more.txt'
-**$ git rm test.txt** 
+```
+```
+$ git rm test.txt 
+```
+```
 rm 'test.txt'
-**$ ls**
+```
+```
+$ ls
+```
+```
 README   hello.rb
-**$ git commit -am 'removed useless files'**
+```
+```
+$ git commit -am 'removed useless files'
+```
+```
 \[removals 8f7c949\] removed useless files
  2 files changed, 0 insertions(+), 2 deletions(-)
  delete mode 100644 more.txt
  delete mode 100644 test.txt
-**$ git checkout master**
+ ```
+```
+$ git checkout master
+```
+```
 Switched to branch 'master'
-**$ ls**
+```
+```
+$ ls
+```
+```
 README   hello.rb more.txt test.txt
+```
 
 如你所见，我们创建了一个分支，在该分支的上下文中移除了一些文件，然后切换回我们的主分支，那些文件又回来了。 使用分支将工作切分开来，从而让我们能够在不同上下文中做事，并来回切换。
 
 创建新分支，在其中完成一部分工作，完成之后将它合并到主分支并删除。你会觉得这很方便，因为这么做很快很容易。 如此，当你觉得这部分工作并不靠谱，舍弃它很容易。并且，如果你必须回到稳定分支做些事情， 也可以很方便地这个独立分支的工作先丢在一边，完成要事之后再切换回来。
 
-#### git branch -d (branchname) 删除分支
+#### git branch -d (branchname)
+
+>  删除分支
 
 假设我们要删除一个分支（比如上例中的“testing”分支，该分支没啥特殊的内容了）， 可以执行 `git branch -d (branch)` 把它删掉。
 
-**$ git branch**
+```
+$ git branch
 \* master
   testing
-**$ git branch -d testing**
+  ```
+```
+$ git branch -d testing
+```
+```
 Deleted branch testing (was 78b2670).
-**$ git branch**
+```
+```
+$ git branch
+```
+```
 \* master
+```
 
 **简而言之** 使用 `git branch` 列出现有的分支、创建新分支以及删除不必要或者已合并的分支。
 
@@ -698,12 +868,22 @@ Deleted branch testing (was 78b2670).
 一旦某分支有了独立内容，你终究会希望将它合并回到你的主分支。 你可以使用 `git merge` 命令将任何分支合并到当前分支中去。 我们那上例中的“removals”分支为例。假设我们创建了一个分支，移除了一些文件，并将它提交到该分支， 其实该分支是与我们的主分支（也就是“master”）独立开来的。 要想将这些移除操作包含在主分支中，你可以将“removals”分支合并回去。
 
 ```
-**$ git branch**
+$ git branch
+```
+```
 \* master
   removals
-**$ ls**
+```
+```
+$ ls
+```
+```
 README   hello.rb more.txt test.txt
-**$ git merge removals**
+```
+```
+$ git merge removals
+```
+```
 Updating 8bd6d8b..8f7c949
 Fast-forward
  more.txt |    1 -
@@ -711,7 +891,11 @@ Fast-forward
  2 files changed, 0 insertions(+), 2 deletions(-)
  delete mode 100644 more.txt
  delete mode 100644 test.txt
-**$ ls**
+ ```
+```
+$ ls
+```
+```
 README   hello.rb
 ```
 
@@ -720,9 +904,15 @@ git log -S
 当然，合并并不仅仅是简单的文件添加、移除的操作，Git 也会合并修改 —— 事实上，它很会合并修改。 举例，我们看看在某分支中编辑某个文件，然后在另一个分支中把它的名字改掉再做些修改， 最后将这俩分支合并起来。你觉得会变成一坨 shi？我们试试看。
 
 ```
-**$ git branch**
+$ git branch
+```
+```
 \* master
-**$ cat hello.rb** 
+```
+```
+$ cat hello.rb
+```
+``` 
 class HelloWorld
   def self.hello
     puts "Hello World"
@@ -1259,7 +1449,7 @@ fast-forwards' section of 'git push --help' for details.
 
 **简而言之** 执行 `git log` 找到你的项目历史中的特定提交 —— 按作者、日期、内容或者历史记录。执行 `git diff` 比较历史记录中的两个不同的点 —— 通常是为了看看两个分支有啥区别，或者从某个版本到另一个版本，你的软件都有啥变化。
 
-## git log 
+### git log 
 
 > 过滤你的提交历史记录
 
@@ -1383,9 +1573,7 @@ Date:   Tue Apr 13 22:31:12 2010 +0200
     This is an extension to a proposed patch by Jeff King.
     
     Signed-off-by: Johannes Gilger
-    Signed-off-by: Junio C Hamano```
-
-
+    Signed-off-by: Junio C Hamano
 ```
 
 #### git log -p 
@@ -1395,7 +1583,7 @@ Date:   Tue Apr 13 22:31:12 2010 +0200
 每个提交都是项目的一个快照。由于每个提交都记录它所基于的快照，Git 能够经常对它们求差值，并以补丁形式向你展示。 这意味着，对任意提交，你都可以获取该提交给项目引入补丁。 你可以用 `git show [SHA]` 加上某个特定的提交 SHA 获取，或者执行 `git log -p`， 它会告诉 Git 输出每个提交之后的补丁。这是个总结某一分支或者两个提交之间都发生了神马的好途径。
 
 ```
-**$ git log -p --no-merges -2**
+$ git log -p --no-merges -2
 commit 594f90bdee4faf063ad07a4a6f503fdead3ef606
 Author: Scott Chacon <schacon@gmail.com>
 Date:   Fri Jun 4 15:46:55 2010 +0200
@@ -1445,7 +1633,7 @@ index d053cc8..9103e27 100644
 如果 `-p` 选项对你来说太详细了，你可以用 `--stat` 总结这些改动。 这是不用 `-p`，而用 `--stat` 选项时，同一份日志的输出。
 ```
 
-**$ git log --stat --no-merges -2**
+$ git log --stat --no-merges -2
 commit 594f90bdee4faf063ad07a4a6f503fdead3ef606
 Author: Scott Chacon <schacon@gmail.com>
 Date:   Fri Jun 4 15:46:55 2010 +0200
@@ -1467,15 +1655,16 @@ Date:   Fri Jun 4 12:58:53 2010 +0200
 ```
 同样的基本信息，但更紧凑 —— 它仍然让你看到相对改动，和改动了哪些文件。
 
-[文档](http://git-scm.com/docs/git-diff)   
-[书籍git diff](http://git-scm.com/book/en/Distributed-Git-Maintaining-a-Project)
+###  git diff
+
+[文档](http://git-scm.com/docs/git-diff)   	[书籍](http://git-scm.com/book/en/Distributed-Git-Maintaining-a-Project)
 
 最后，要查看两个提交快照的绝对改动，你可以用 `git diff` 命令。 这在两个主要情况中广为使用 —— 查看两个分支彼此之间的差值，和查看自发布或者某个旧历史点之后都有啥变了。让我们看看这俩情况。
 
 你仅需执行 `git diff [version]`（或者你给该发布打的任何标签）就可以查看自最近发布之后的改动。 例如，如果我们想要看看自 v0.9 发布之后我们的项目改变了啥，我们可以执行 `git diff v0.9`
 ```
 
-**$ git diff v0.9**
+$ git diff v0.9
 diff --git a/README b/README
 index d053cc8..d4173d5 100644
 --- a/README
@@ -1506,7 +1695,7 @@ index bb86f00..192151c 100644
 正如 `git log`，你可以给它加上 `--stat` 参数。
 ```
 
-**$ git diff v0.9 --stat**
+$ git diff v0.9 --stat
  README  |    2 +-
  ruby.rb |    4 ++--
  2 files changed, 3 insertions(+), 3 deletions(-)
@@ -1515,7 +1704,9 @@ index bb86f00..192151c 100644
 要比较两个不同的分支，你可以执行类似 `git diff branchA branchB` 的命令。 不过它的问题在于它会完完全全按你说的作 —— 它会直接给你个补丁文件，该补丁能够将甲分支的最新快照变成乙分支的最新快照的样子。 这意味着如果两个分支已经产生分歧 —— 奔往两个不同方向了 —— 它会移除甲分支中引入的所有工作，然后累加乙分支中的所有工作。 这大概不是你要的吧 —— 你想要不在甲分支中的乙分支的改动。所以你真的需要的是两个分支叉开去时，和最新的乙分支的差别。 所以，如果我们的历史记录看起来像这样：
 ```
 
-**$ git log --graph --oneline --decorate --all**
+$ git log --graph --oneline --decorate --all
+```
+```
 \* 594f90b (HEAD, tag: v1.0, master) reverted to old class name
 | \* 1834130 (erlang) added haskell
 | \* ab5ab4c added erlang
@@ -1526,8 +1717,9 @@ index bb86f00..192151c 100644
 ```
 并且，我们想要看“erlang”分支与主分支相比的查别。执行 `git diff master erlang` 会给我们错误的结果。
 ```
-
-**$ git diff --stat master erlang**
+$ git diff --stat master erlang
+```
+```
  erlang\_hw.erl |    5 +++++
  haskell.hs    |    4 ++++
  ruby.rb       |    4 ++--
@@ -1537,7 +1729,9 @@ index bb86f00..192151c 100644
 你可以看到，它加上了 erlang 和 haskell 文件，这确实是我们在该分支中做的， 但是它同时恢复了我们在主分支中改动的 ruby 文件。我们真心想要的只是“erlang”分支中的改动（添加两个文件）。 我们可以通过求两个分支分歧时的共同提交与该分支的差值得到想要的结果：
 ```
 
-**$ git diff --stat 8d585ea erlang**
+$ git diff --stat 8d585ea erlang
+```
+```
  erlang\_hw.erl |    5 +++++
  haskell.hs    |    4 ++++
  2 files changed, 9 insertions(+), 0 deletions(-)
@@ -1546,12 +1740,18 @@ index bb86f00..192151c 100644
 这才是我们在找的，但是我们可不想要每次都要找出两个分支分歧时的那次提交。 幸运的是，Git 为此提供了一个快捷方式。 如果你执行 `git diff master...erlang`（在分支名之间有三个半角的点）， Git 就会自动找出两个分支的共同提交（也被成为合并基础），并求差值。
 ```
 
-**$ git diff --stat master erlang**
+$ git diff --stat master erlang
+```
+```
  erlang\_hw.erl |    5 +++++
  haskell.hs    |    4 ++++
  ruby.rb       |    4 ++--
  3 files changed, 11 insertions(+), 2 deletions(-)
-**$ git diff --stat master...erlang**
+```
+```
+$ git diff --stat master...erlang
+```
+```
  erlang\_hw.erl |    5 +++++
  haskell.hs    |    4 ++++
  2 files changed, 9 insertions(+), 0 deletions(-)
@@ -1561,15 +1761,17 @@ index bb86f00..192151c 100644
 
 顺带提一句，你还可以让 Git 手工计算两次提交的合并基础（第一个共同的祖提交），即 `git merge-base` 命令：
 ```
-
-**$ git merge-base master erlang**
+$ git merge-base master erlang
+```
+```
 8d585ea6faf99facd39b55d6f6a3b3f481ad0d3d
-
 ```
 所以你执行下面这个也跟 `git diff master...erlang` 一样：
 
 ```
-**$ git diff --stat $(git merge-base master erlang) erlang**
+$ git diff --stat $(git merge-base master erlang) erlang
+```
+```
  erlang\_hw.erl |    5 +++++
  haskell.hs    |    4 ++++
  2 files changed, 9 insertions(+), 0 deletions(-)
