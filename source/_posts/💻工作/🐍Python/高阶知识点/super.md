@@ -5,6 +5,7 @@ tags:
   - Python
   - Mixin
   - super
+  - 类继承
 categories:
   - "\U0001F4BB工作"
   - "\U0001F40DPython"
@@ -73,29 +74,29 @@ class LoggingDict(dict):
 
 上面展示的 MRO 遵循以下的限制：
 
-*   `LoggingOD` 在它的父类 `LoggingDict` 和 `OrderedDict` 之前
-*   `LoggingDict` 在 `OrderedDict` 之前，因为 `LoggingOD.__base__` 的值为 `(LoggingDict, OrderedDict)`
-*   `LoggingDict` 在它的父类 `dict` 之前
-*   `OrderedDict` 在它的父类 `dict` 之前
-*   `dict` 在它的父类 `object` 之前
+- `LoggingOD` 在它的父类 `LoggingDict` 和 `OrderedDict` 之前
+- `LoggingDict` 在 `OrderedDict` 之前，因为 `LoggingOD.__base__` 的值为 `(LoggingDict, OrderedDict)`
+- `LoggingDict` 在它的父类 `dict` 之前
+- `OrderedDict` 在它的父类 `dict` 之前
+- `dict` 在它的父类 `object` 之前
 
 解决这些限制的过程被称为**线性化**， 关于这个话题有许多优秀的论文，但要创建具有我们想要的 MRO 的一个子类，我们只需要知道两条限制：子类在父类之前、出现的顺序遵从 `__base__` 中的顺序。
 
 ### 实用的建议
 
-`super()` 的工作就是将方法调用委托给祖先树中的某个类。要让可重排列的方法调用正常工作，我们需要对这个类进行联合的设计。这也显露出了三个易于解决的实际问题：
+`super()` 的工作就是将方法调用委托给祖先树中的某个类。要让可重排列的方法调用正常工作，我们需要对这个类进行联合的设计。这就提出了三个易于解决的实际问题：
 
-*   被 `super()` 调用的方法必须存在
-*   调用者和被调用者需要具有相同的参数签名
-*   该方法的每次调用都需要使用 `super()`
+- 被 `super()` 调用的方法必须存在
+- 调用者和被调用者需要具有相同的参数签名
+- 该方法的每次调用都需要使用 `super()`
 
-1）我们先来看看使调用者与被调用者的参数签名相匹配的策略。比起传统的方法调用（提前知道被调用者是谁），这会有一点点挑战性。使用 `super()`编写一个类时，我们并不知道被调用者是谁（因为之后编写的子类可能会在 MRO 中引入新的类）。
+1）我们先来看看使调用者与被调用者的参数签名相匹配的处理策略。比起传统的方法调用（提前知道被调用者是谁），这会有一点点挑战性。使用 `super()`编写一个类时，我们并不知道被调用者是谁（因为之后编写的子类可能会在 MRO 中引入新的类）。
 
 一种方式是使用固定的签名，也就是位置参数。像 `__setitem__` 这样的方法拥有两个参数的固定签名，一个键和一个值，这种情况下能够很好地工作。这个技术在 `LoggingDict` 的示例中展示过，其中 `__setitem__` 在 `LoggingDict` 和 `dict` 中拥有同样的参数签名。
 
 一种更加灵活的方式是将每一个祖先类中对应的方法都共同设计成接收关键字参数和一个关键字参数字典，将它需要的参数移除，并将剩余的参数通过 `**kwds` 继续传递，最终会在最后的调用中剩下一个空字典。
 
-每一层都移除它所需要的关键字参数，最后的空字典可以被传递给一个不需要任何参数的方法（例如： `object.__init__` 不需要任何参数）
+每一层都剥离它所需要的关键字参数，最后的空字典可以被传递给一个不需要任何参数的方法（例如： `object.__init__` 不需要任何参数）
  ```python
     class Shape:
         def __init__(self, shapename, **kwds):
@@ -109,13 +110,13 @@ class LoggingDict(dict):
     
     cs = ColoredShape(color='red', shapename='circle')
  ```
-2) 看完了使调用者和被调用者的参数模式相匹配的策略，我们现在来看看如何确保目标方法存在。
+2) 看完了使调用者和被调用者的参数模式相匹配的策略，我们现在来看看如何保证目标方法存在。
 
 上面的示例展示了最简单的情况。我们知道 `object` 有一个 `__init__` 方法，并且 `object` 永远是 MRO 链中的最后一个类，所以任何调用 `super().__init__` 的序列都会以调用 `object.__init__` 方法作为结尾。换句话说，我们能确保 `super()` 调用的目标肯定存在，一定不会发生 `AttributeError` 的错误。
 
-对于我们想要的方法在 `object` 中并不存在的情况（例如 `draw()` 方法），我们需要编写一个一定会在 `object` 之前被调用的根类（root class）。这个根类的作用是在 `object` 之前将该方法吞噬掉，避免 `super()` 的继续调用。
+对于我们想要的方法在 `object` 中并不存在的情况（假设就叫 `draw()` 方法），我们需要编写一个一定会在 `object` 之前被调用的根类（root class）。这个根类的作用是在 `object` 之前将该方法的调用吞噬掉，避免 `super()` 的继续调用。
 
-`Root.draw` 还能够利用[防御式编程](http://en.wikipedia.org/wiki/Defensive_programming)，通过使用 `assertion` 语句来确保它没有屏蔽掉 MRO 链中的其它 `draw()` 调用。当一个子类错误地合并一个拥有 `draw()` 方法的类，但却没有继承 Root 类时就可能发生这种情况：
+`Root.draw` 还能够利用[防御式编程](http://en.wikipedia.org/wiki/Defensive_programming)，通过使用 `assertion` 语句来确保它没有屏蔽掉 MRO 链中的其它 `draw()` 调用。当一个子类错误地整合某个拥有 `draw()` 方法的类，但却没有继承 Root 类时就可能发生这种情况：
  ```python
     class Root:
         def draw(self):
@@ -141,13 +142,11 @@ class LoggingDict(dict):
     cs = ColoredShape(color='blue', shapename='square')
     cs.draw()
  ```
-如果子类想要将其它类插入到 MRO 链中，那么那些被插入的类也需要继承 `Root` ，以确保任何途径下调用 `draw()` 方法都不会到达 `object` 类，而会被 `Root.draw` 所拦截而终止。
+如果子类想要将其它类注入到 MRO 链中，那么那些被插入的类也需要继承 `Root` ，以确保任何途径下调用 `draw()` 方法都不会到达 `object` 类，而是会被 `Root.draw` 所拦截而终止。这一点应该清楚地写到文档中，这样一来如果有人编写与之相关的类，就知道应该继承 `Root` 类。这一限制，与 Python 要求所有异常类都要继承 `BaseException` 没有多大区别。
 
-这一点应该清楚地写到文档中，这样一来如果有人编写与之相关的类，就知道应该继承 `Root` 类了。这一限制，与 Python 要求所有异常类都要继承 `BaseException` 没有多大区别。
+3) 上面展示的技术可确保 `super()` 调用的是一个已知存在、并且参数签名正确的方法。然而，我们仍依赖于 `super()` 在每一步中都被调用，以便委托链继续不被破坏。我们如果联合设计这些类，那么这一点很容易实现——只需要在调用链中的每一个方法中都添加一个 `super()` 调用。
 
-3) 上面展示的技术假定了 `super()` 调用的是一个已知存在、并且参数签名正确的方法。然而，我们仍依赖于 `super()` 在每一步中都被调用，代表链得以继续不至于断裂。我们如果联合设计这些类，那么这一点很容易达到——只需要在链中的每一个方法中都添加一个 `super()` 调用。
-
-上面列出的三种技术，提供了一些方式让我们设计出能够通过子类来组合或重排序的联合类。
+上面列出的三种技术提供了设计可以由子类组成或重新排序的协作类（cooperative classes）的方法。
 
 ### 如何合并一个非联合（Non-cooperative）类
 
@@ -162,7 +161,7 @@ class LoggingDict(dict):
         def draw(self):
             print('Drawing at position:', self.x, self.y)
  ```
-如果我们想要将该类与我们联合设计的 `ColoredShape` 分层结构（hierarchy）一起使用，我们需要创建一个适配器，包含必要的 `super()` 调用：
+如果我们想要将该类与我们联合设计的 `ColoredShape` 分层结构（hierarchy）一起使用，我们需要创建一个包含必要的 `super()` 调用的适配器：
  ```python
     class MoveableAdapter(Root):
         def __init__(self, x, y, **kwds):
@@ -196,26 +195,26 @@ class LoggingDict(dict):
  ```
 ### 说明和引用
 
-*   当继承内置的数据类型如 `dict()` 来创建子类的时候，通常有必要同时重载或扩展多个方法。在上面的示例中，`__setitem__` 的扩展没有被其它方法如 `dict.update` 所使用，因此也可能有必要对那些方法进行扩展。这一要求并非是 `super()` 所特有的，相反，任何通过继承内置类型创建子类的情况都需要满足这个要求。
+- 当继承内置的数据类型如 `dict()` 来创建子类的时候，通常有必要同时重载或扩展多个方法。在上面的示例中，`__setitem__` 的扩展没有被其它方法如 `dict.update` 所使用，因此也可能有必要对那些方法进行扩展。这一要求并非是 `super()` 所特有的，相反，任何通过继承内置类型创建子类的情况都需要满足这个要求。
     
-*   如果一个类依赖于一个父类，而这个父类又依赖于另一个类（例如，`LoggingOD` 依赖于 `LoggingDict`，而后者出现在 `OrderedDict` 之前，最后才是 `dict`），那么很容易通过添加断言（assertions）来验证并记录预计的方法解析顺序（MRO）：
+- 如果一个类依赖于一个父类，而这个父类又依赖于另一个类（例如，`LoggingOD` 依赖于 `LoggingDict`，而后者出现在 `OrderedDict` 之前，最后才是 `dict`），那么很容易通过添加断言（assertions）来验证并记录预计的方法解析顺序（MRO）：
  ```python
-          position = LoggingOD.__mro__.index
-          assert position(LoggingDict) < position(OrderedDict)
-          assert position(OrderedDict) < position(dict)
+  position = LoggingOD.__mro__.index
+  assert position(LoggingDict) < position(OrderedDict)
+  assert position(OrderedDict) < position(dict)
  ```
-*   关于线性化算法的优秀文章可以参考 [Python MRO documentation](http://www.python.org/download/releases/2.3/mro/) 和 [Wikipedia entry for C3 Linearization](http://en.wikipedia.org/wiki/C3_linearization)
+- 关于线性化算法的优秀文章可以参考 [Python MRO documentation](http://www.python.org/download/releases/2.3/mro/) 和 [Wikipedia entry for C3 Linearization](http://en.wikipedia.org/wiki/C3_linearization)
     
-*   [Dylan 编程语言](http://en.wikipedia.org/wiki/Dylan_%28programming_language%29)有一个 `next-method` 构造函数，类似于 Python 的 `super()` 。有关它工作原理的简短文章，请参考 [Dylan's class docs](http://www.opendylan.org/books/dpg/db_347.html)
+- [Dylan 编程语言](http://en.wikipedia.org/wiki/Dylan_%28programming_language%29)有一个 `next-method` 构造函数，类似于 Python 的 `super()` 。有关它工作原理的简短文章，请参考 [Dylan's class docs](http://www.opendylan.org/books/dpg/db_347.html)
     
-*   这篇文章使用的是 Python 3 版本的 `super()`。全部的源码可以在此处获取：[Recipe 577720](http://code.activestate.com/recipes/577720-how-to-use-super-effectively/) 。Python 2 语法的不同之处在于传递给 `super()` 方法的参数在类型和对象上是明确的。另外，Python 2 版本的 `super()` 只对新式的(new-style)类有效（即那些明确从某个对象或其它内置类型继承的类）。使用 Python 2 语法的全部源码可以在此处获取： [Recipe 577721](http://code.activestate.com/recipes/577721-how-to-use-super-effectively-python-27-version/) 。
+- 这篇文章使用的是 Python 3 版本的 `super()`。全部的源码可以在此处获取：[Recipe 577720](http://code.activestate.com/recipes/577720-how-to-use-super-effectively/) 。Python 2 语法的不同之处在于传递给 `super()` 方法的参数在类型和对象上是明确的。另外，Python 2 版本的 `super()` 只对新式的(new-style)类有效（即那些明确从某个对象或其它内置类型继承的类）。使用 Python 2 语法的全部源码可以在此处获取： [Recipe 577721](http://code.activestate.com/recipes/577721-how-to-use-super-effectively-python-27-version/) 。
     
 
 ### 致谢
 
 数位 Python 开发者做了此文章发表前的审阅。他们的意见很大程度上提高了这篇文章的质量。
 
-他们是：Laura Creighton, Alex Gaynor, Philip Jenvey, Brian Curtin, David Beazley, Chris Angelico, Jim Baker, Ethan Furman, and Michael Foord. Thanks one and all.
+他们是：Laura Creighton, Alex Gaynor, Philip Jenvey, Brian Curtin, David Beazley, Chris Angelico, Jim Baker, Ethan Furman, and Michael Foord. 撒花.
 
 ### 译者补充
 
@@ -232,5 +231,6 @@ class LoggingDict(dict):
 
 [Things to Know About Python Super [1 of 3]](https://www.artima.com/weblogs/viewpost.jsp?thread=236275)
 [关于 Python 的 Mixin 模式 | 思诚之道](http://www.bjhee.com/python-mixin.html)
+[Python: super 没那么简单 - Huang Huang 的博客](https://mozillazg.com/2016/12/python-super-is-not-as-simple-as-you-thought.html)
 [Multiple inheritance and mixin classes in Python - The Digital Cat](https://www.thedigitalcatonline.com/blog/2020/03/27/mixin-classes-in-python/)
 [8.18 利用 Mixins 扩展类功能 — python3-cookbook 3.0.0 文档](https://python3-cookbook.readthedocs.io/zh_CN/latest/c08/p18_extending_classes_with_mixins.html)
