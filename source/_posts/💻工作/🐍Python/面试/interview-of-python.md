@@ -1568,6 +1568,9 @@ Nginx 是一个 Web 服务器其中的 HTTP 服务器功能和 uWSGI 功能很�
 7. 信号量（semaphore）：主要作为进程间以及同一进程不同线程之间的同步手段。
 8. 套接口（Socket）：更为一般的进程间通信机制，可用于不同机器之间的进程间通信。起初是由 Unix 系统的 BSD 分支开发出来的，但现在一般可以移植到其它类 Unix 系统上：Linux 和 System V 的变种都支持套接字。
 
+- 代码实现
+[chaseSpace/IPC-Inter-Process-Communication: Code implemention for Inter-Process Communication](https://github.com/chaseSpace/IPC-Inter-Process-Communication)
+
 
 # 数据结构
 
