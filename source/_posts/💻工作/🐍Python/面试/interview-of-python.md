@@ -1252,7 +1252,7 @@ CAP 理论：一个分布式系统最多只能同时满足一致性（Consistenc
 
 *分区容错性*（Partition tolerance | the system continues to operate despite arbitrary message loss or failure of part of the system）：即分布式系统在遇到某节点或网络分区故障的时候，仍然能够对外提供满足一致性和可用性的服务。
 
-![CAP理论](/pics/Teorema-CAP.png)
+![CAP理论](/images/Teorema-CAP.png)
 
 在分布式应用中，可能因为一些分布式的原因导致系统无法正常运转。好的分区容错性要求能够使应用虽然是一个分布式系统，而看上去却好像是在一个可以运转正常的整体。
 
@@ -1549,7 +1549,7 @@ Nginx 是一个 Web 服务器其中的 HTTP 服务器功能和 uWSGI 功能很�
 用一张图来描述一下上述过程：
 ### 总结
 
-![WSGI、uWSGI、uwsgi、Nginx ](/pics/WSGI_uWSGI_uwsgi_Nginx.png)
+![WSGI、uWSGI、uwsgi、Nginx ](/images/WSGI_uWSGI_uwsgi_Nginx.png)
 
 一个成熟的站点提供服务，需要 Web 服务器（静态数据）和 App 服务器（动态数据）。Web 服务器目前属`Nginx`最强大，用户请求代理过来后，把数据返回给请求客户端。但是目前的互联网发展时代，都是包含动态数据处理的，这样一般 Nginx 不处理业务逻辑，都外包给后端的 App 服务器，就是你的 Flask/Django。
 

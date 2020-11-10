@@ -46,7 +46,7 @@ createForm() {
 ```
 
 ## 效果
-![关联禁用输入框](/pics/form-disable.gif)
+![关联禁用输入框](/images/form-disable.gif)
 
 ## 参考链接
 1. [angular - Use disable with model-driven form - Stack Overflow](https://stackoverflow.com/questions/39681674/use-disable-with-model-driven-form)
