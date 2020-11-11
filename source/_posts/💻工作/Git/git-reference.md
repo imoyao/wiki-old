@@ -5,7 +5,7 @@ tags:
   - git
   - 技术
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - Git
 date: 2020-11-07 12:27:56
 
@@ -25,7 +25,7 @@ date: 2020-11-07 12:27:56
 
 让我们从头开始。假设你正在设计一个新的源代码管理系统。在你使用某个工具之前，是如何完成基本的源码版本控制工作的呢？ 十有八九，你只是在项目到达某些阶段的时候，对项目做一份拷贝。
 
-```
+```plain
  $ cp -R project project.bak 
 ```
 
@@ -33,13 +33,13 @@ date: 2020-11-07 12:27:56
 
 如果你有点偏执，你可能会经常作上面说的事情，或许还会给项目拷贝加个日期：
 
-```
+```plain
  $ cp -R project project.2010-06-01.bak 
 ```
 
 如此，你就有了一堆项目在各个阶段的快照，来作比较、查看。使用这种模式，你还可以有效地与人分享项目变更。 如果你会在项目到达一定阶段的时候给它打个包，丢到自己的网站上，那其他的开发者们，就能很方便地下载它，做点改动，并给你补丁回馈。
 
-```
+```plain
  $ wget http://example.com/project.2010-06-01.zip
  $ unzip project.2010-06-01.zip
  $ cp -R project.2010-06-01 project-my-copy
@@ -73,7 +73,7 @@ date: 2020-11-07 12:27:56
 
 在目录中执行 `git init`，就可以创建一个 Git 仓库了。比如，我们恰好有个目录，里头有些许文件，如下：
 
-```
+```plain
 $ cd konichiwa
 $ ls
 README   hello.rb
@@ -81,7 +81,7 @@ README   hello.rb
 
 在这个项目里头，我们会用各种编程语言写 "Hello World" 实例。 到目前为止，我们只有 Ruby 的，不过，这才刚上路嘛。为了开始用 Git 对这个项目作版本控制，我们执行一下 `git init`。
 
-```
+```plain
 $ git init
 Initialized empty Git repository in /opt/konichiwa/.git/
 # 在 /opt/konichiwa/.git 目录初始化空 Git 仓库完毕。
@@ -89,7 +89,7 @@ Initialized empty Git repository in /opt/konichiwa/.git/
 
 现在你可以看到在你的项目目录中有个 `.git` 的子目录。 这就是你的 Git 仓库了，所有有关你的此项目的快照数据都存放在这里。
 
-```
+```plain
 $ ls -a
 .        ..       .git     README   hello.rb
 ```
@@ -100,16 +100,16 @@ $ ls -a
 
 ### git clone 
 
->  复制一个 Git 仓库，以上下其手
+> 复制一个 Git 仓库，以上下其手
 
 [文档](http://git-scm.com/docs/git-clone)   [git clone](http://git-scm.com/book/en/Git-Basics-Getting-a-Git-Repository)
 
 如果你需要与他人合作一个项目，或者想要复制一个项目，看看代码，你就可以克隆那个项目。 执行 `git clone [url]`，\[url\] 为你想要复制的项目，就可以了。
 
-```
+```plain
 $ git clone git://github.com/schacon/simplegit.git
 ```
-```
+```plain
 Initialized empty Git repository in /private/tmp/simplegit/.git/
 remote: Counting objects: 100, done.
 remote: Compressing objects: 100% (86/86), done.
@@ -119,28 +119,24 @@ Resolving deltas: 100% (35/35), done.
 ```
 $ cd simplegit/
 $ ls
-```
-```
+
 README   Rakefile lib
-```
+```plain
 
 上述操作将复制该项目的全部记录，让你本地拥有这些。并且该操作将拷贝该项目的主分支， 使你能够查看代码，或编辑、修改。进到该目录中，你会看到 `.git` 子目录。 所有的项目数据都存在那里。
 
 ```
 $ ls -a
-```
-```
+
 .        ..       .git     README   Rakefile lib
-```
-```
+
 $ cd .git
 $ ls
-```
-```
+
 HEAD        description info        packed-refs
 branches    hooks       logs        refs
 config      index       objects
-```
+```plain
 
 默认情况下，Git 会按照你提供的 URL 所指示的项目的名称创建你的本地项目目录。 通常就是该 URL 最后一个 `/` 之后的任何东西。如果你想要一个不一样的名字， 你可以在该命令后加上它，就在那个 URL 后面。
 
@@ -170,13 +166,13 @@ Git 的工作就是创建和保存你的项目的快照及与之后的快照进�
 $ git status -s
 ?? README
 ?? hello.rb
-```
+```plain
 
 我们有俩尚未被追踪的文件，得添加一下。
 
 ```
 $ git add README hello.rb
-```
+```plain
 
 现在我们再执行 `git status`，就可以看到这俩文件已经加上去了。
 
@@ -184,7 +180,7 @@ $ git add README hello.rb
 $ git status -s
 A  README
 A  hello.rb
-```
+```plain
 
 新项目中，添加所有文件很普遍，可以在当前工作目录执行命令：`git add .`。 因为 Git 会递归地将你执行命令时所在的目录中的所有文件添加上去，所以如果你将当前的工作目录作为参数， 它就会追踪那儿的所有文件了。如此，`git add .` 就和 `git add README hello.rb` 有一样的效果。 此外，效果一致的还有 `git add *`，不过那只是因为我们这还木有子目录，不需要递归地添加新文件。
 
@@ -195,7 +191,7 @@ $ vim README
 $ git status -s
 AM README
 A  hello.rb
-```
+```plain
 
 “AM” 状态的意思是，这个文件在我们将它添加到缓存之后又有改动。这意味着如果我们现在提交快照， 我们记录的将是上次跑 `git add` 的时候的文件版本，而不是现在在磁盘中的这个。 Git 并不认为磁盘中的文件与你想快照的文件必须是一致的 —— （如果你需要它们一致，）得用 `git add` 命令告诉它。
 
@@ -216,7 +212,7 @@ $ git status -s
 
 AM README
 A  hello.rb
-```
+```plain
 
 而同样的状态，详细的输出看起来是这样的：
 
@@ -226,19 +222,19 @@ $ git status
 #
 # Initial commit
 #
-# Changes to be committed:
+# Changes to be committed
 #   (use "git rm --cached <file>..." to unstage)
 #
 # new file:   README
 # new file:   hello.rb
 #
-# Changed but not updated:
+# Changed but not updated
 #   (use "git add <file>..." to update what will be committed)
 #   (use "git checkout -- <file>..." to discard changes in working directory)
 #
 # modified:   README
 #
-```
+```plain
 
 你很容易发现简短的输出看起来很紧凑。而详细输出则很有帮助，提示你可以用何种命令完成你接下来可能要做的事情。
 
@@ -248,7 +244,7 @@ Git 还会告诉你在你上次提交之后，有哪些文件被删除、修改�
 $ git status -s
 M  README
  D hello.rb
-```
+```plain
 
 你可以看到，在简短输出中，有两栏。第一栏是缓存的，第二栏则是工作目录的。 所以假设你临时提交了 README 文件，然后又改了些，并且没有执行 `git add`，你会看到这个：
 
@@ -256,7 +252,7 @@ M  README
 $ git status -s
 MM README
  D hello.rb
-```
+```plain
 
 **一言以蔽之**，执行 `git status` 以查看在你上次提交之后有啥被修改或者临时提交了， 从而决定自己是否需要提交一次快照，同时也能知道有什么改变被记录进去了。
 
@@ -292,7 +288,7 @@ index d62ac43..8d15d50 100644
    end
 
  end
-```
+```plain
 
 所以，`git status`显示你上次提交更新至后所更改或者写入缓存的改动， 而 `git diff` 一行一行地显示这些改动具体是啥。 通常执行完 `git status` 之后接着跑一下 `git diff` 是个好习惯。
 
@@ -304,33 +300,31 @@ index d62ac43..8d15d50 100644
 
 ```
 $ git status -s
-```
-```
+
  M hello.rb
- ```
+ ```plain
 $ git add hello.rb 
 $ git status -s
 ```
 M  hello.rb
-```
-```
+
 $ git diff
 $ 
-```
+```plain
 
 如果你想看看已缓存的改动，你需要执行的是 `git diff --cached`。
 
 ```
 $ git status -s
-```
+```plain
 M  hello.rb
 ```
-```
+```plain
 $ git diff
 $ 
 $ git diff --cached
 ```
-```
+```plain
 diff --git a/hello.rb b/hello.rb
 index d62ac43..8d15d50 100644
 --- a/hello.rb
@@ -352,11 +346,11 @@ index d62ac43..8d15d50 100644
 
 如果你想一并查看已缓存的与未缓存的改动，可以执行 `git diff HEAD` —— 也就是说你要看到的是工作目录与上一次提交的更新的区别，无视缓存。 假设我们又改了些 `ruby.rb` 的内容，那缓存的与未缓存的改动我们就都有了。 以上三个 `diff` 命令的结果如下：
 
-```
+```plain
 $ vim hello.rb 
 $ git diff
 ```
-```
+```plain
 diff --git a/hello.rb b/hello.rb
 index 4f40006..2ae9ba4 100644
 --- a/hello.rb
@@ -371,7 +365,7 @@ index 4f40006..2ae9ba4 100644
 
  end
 ```
-```
+```plain
 $ git diff --cached
 diff --git a/hello.rb b/hello.rb
 index 2aabb6e..4f40006 100644
@@ -387,10 +381,10 @@ index 2aabb6e..4f40006 100644
 
  end
 ```
-```
+```plain
 $ git diff HEAD
 ```
-```
+```plain
 diff --git a/hello.rb b/hello.rb
 index 2aabb6e..2ae9ba4 100644
 --- a/hello.rb
@@ -413,30 +407,30 @@ index 2aabb6e..2ae9ba4 100644
 
 如果我们不想要看整个 diff 输出，但是又想比 `git status` 详细点， 就可以用 `--stat` 选项。该选项使它显示摘要而非全文。上文示例在使用 `--stat` 选项时，输出如下：
 
-```
+```plain
 $ git status -s
 ```
-```
+```plain
 MM hello.rb
 ```
-```
+```plain
 $ git diff --stat
 ```
-```
+```plain
  hello.rb |    1 +
  1 files changed, 1 insertions(+), 0 deletions(-)
  ```
-```
+```plain
 $ git diff --cached --stat
 ```
-```
+```plain
  hello.rb |    2 +\-
  1 files changed, 1 insertions(+), 1 deletions(-)
 ```
-```
+```plain
 $ git diff HEAD --stat
 ```
-```
+```plain
  hello.rb |    3 ++\-
  1 files changed, 2 insertions(+), 1 deletions(-)
 ```
@@ -453,41 +447,41 @@ $ git diff HEAD --stat
 
 现在你使用 `git add` 命令将想要快照的内容写入了缓存， 执行 `git commit` 就将它实际存储快照了。 Git 为你的每一个提交都记录你的名字与电子邮箱地址，所以第一步是告诉 Git 这些都是啥。
 
-```
+```plain
 $ git config --global user.name 'Your Name'
 $ git config --global user.email you@somedomain.com
 ```
 
 让我们写入缓存，并提交对 `hello.rb` 的所有改动。在首个例子中，我们使用 `-m` 选项以在命令行中提供提交注释。
 
-```
+```plain
 $ git add hello.rb 
 $ git status -s
 ```
-```
+```plain
 M  hello.rb
 ```
-```
+```plain
 $ git commit -m 'my hola mundo changes'
 ```
-```
+```plain
 \[master 68aa034\] my hola mundo changes
  1 files changed, 2 insertions(+), 1 deletions(-)
 ```
 
 现在我们已经记录了快照。如果我们再执行 `git status`，会看到我们有一个“干净的工作目录”。 这意味着我们在最近一次提交之后，没有做任何改动 —— 在我们的项目中没有未快照的工作。
 
-```
+```plain
 $ git status
 ```
-```
+```plain
 # On branch master
 nothing to commit (working directory clean)
 ```
 
 如果你漏掉了 `-m` 选项，Git 会尝试为你打开一个编辑器以填写提交信息。 如果 Git 在你对它的配置中找不到相关信息，默认会打开 `vim`。屏幕会像这样：
 
-```
+```plain
 \# Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
 # On branch master
@@ -505,7 +499,7 @@ nothing to commit (working directory clean)
 
 通常，撰写良好的提交信息是很重要的。以开放源代码项目为例，多多少少以以下格式写你的提示消息是个不成文的规定：
 
-简短的关于改动的总结（25个字或者更少）
+简短的关于改动的总结（25 个字或者更少）
 
 如果有必要，更详细的解释文字。约 36 字时换行。在某些情况下，
 第一行会被作为电子邮件的开头，而剩余的则会作为邮件内容。
@@ -519,7 +513,7 @@ nothing to commit (working directory clean)
  - 通常使用连字符（-）或者星号（\*）来标记列表，前面有个空格，
    在列表项之间有空行，不过这些约定也会有些变化。
 
-```
+```plain
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
 # On branch master
@@ -542,19 +536,19 @@ nothing to commit (working directory clean)
 
 如果你觉得 `git add` 提交缓存的流程太过繁琐，Git 也允许你用 `-a` 选项跳过这一步。 基本上这句话的意思就是，为任何已有记录的文件执行 `git add` —— 也就是说，任何在你最近的提交中已经存在，并且之后被修改的文件。 这让你能够用更 Subversion 方式的流程，修改些文件，然后想要快照所有所做的改动的时候执行 `git commit -a`。 不过你仍然需要执行 `git add` 来添加新文件，就像 Subversion 一样。
 
-```
+```plain
 $ vim hello.rb
 ```
-```
+```plain
 $ git status -s
 ```
-```
+```plain
  M  hello.rb
  ```
-```
+```plain
 $ git commit -m 'changes to hello file'
 ```
-```
+```plain
 # On branch master
 # Changed but not updated:
 #   (use "git add <file>..." to update what will be committed)
@@ -564,10 +558,10 @@ $ git commit -m 'changes to hello file'
 #
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
-```
+```plain
 $ git commit -am 'changes to hello file'
 ```
-```
+```plain
 \[master 78b2670\] changes to hello file
  1 files changed, 2 insertions(+), 1 deletions(-)
 ```
@@ -590,32 +584,32 @@ $ git commit -am 'changes to hello file'
 
 好，让我们看看取消缓存是什么样子的。这里我们有两个最近提交之后又有所改动的文件。我们将两个都缓存，并取消缓存其中一个。
 
-```
+```plain
 $ git status -s
 ```
-```
+```plain
  M README
  M hello.rb
  ```
-```
+```plain
 $ git add .
 $ git status -s
 ```
-```
+```plain
 M  README
 M  hello.rb
 ```
-```
+```plain
 $ git reset HEAD -- hello.rb 
 ```
-```
+```plain
 Unstaged changes after reset:
 M hello.rb
 ```
-```
+```plain
 $ git status -s
 ```
-```
+```plain
 M  README
  M hello.rb
 ```
@@ -628,10 +622,10 @@ M  README
 
 如果你忘了取消缓存的命令，Git 的常规 `git status` 输出的提示会很有帮助。 例如，在你有已缓存的文件时，如果你不带 `-s` 执行 `git status`，它将告诉你怎样取消缓存：
 
-```
+```plain
 $ git status
 ```
-```
+```plain
 # On branch master
 # Changes to be committed:
 #   (use "git reset HEAD <file>..." to unstage)
@@ -710,58 +704,58 @@ $ git branch
 ```shell
 $ ls
 ```
-```
+```plain
 README   hello.rb
 ```
-```
+```plain
 $ echo 'test content' > test.txt
 $ echo 'more content' > more.txt
 $ git add \*.txt
 $ git commit -m 'added two files'
 ```
-```
+```plain
 \[master 8bd6d8b\] added two files
  2 files changed, 2 insertions(+), 0 deletions(-)
  create mode 100644 more.txt
  create mode 100644 test.txt
  ```
-```
+```plain
 $ ls
 ```
-```
+```plain
 README   hello.rb more.txt test.txt
 ```
-```
+```plain
 $ git checkout testing
 ```
-```
+```plain
 Switched to branch 'testing'
 ```
-```
+```plain
 $ ls
 ```
-```
+```plain
 README   hello.rb
 ```
 
 当我们切换到“测试”分支的时候，我们添加的新文件被移除了。切换回“master”分支的时候，它们又重新出现了。
 
-```
+```plain
 $ ls
 ```
-```
+```plain
 README   hello.rb
 ```
-```
+```plain
 $ git checkout master
 ```
-```
+```plain
 Switched to branch 'master'
 ```
-```
+```plain
 $ ls
 ```
-```
+```plain
 README   hello.rb more.txt test.txt
 ```
 
@@ -771,61 +765,61 @@ README   hello.rb more.txt test.txt
 
 通常情况下，你会更希望立即切换到新分支，从而在该分支中操作，然后当此分支的开发日趋稳定时， 将它合并到稳定版本的分支（例如“master”）中去。 执行 `git branch newbranch; git checkout newbranch` 也很简单， 不过 Git 还为你提供了快捷方式：`git checkout -b newbranch`。
 
-```
+```plain
 $ git branch
 ```
-```
+```plain
 \* master
 ```
-```
+```plain
 $ ls
 ```
-```
+```plain
 README   hello.rb more.txt test.txt
 ```
-```
+```plain
 $ git checkout -b removals
 ```
-```
+```plain
 Switched to a new branch 'removals'
 ```
-```
+```plain
 $ git rm more.txt 
 ```
-```
+```plain
 rm 'more.txt'
 ```
-```
+```plain
 $ git rm test.txt 
 ```
-```
+```plain
 rm 'test.txt'
 ```
-```
+```plain
 $ ls
 ```
-```
+```plain
 README   hello.rb
 ```
-```
+```plain
 $ git commit -am 'removed useless files'
 ```
-```
+```plain
 \[removals 8f7c949\] removed useless files
  2 files changed, 0 insertions(+), 2 deletions(-)
  delete mode 100644 more.txt
  delete mode 100644 test.txt
  ```
-```
+```plain
 $ git checkout master
 ```
-```
+```plain
 Switched to branch 'master'
 ```
-```
+```plain
 $ ls
 ```
-```
+```plain
 README   hello.rb more.txt test.txt
 ```
 
@@ -835,25 +829,25 @@ README   hello.rb more.txt test.txt
 
 #### git branch -d (branchname)
 
->  删除分支
+> 删除分支
 
 假设我们要删除一个分支（比如上例中的“testing”分支，该分支没啥特殊的内容了）， 可以执行 `git branch -d (branch)` 把它删掉。
 
-```
+```plain
 $ git branch
 \* master
   testing
   ```
-```
+```plain
 $ git branch -d testing
 ```
-```
+```plain
 Deleted branch testing (was 78b2670).
 ```
-```
+```plain
 $ git branch
 ```
-```
+```plain
 \* master
 ```
 
@@ -863,27 +857,27 @@ $ git branch
 
 > 将分支合并到你的当前分支
 
-[文档git branch](http://git-scm.com/docs/git-merge)   [git merge](http://git-scm.com/book/en/Git-Branching-Basic-Branching-and-Merging)
+[文档 git branch](http://git-scm.com/docs/git-merge)   [git merge](http://git-scm.com/book/en/Git-Branching-Basic-Branching-and-Merging)
 
 一旦某分支有了独立内容，你终究会希望将它合并回到你的主分支。 你可以使用 `git merge` 命令将任何分支合并到当前分支中去。 我们那上例中的“removals”分支为例。假设我们创建了一个分支，移除了一些文件，并将它提交到该分支， 其实该分支是与我们的主分支（也就是“master”）独立开来的。 要想将这些移除操作包含在主分支中，你可以将“removals”分支合并回去。
 
-```
+```plain
 $ git branch
 ```
-```
+```plain
 \* master
   removals
 ```
-```
+```plain
 $ ls
 ```
-```
+```plain
 README   hello.rb more.txt test.txt
 ```
-```
+```plain
 $ git merge removals
 ```
-```
+```plain
 Updating 8bd6d8b..8f7c949
 Fast-forward
  more.txt |    1 -
@@ -892,10 +886,10 @@ Fast-forward
  delete mode 100644 more.txt
  delete mode 100644 test.txt
  ```
-```
+```plain
 $ ls
 ```
-```
+```plain
 README   hello.rb
 ```
 
@@ -903,16 +897,16 @@ README   hello.rb
 git log -S
 当然，合并并不仅仅是简单的文件添加、移除的操作，Git 也会合并修改 —— 事实上，它很会合并修改。 举例，我们看看在某分支中编辑某个文件，然后在另一个分支中把它的名字改掉再做些修改， 最后将这俩分支合并起来。你觉得会变成一坨 shi？我们试试看。
 
-```
+```plain
 $ git branch
 ```
-```
+```plain
 \* master
 ```
-```
+```plain
 $ cat hello.rb
 ```
-``` 
+```plain
 class HelloWorld
   def self.hello
     puts "Hello World"
@@ -924,7 +918,7 @@ HelloWorld.hello
 
 首先，我们创建一个叫做“change\_class”的分支，切换过去，从而将重命名类等操作独立出来。我们将类名从 “HelloWorld” 改为 “HiWorld”。
 
-```
+```plain
 **$ git checkout -b change\_class**
 M hello.rb
 Switched to a new branch 'change\_class'
@@ -938,7 +932,7 @@ class HiWorld
 
 然后，将重命名类操作提交到 “change\_class” 分支中。 现在，假如切换回 “master” 分支我们可以看到类名恢复到了我们切换到 “change\_class” 分支之前的样子。 现在，再做些修改（即代码中的输出），同时将文件名从 `hello.rb` 改为 `ruby.rb`。
 
-```
+```plain
 **$ git checkout master**
 Switched to branch 'master'
 **$ git mv hello.rb ruby.rb**
@@ -965,7 +959,7 @@ index 2aabb6e..bf64b17 100644
 
 现在这些改变已经记录到我的 “master” 分支了。请注意，这里类名还是 “HelloWorld”，而不是 “HiWorld”。 然后我想将类名的改变合并过来，我把 “change\_class” 分支合并过来就行了。 但是，我已经将文件名都改掉了，Git 知道该怎么办么？
 
-```
+```plain
 **$ git branch**
   change\_class
 \* master
@@ -991,7 +985,7 @@ HiWorld.hello
 
 那么，Git 合并很有魔力，我们再也不用处理合并冲突了，对吗？不太确切。 不同分支中修改了相同区块的代码，电脑自己猜不透神马的情况下，冲突就摆在我们面前了。 我们看看两个分支中改了同一行代码的例子。
 
-```
+```plain
 **$ git branch**
 \* master
 **$ git checkout -b fix\_readme**
@@ -1013,7 +1007,7 @@ Switched to branch 'master'
 
 有意思的来了 —— 我们将前一个分支合并到 “master” 分支，一个合并冲突就出现了。
 
-```
+```plain
 **$ git merge fix\_readme**
 Auto-merging README
 CONFLICT (content): Merge conflict in README
@@ -1031,7 +1025,7 @@ nearly every programming language.
 
 你可以看到，Git 在产生合并冲突的地方插入了标准的与 Subversion 很像的合并冲突标记。 轮到我们去解决这些冲突了。在这里我们就手动把它解决。如果你要 Git 打开一个图形化的合并工具， 可以看看 [git 合并工具](http://git-scm.com/docs/git-mergetool) （比如 kdiff3、emerge、p4merge 等）。
 
-```
+```plain
 **$ vim README **  here I'm fixing the conflict
 **$ git diff**
 diff --cc README
@@ -1048,7 +1042,7 @@ index 9103e27,69cad1a..0000000
 
 在 Git 中，处理合并冲突的时候有个很酷的提示。 如果你执行 `git diff`，就像我演示的这样，它会告诉你冲突的两方，和你是如何解决的。 现在是时候把它标记为已解决了。在 Git 中，我们可以用 `git add` —— 要告诉 Git 文件冲突已经解决，你必须把它写入缓存区。
 
-```
+```plain
 **$ git status -s**
 UU README
 **$ git add README** 
@@ -1073,7 +1067,7 @@ M  README
 
 某分支的按时间排序的“父亲”列表，当你在该分支时，可以执行 `git log` 以查看。 例如，如果我们在本章中操作的 Hello World 项目中执行 `git log`，我们可以看到已提交的消息。
 
-```
+```plain
 **$ git log**
 commit 8d585ea6faf99facd39b55d6f6a3b3f481ad0d3d
 Merge: 3cbb6aa 3ac015d
@@ -1108,7 +1102,7 @@ Date:   Fri Jun 4 12:37:05 2010 +0200
 
 我们可以用 `--oneline` 选项来查看历史记录的紧凑简洁的版本。
 
-```
+```plain
 **$ git log --oneline**
 8d585ea Merge branch 'fix\_readme'
 3cbb6aa fixed readme title differently
@@ -1123,7 +1117,7 @@ b7ae93b added from ruby
 
 我们还可以用它的十分有帮助的 `--graph` 选项，查看历史中什么时候出现了分支、合并。以下为相同的命令，开启了拓扑图选项：
 
-```
+```plain
 **$ git log --oneline --graph**
 \*   8d585ea Merge branch 'fix\_readme'
 |\\
@@ -1142,7 +1136,7 @@ b7ae93b added from ruby
 
 首先我们创建一个分支，来添加 Erlang 编程语言的 Hello World 示例 —— 我们想要在一个分支里头做这个，以避免让可能还不能工作的代码弄乱我们的稳定分支。 这样就可以切来切去，片叶不沾身。
 
-```
+```plain
 **$ git checkout -b erlang**
 Switched to a new branch 'erlang'
 **$ vim erlang\_hw.erl**
@@ -1155,7 +1149,7 @@ Switched to a new branch 'erlang'
 
 由于我们玩函数式编程很开心，以至于沉迷其中，又在“erlang”分支中添加了一个 Haskell 的示例程序。
 
-```
+```plain
 **$ vim haskell.hs**
 **$ git add haskell.hs** 
 **$ git commit -m 'added haskell'**
@@ -1166,7 +1160,7 @@ Switched to a new branch 'erlang'
 
 最后，我们决定还是把 Ruby 程序的类名改回原先的样子。与其创建另一个分支，我们可以返回主分支，改变它，然后直接提交。
 
-```
+```plain
 **$ git checkout master**
 Switched to branch 'master'
 **$ ls**
@@ -1179,7 +1173,7 @@ README  ruby.rb
 
 现在假设我们有段时间不做这个项目了，我们做别的去了。 当我们回来的时候，我们想知道“erlang”分支都是啥，而主分支的进度又是怎样。 仅仅看分支的名字，我们是无从知道自己还在里面有 Haskell 的改动的，但是用 `git log` 我们就可以。 如果你在命令行中提供一个分支名字，它就会显示该分支历史中“可及”的提交，即从该分支创立起可追溯的影响了最终的快照的提交。
 
-```
+```plain
 **$ git log --oneline erlang**
 1834130 added haskell
 ab5ab4c added erlang
@@ -1196,7 +1190,7 @@ b7ae93b added from ruby
 
 在此例中，如果我们想要合并“erlang”分支，我们需要看当合并的时候，都有啥提交会作用到我们的快照上去。 我们告诉 Git 的方式是，在不想要看到的分支前放一个 `^`。 例如，如果我们想要看“erlang”分支中但不在主分支中的提交，我们可以用 `erlang ^master`，或者反之。
 
-```
+```plain
 **$ git log --oneline erlang ^master**
 1834130 added haskell
 ab5ab4c added erlang
@@ -1218,7 +1212,7 @@ ab5ab4c added erlang
 
 比如说，我们想为我们的 Hello World 项目发布一个“1.0”版本。 我们可以用 `git tag -a v1.0` 命令给最新一次提交打上（`HEAD`）“v1.0”的标签。 `-a` 选项意为“创建一个带注解的标签”，从而使你为标签添加注解。绝大部分时候都会这么做的。 不用 `-a` 选项也可以执行的，但它不会记录这标签是啥时候打的，谁打的，也不会让你添加个标签的注解。 我推荐一直创建带注解的标签。
 
-```
+```plain
 **$ git tag -a v1.0** 
 ```
 
@@ -1226,7 +1220,7 @@ ab5ab4c added erlang
 
 现在，注意当我们执行 `git log --decorate` 时，我们可以看到我们的标签了：
 
-```
+```plain
 **$ git log --oneline --decorate --graph**
 \* 594f90b (HEAD, tag: v1.0, master) reverted to old class name
 \*   8d585ea Merge branch 'fix\_readme'
@@ -1246,7 +1240,7 @@ ab5ab4c added erlang
 
 不过我们并不需要给当前提交打标签。如果我们忘了给某个提交打标签，又将它发布了，我们可以给它追加标签。 在相同的命令末尾加上提交的 SHA，执行，就可以了。 例如，假设我们发布了提交 `558151a`（几个提交之前的事情了），但是那时候忘了给它打标签。 我们现在也可以：
 
-```
+```plain
 **$ git tag -a v0.9 558151a**
 **$ git log --oneline --decorate --graph**
 \* 594f90b (HEAD, tag: v1.0, master) reverted to old class name
@@ -1307,7 +1301,7 @@ origin	git@github.com:github/git-reference.git (push)
 
 例如，假设我们想要与整个世界分享我们的 Hello World 程序。 我们可以在一台服务器上创建一个新仓库（我以 GitHub 为例子）。 它应该会给你一个链接，在这里就是“git@github.com:schacon/hw.git”。 要把它添加到我们的项目以便我们推送以及获取更新，我们可以这样：
 
-```
+```plain
 **$ git remote**
 **$ git remote add github git@github.com:schacon/hw.git**
 **$ git remote -v**
@@ -1323,7 +1317,7 @@ github	git@github.com:schacon/hw.git (push)
 
 Git addeth and Git taketh away. 如果你需要删除一个远端 —— 不再需要它了、项目已经没了，等等 —— 你可以使用 `git remote rm [alias]` 把它删掉。
 
-```
+```plain
 **$ git remote -v**
 github	git@github.com:schacon/hw.git (fetch)
 github	git@github.com:schacon/hw.git (push)
@@ -1361,7 +1355,7 @@ Git 有两个命令用来从某一远端仓库更新。 `git fetch` 会使你与
 
 假设你配置好了一个远端，并且你想要提取更新，你可以首先执行 `git fetch [alias]` 告诉 Git 去获取它有你没有的数据，然后你可以执行 `git merge [alias]/[branch]` 以将服务器上的任何更新（假设有人这时候推送到服务器了）合并到你的当前分支。 那么，如果我是与两三个其他人合作 Hello World 项目，并且想要将我最近连接之后的所有改动拿过来，我可以这么做：
 
-```
+```plain
 **$ git fetch github**
 remote: Counting objects: 4006, done.
 remote: Compressing objects: 100% (1322/1322), done.
@@ -1390,7 +1384,7 @@ From github.com:schacon/hw
 
 想要与他人分享你牛鼻的提交，你需要将改动推送到远端仓库。 执行 `git push [alias] [branch]`，就会将你的 \[branch\] 分支推送成为 \[alias\] 远端上的 \[branch\] 分支。 让我们试试推送我们的主分支到先前添加的“github”远端仓库上去。
 
-```
+```plain
 **$ git push github master**
 Counting objects: 25, done.
 Delta compression using up to 2 threads.
@@ -1405,7 +1399,7 @@ To git@github.com:schacon/hw.git
 
 如果有个像之前创建的“erlang”分支那样的主题分支，想只分享这个，该怎么办呢？你可以相应的只推送该分支。
 
-```
+```plain
 **$ git push github erlang**
 Counting objects: 7, done.
 Delta compression using up to 2 threads.
@@ -1422,7 +1416,7 @@ To git@github.com:schacon/hw.git
 
 当你试图推送到某个以被更新的远端分支时，会出现下面这种情况：
 
-```
+```plain
 **$ git push github master**
 To git@github.com:schacon/hw.git
  ! \[rejected\]        master -> master (non-fast-forward)
@@ -1463,7 +1457,7 @@ fast-forwards' section of 'git push --help' for details.
 
 要过滤你的提交历史，只寻找某个特定作者的提交，你可以使用 `--author` 选项。 例如，比方说我们要找 Git 源码中 Linus 提交的部分。 我们可以执行类似 `git log --author=Linus` 的命令。 这个查找是大小写敏感的，并且也会检索电子邮箱地址。 我在此例中使用 `-[number]` 选项，以限制结果为最近 \[number\] 次的提交。
 
-```
+```plain
 **$ git log --author=Linus --oneline -5**
 81b50f3 Move 'builtin-\*' into a 'builtin/' subdirectory
 3bb7256 make "index-pack" a built-in
@@ -1478,7 +1472,7 @@ b532581 make "git unpack-file" a built-in
 
 如果你要指定一个你感兴趣的日期范围以过滤你的提交，可以执行几个选项 —— 我用 `--since` 和 `--before`，但是你也可以用 `--until` 和 `--after`。 例如，如果我要看 Git 项目中三周前且在四月十八日之后的所有提交，我可以执行这个（我还用了 `--no-merges` 选项以隐藏合并提交）：
 
-```
+```plain
 **$ git log --oneline --before={3.weeks.ago} --after={2010-04-18} --no-merges**
 5469e2d Git 1.7.1-rc2
 d43427d Documentation/remote-helpers: Fix typos and improve language
@@ -1497,7 +1491,7 @@ b6c8d2d Documentation/remote-helpers: Add invocation section
 
 你或许还想根据提交注释中的某个特定短语查找提交记录。可以用 `--grep` 选项。 比如说我知道有个提交是有关使用 P4EDITOR 环境变量，又想回忆起那个改动是啥样子的 —— 我可以用 `--grep` 选项找到该提交。
 
-```
+```plain
 $ git log --grep=P4EDITOR --no-merges
 commit 82cea9ffb1c4677155e3e2996d76542502611370
 Author: Shawn Bohrer
@@ -1517,7 +1511,7 @@ Git 会对所有的 `--grep` 和 `--author` 参数作逻辑或。 如果你用 `
 
 如果我查找注释内容含有 “p4 depo”的提交，我得到了三个提交：
 
-```
+```plain
 **$ git log --grep="p4 depo" --format="%h %an %s"**
 ee4fd1a Junio C Hamano Merge branch 'master' of git://repo.or.cz/git/fastimport
 da4a660 Benjamin Sergeant git-p4 fails when cloning a p4 depo.
@@ -1526,7 +1520,7 @@ da4a660 Benjamin Sergeant git-p4 fails when cloning a p4 depo.
 
 如果我加上 `--author=Hausmann` 参数，与进一步过滤上述结果到 Simon 的唯一提交相反， 它会告诉我所有 Simon 的提交，或者注释中有“p4 demo”的提交：
 
-```
+```plain
 **$ git log --grep="p4 depo" --format="%h %an %s" --author="Hausmann"**
 cdc7e38 Simon Hausmann Make it possible to abort the submission of a change to Pe
 f5f7e4a Simon Hausmann Clean up the git-p4 documentation
@@ -1545,7 +1539,7 @@ e96e400 Simon Hausmann git-p4: Fix submit user-interface.
 
 不过，如果加上 `--all-match`，结果就是我想要的了：
 
-```
+```plain
 **$ git log --grep="p4 depo" --format="%h %an %s" --author="Hausmann" --all-match**
 1cd5738 Simon Hausmann Make incremental imports easier to use by storing the p4 d
 ```
@@ -1556,7 +1550,7 @@ e96e400 Simon Hausmann git-p4: Fix submit user-interface.
 
 如果你写的提交注释都极度糟糕怎么办？或者，如果你要找某个函数是何时引入的，某些变量是在哪里开始被使用的？ 你可以告诉 Git 在每个提交之间的差值中查找特定字符串。 例如，如果我们想要找出哪个提交修改出了类似函数名“userformat\_find\_requirements”， 我们可以执行（注意在“-S”与你要找的东东之间没有“=”）：
 
-```
+```plain
 **$ git log -Suserformat\_find\_requirements**
 commit 5b16360330822527eac1fa84131d185ff784c9fb
 Author: Johannes Gilger
@@ -1582,7 +1576,7 @@ Date:   Tue Apr 13 22:31:12 2010 +0200
 
 每个提交都是项目的一个快照。由于每个提交都记录它所基于的快照，Git 能够经常对它们求差值，并以补丁形式向你展示。 这意味着，对任意提交，你都可以获取该提交给项目引入补丁。 你可以用 `git show [SHA]` 加上某个特定的提交 SHA 获取，或者执行 `git log -p`， 它会告诉 Git 输出每个提交之后的补丁。这是个总结某一分支或者两个提交之间都发生了神马的好途径。
 
-```
+```plain
 $ git log -p --no-merges -2
 commit 594f90bdee4faf063ad07a4a6f503fdead3ef606
 Author: Scott Chacon <schacon@gmail.com>
@@ -1631,7 +1625,7 @@ index d053cc8..9103e27 100644
 > 显示每个提交引入的改动的差值统计
 
 如果 `-p` 选项对你来说太详细了，你可以用 `--stat` 总结这些改动。 这是不用 `-p`，而用 `--stat` 选项时，同一份日志的输出。
-```
+```plain
 
 $ git log --stat --no-merges -2
 commit 594f90bdee4faf063ad07a4a6f503fdead3ef606
@@ -1662,7 +1656,7 @@ Date:   Fri Jun 4 12:58:53 2010 +0200
 最后，要查看两个提交快照的绝对改动，你可以用 `git diff` 命令。 这在两个主要情况中广为使用 —— 查看两个分支彼此之间的差值，和查看自发布或者某个旧历史点之后都有啥变了。让我们看看这俩情况。
 
 你仅需执行 `git diff [version]`（或者你给该发布打的任何标签）就可以查看自最近发布之后的改动。 例如，如果我们想要看看自 v0.9 发布之后我们的项目改变了啥，我们可以执行 `git diff v0.9`
-```
+```plain
 
 $ git diff v0.9
 diff --git a/README b/README
@@ -1693,7 +1687,7 @@ index bb86f00..192151c 100644
 
 ```
 正如 `git log`，你可以给它加上 `--stat` 参数。
-```
+```plain
 
 $ git diff v0.9 --stat
  README  |    2 +-
@@ -1702,11 +1696,11 @@ $ git diff v0.9 --stat
 
 ```
 要比较两个不同的分支，你可以执行类似 `git diff branchA branchB` 的命令。 不过它的问题在于它会完完全全按你说的作 —— 它会直接给你个补丁文件，该补丁能够将甲分支的最新快照变成乙分支的最新快照的样子。 这意味着如果两个分支已经产生分歧 —— 奔往两个不同方向了 —— 它会移除甲分支中引入的所有工作，然后累加乙分支中的所有工作。 这大概不是你要的吧 —— 你想要不在甲分支中的乙分支的改动。所以你真的需要的是两个分支叉开去时，和最新的乙分支的差别。 所以，如果我们的历史记录看起来像这样：
-```
+```plain
 
 $ git log --graph --oneline --decorate --all
 ```
-```
+```plain
 \* 594f90b (HEAD, tag: v1.0, master) reverted to old class name
 | \* 1834130 (erlang) added haskell
 | \* ab5ab4c added erlang
@@ -1716,10 +1710,10 @@ $ git log --graph --oneline --decorate --all
 
 ```
 并且，我们想要看“erlang”分支与主分支相比的查别。执行 `git diff master erlang` 会给我们错误的结果。
-```
+```plain
 $ git diff --stat master erlang
 ```
-```
+```plain
  erlang\_hw.erl |    5 +++++
  haskell.hs    |    4 ++++
  ruby.rb       |    4 ++--
@@ -1727,31 +1721,31 @@ $ git diff --stat master erlang
 
 ```
 你可以看到，它加上了 erlang 和 haskell 文件，这确实是我们在该分支中做的， 但是它同时恢复了我们在主分支中改动的 ruby 文件。我们真心想要的只是“erlang”分支中的改动（添加两个文件）。 我们可以通过求两个分支分歧时的共同提交与该分支的差值得到想要的结果：
-```
+```plain
 
 $ git diff --stat 8d585ea erlang
 ```
-```
+```plain
  erlang\_hw.erl |    5 +++++
  haskell.hs    |    4 ++++
  2 files changed, 9 insertions(+), 0 deletions(-)
 
 ```
 这才是我们在找的，但是我们可不想要每次都要找出两个分支分歧时的那次提交。 幸运的是，Git 为此提供了一个快捷方式。 如果你执行 `git diff master...erlang`（在分支名之间有三个半角的点）， Git 就会自动找出两个分支的共同提交（也被成为合并基础），并求差值。
-```
+```plain
 
 $ git diff --stat master erlang
 ```
-```
+```plain
  erlang\_hw.erl |    5 +++++
  haskell.hs    |    4 ++++
  ruby.rb       |    4 ++--
  3 files changed, 11 insertions(+), 2 deletions(-)
 ```
-```
+```plain
 $ git diff --stat master...erlang
 ```
-```
+```plain
  erlang\_hw.erl |    5 +++++
  haskell.hs    |    4 ++++
  2 files changed, 9 insertions(+), 0 deletions(-)
@@ -1760,18 +1754,18 @@ $ git diff --stat master...erlang
 几乎每一次你要对比两个分支的时候，你都会想用三个点的语法，因为它通常会给你你想要的。
 
 顺带提一句，你还可以让 Git 手工计算两次提交的合并基础（第一个共同的祖提交），即 `git merge-base` 命令：
-```
+```plain
 $ git merge-base master erlang
 ```
-```
+```plain
 8d585ea6faf99facd39b55d6f6a3b3f481ad0d3d
 ```
 所以你执行下面这个也跟 `git diff master...erlang` 一样：
 
-```
+```plain
 $ git diff --stat $(git merge-base master erlang) erlang
 ```
-```
+```plain
  erlang\_hw.erl |    5 +++++
  haskell.hs    |    4 ++++
  2 files changed, 9 insertions(+), 0 deletions(-)

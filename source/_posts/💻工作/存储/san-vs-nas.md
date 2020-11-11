@@ -6,7 +6,7 @@ tags:
   - 协议
   - Linux
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
 date: 2018-09-07 12:27:56
 ---

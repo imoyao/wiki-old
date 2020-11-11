@@ -4,10 +4,10 @@ toc: true
 tags:
   - ceph
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
   - CEPH
-  - 大话Ceph
+  - 大话 Ceph
 date: 2020-05-23 11:02:28
 ---
 

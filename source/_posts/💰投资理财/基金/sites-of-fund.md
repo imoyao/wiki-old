@@ -4,7 +4,7 @@ toc: true
 tags:
   - 基金
 categories:
-  - "\U0001F4B0投资理财"
+  - "\U0001F4B0 投资理财"
   - 基金
 date: 2020-08-12 12:27:56
 ---
@@ -20,7 +20,7 @@ date: 2020-08-12 12:27:56
 ### 集思录
 
 收费贴
-```
+```plain
 问题前面添加：wx
 https://www.jisilu.cn/wx/question/259050
 收费贴评论

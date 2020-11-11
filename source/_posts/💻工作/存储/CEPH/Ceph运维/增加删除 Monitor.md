@@ -1,10 +1,10 @@
 ---
 title: 增加删除 Monitor
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
   - CEPH
-  - Ceph运维
+  - Ceph 运维
 ---
 # 1. 介绍
 

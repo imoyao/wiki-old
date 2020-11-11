@@ -1,10 +1,10 @@
 ---
 title: 块存储(RBD)搭建
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
   - CEPH
-  - Ceph运维
+  - Ceph 运维
 ---
 # 1. 管理存储池
 ## 1.1  创建存储池

@@ -6,7 +6,7 @@ tags:
   - exec
   - TODO
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - "\U0001F40DPython"
   - 辨析
 date: 2017-11-17 15:23:17
@@ -18,7 +18,7 @@ Python 动态执行字符串代码片段（也可以是文件）， 一般会用
 
 ## exec 方法
 
-注意：`exec` 是一个语法声明，不是一个函数。也就是说和`if`、`for`一样。它的作用是可以支持Python代码的动态执行。
+注意：`exec` 是一个语法声明，不是一个函数。也就是说和`if`、`for`一样。它的作用是可以支持 Python 代码的动态执行。
 
 官方文档对于 exec 的解释
 > This statement supports dynamic execution of Python code.

@@ -1,10 +1,10 @@
 ---
-title: python 装饰器
+title: Python 装饰器✨
 toc: true
 tags:
   - 装饰器
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - "\U0001F40DPython"
   - 高阶知识点
 date: 2020-08-29 12:27:56
@@ -17,8 +17,7 @@ Python 2.2 开始提供了装饰器（decorator），装饰器作为修改函数
 
 ## 装饰器
 
-
-装饰器本质上就是一个函数，这个函数接收其他函数作为参数，并将其以一个新的修改后的函数进行替换。概念比较抽象，一起来看两个装饰器的例子。
+装饰器本质上就是一个函数，这个函数接收其他函数作为参数传递，并将其以一个新的修改后的函数进行嵌套。概念比较抽象，一起来看两个装饰器的例子。
 
 ### 装饰器的概念
 
@@ -426,7 +425,7 @@ which should return
 *   **You cannot un-decorate a function.** (There are hacks to create decorators that can be removed, but nobody uses them.) So once a function is decorated, it’s decorated for all the code.
 *   Decorators wrap functions, which can make them hard to debug.
 
-## 其他学习资料
+## 推荐阅读
 
 本文较为全面地介绍了装饰器的用法，也给出了装饰器的使用场景和缺点。如果还需要进一步的学习装饰器，可以了解一下下面这几份资料：
 
@@ -434,3 +433,4 @@ which should return
 *   [source code of flask](http://flask.pocoo.org/docs/0.10/)
 *   [Magic decorator syntax for asynchronous code in Python](https://github.com/lalor/Tomorrow)
 *   [A Python decorator that helps ensure that a Python Process is running only once](https://github.com/chriscannon/highlander)
+- [深入浅出 Python 装饰器 | 阿驹](https://aju.space/2016/01/14/dive-into-python-decorator.html)

@@ -8,7 +8,7 @@ tags:
 reward: true
 cover: /images/logos/ceph-logo.svg
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 存储
   - CEPH
   - 2-部署

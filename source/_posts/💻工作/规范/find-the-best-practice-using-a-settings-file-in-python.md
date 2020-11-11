@@ -3,7 +3,7 @@ title: 探索 Python 配置文件的最佳实践
 toc: true
 tags: RESTful
 categories:
-  - "\U0001F4BB工作"
+  - "\U0001F4BB 工作"
   - 规范
 date: 2019-05-26 12:27:56
 ---
