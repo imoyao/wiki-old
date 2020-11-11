@@ -16,9 +16,9 @@ date: 2020-05-23 18:21:46
 
 从模块上划分为三部分：
 
-> *   **digidiskmap.py** 磁盘名和磁盘位置对应关系模块。
-> *   **digidiskproduct.py** 背板厂商判定模块，包含背板上磁盘位置和 phyid 对应关系，包含背板磁盘灯和磁盘状态对应关系。
-> *   **digidisklight.py** 磁盘灯设置模块。
+*   **digidiskmap.py** 磁盘名和磁盘位置对应关系模块。
+*   **digidiskproduct.py** 背板厂商判定模块，包含背板上磁盘位置和 phyid 对应关系，包含背板磁盘灯和磁盘状态对应关系。
+*   **digidisklight.py** 磁盘灯设置模块。
 
 ## 设计实现说明
 
@@ -145,12 +145,12 @@ date: 2020-05-23 18:21:46
 
 #### 磁盘位置和 phyid
 
-磁盘位置和 phyid 对应关系的获取，目前是通过 sg3_utils 工具包里的 sg_ses 命令来实现。
+磁盘位置和 phyid 对应关系的获取，目前是通过 [sg3_utils](http://www.linuxfromscratch.org/blfs/view/svn/general/sg3_utils.html) 工具包里的 sg_ses 命令来实现。
 
 执行如下命令，将指定的 phyid 对应的 led 灯点亮，获取磁盘位置和 phyid 之间的对应。
-
+```shell
 sg_ses --set=fault --index=phyid sg 设备
-
+```
 *   –set=fault 将 phyid 对应位置的 led 灯设置为 fault 状态（红色常亮状态）
 *   –index=phyid 指定要设置的 phyid。一般来说，phyid 的索引从 0 开始，如果背板有 24 盘位，那么背板的 phyid 就是 0~23。
 *   sg 设备 背板对应的设备，可以通过多种方式获取，最简单的方式是通过 sg3_utils 工具包里的 sg_map 命令获取，没有磁盘对应的 sg 设备就是背板的 sg 设备。如下例，/dev/sg4 就是背板的 sg 设备。
