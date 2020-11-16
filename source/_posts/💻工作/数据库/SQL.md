@@ -16,10 +16,10 @@ date: 2019-08-07 12:27:56
 
 主键的值不允许修改，也不允许复用（不能将已经删除的主键值赋给新数据行的主键）。
 
-uuid被认为不是一个好的主键。
+uuid 被认为不是一个好的主键。
 > innodb 中的主键是聚簇索引，会把相邻主键的数据安放在相邻的物理存储上。如果主键不是自增，而是随机的，那么频繁的插入会使 innodb 频繁地移动磁盘块，而影响写入性能。
 
-参见：[uuid作为主键，还是用自增呢？ - 知乎](https://www.zhihu.com/question/43500172)
+参见：[uuid 作为主键，还是用自增呢？ - 知乎](https://www.zhihu.com/question/43500172)
 
 SQL（Structured Query Language)，标准 SQL 由 ANSI 标准委员会管理，从而称为 ANSI SQL。各个 DBMS 都有自己的实现，如 PL/SQL、Transact-SQL 等。
 
