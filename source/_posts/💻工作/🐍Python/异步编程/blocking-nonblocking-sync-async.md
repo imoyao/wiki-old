@@ -1,13 +1,17 @@
 ---
-title: 同步/异步与阻塞和非阻塞的区别？
+title: 同步/异步与阻塞/非阻塞的区别？
 tags:
-  - 网络编程
-  - TODO
+  - 异步
+  - 同步
+  - 并行
+  - 并发
+  - 阻塞
 categories:
   - "\U0001F4BB 工作"
   - "\U0001F40DPython"
-  - 高阶知识点
-date: 2019-10-23 11:16:53
+  - 异步编程
+date: 2020-11-12 11:16:53
+toc: true
 ---
 几个经常容易混淆的概念。特别是像异步与非阻塞，在某些情况下这两个术语常常混用。下面就我谈谈自己对这四个概念的理解，也解释了异步与非阻塞这两个词为何会形影不离。希望对这些概念迷惑，学习 Python 协程、并发相关的朋友有所帮助。
 
@@ -67,13 +71,29 @@ date: 2019-10-23 11:16:53
 
 **由上述可知，现在大多数文档或者大家所说的异步，其主要目的其实是为了让请求方不必因为该次请求而阻塞以提高请求方的工作效率，所以非阻塞与异步两词就如孪生兄弟般形影不离甚至出现了相互代替的现象。** 我们也可以得知，绝大多数时候，程序单元的级别能够囊括独立子程序单元的情况下，才会有所谓的异步，比如要借助多协程、多线程、多进程来实现异步程序。
 
+{% note success no-icon %}
+**异步编程**
+以进程、线程、协程、函数/方法作为执行任务程序的基本单位，结合回调、事件循环、信号量等机制，以提高程序整体执行效率和并发能力的编程方式。
+{% endnote %}
+
+#### 难点
+
+“程序有自己的想法”。因为执行顺序的不可预料性，我们对某个时间点正在发生的事件不可准确预知。尤其在并行情况下就显得更加复杂和艰难。
+
+所以，几乎所有的异步框架都将异步编程模型**简化**：**一次只允许处理一个事件**。故而有关异步的讨论几乎都集中在了单线程内。**一旦采取异步编程，每个异步调用必须“足够小”**，不能耗时太久。如何拆分异步任务成了难题。
+
+- 程序下一步行为往往依赖上一步执行结果，如何知晓上次异步调用已完成并获取结果？
+- 回调（Callback）成了必然选择。那又需要面临“回调地狱”的折磨。
+- 同步代码改为异步代码，必然破坏代码结构。
+- 解决问题的逻辑也要转变，不再是一条路走到黑，需要精心安排异步任务。
+
 ## 并行与并发
 
 ### 并行（parallelism）
-并行的关键是你有**同时处理执行**多个任务的能力。判断程序是否处于并行的状态，就看同一时刻是否有超过一个“工作单位”在运行就好了。所以，单线程永远无法达到并行状态。
+并行的关键是程序有**同时**处理执行多个任务的能力。判断程序是否处于并行的状态，就看同一时刻是否有超过一个“工作单位”在运行就好了。所以，单线程永远无法达到并行状态。
 
 ### 并发（concurrency）
-并发指的是程序的“结构”。并发的关键是程序有处理多个任务的能力，不一定要同时。当我们说这个程序是并发的，实际上，这句话应当表述成“这个程序采用了支持并发的设计”。好，既然并发指的是人为设计的结构，那么怎样的程序结构才叫做支持并发的设计？
+并发指的是程序的“结构”。并发的关键是程序有**处理多个任务**的能力，不一定要同时。当我们说这个程序是并发的，实际上，这句话应当表述成“这个程序采用了支持并发的设计”。好，既然并发指的是人为设计的结构，那么怎样的程序结构才叫做支持并发的设计？
 
 正确的并发设计的标准是：*使多个操作可以在重叠的时间段内进行*(two tasks can start, run, and complete in overlapping time periods)。
 
@@ -106,39 +126,19 @@ date: 2019-10-23 11:16:53
 
 ## 总结
 
-我们在理解以上四个概念的时候，一定别以固化的思维去理解，别一提到上述概念想到的就是 I/O，就是单体应用，甚至是还将多个层次混为一谈，那是不可取的。一个程序单元可以在某些情况下是阻塞的，可以在某些情况下是非阻塞的，可以在某些时候是同步的，可以在某些时候是异步的，这都没有确切的定性。
+我们在理解以上概念的时候，一定别以固化的思维去理解，别一提到上述概念想到的就是 I/O，就是单体应用，甚至是还将多个层次混为一谈，那是不可取的。一个程序单元可以在某些情况下是阻塞的，可以在某些情况下是非阻塞的，可以在某些时候是同步的，可以在某些时候是异步的，这都没有确切的定性。
 
 根据上文的解释，大家还可以自行理解一下“异步阻塞”、“异步非阻塞”、“同步非阻塞”、“同步阻塞”这四种模式各自是怎样的情景？为了完成同样的功能，针对不同的应用目的，选择哪种模式才是最合适的？哪些模式是完全没必要存在于任何程序中的？哪些模式是可以被任何程序都可以采用的？在应对大规模并发的时候，这四种模式应该各自如何扩展才能应对挑战？
 
-## 参考阅读
+## 参考链接
 [并发与并行的区别是什么？ - 知乎](https://www.zhihu.com/question/33515481)
 [还在疑惑并发和并行？ - laike9m's blog](https://laike9m.com/blog/huan-zai-yi-huo-bing-fa-he-bing-xing,61/)
 [大话同步/异步、阻塞/非阻塞](https://ring0.me/2014/11/sync-async-blocked/)
-
 [关于同步/异步 VS 阻塞/非阻塞的一点体会](https://baiweiblog.wordpress.com/tag/non-blocking/)
-
-[Synchronous vs Asynchronous](http://www.cs.unc.edu/~dewan/242/s06/notes/ipc/node9.html)
-
-[I/O Concept – Blocking/Non-Blocking VS Sync/Async](https://blogs.msdn.microsoft.com/csliu/2009/08/27/io-concept-blockingnon-blocking-vs-syncasync/)
-
 [同步，异步，阻塞，非阻塞等关系轻松理解](https://github.com/calidion/calidion.github.io/issues/40)
-
+[Synchronous vs Asynchronous](http://www.cs.unc.edu/~dewan/242/s06/notes/ipc/node9.html)
+[I/O Concept – Blocking/Non-Blocking VS Sync/Async](https://blogs.msdn.microsoft.com/csliu/2009/08/27/io-concept-blockingnon-blocking-vs-syncasync/)
 [深入理解并发/并行，阻塞/非阻塞，同步/异步](https://blog.csdn.net/sinat_35512245/article/details/53836580)
-
 [迄今为止把同步/异步/阻塞/非阻塞/BIO/NIO/AIO 讲的这么清楚的好文章](https://mp.weixin.qq.com/s/0W9aHAGqyTfPkyOPF-Z_Xw)
-
 [怎样理解阻塞非阻塞与同步异步的区别？](https://www.zhihu.com/question/19732473)
-
 [关于同步、异步与阻塞、非阻塞的理解](关于同步、异步与阻塞、非阻塞的理解)
-
-[I/O 多路复用技术（multiplexing）是什么？](https://www.zhihu.com/question/28594409/answer/52763082)
-[背景知识 什么是进程 进程调度 并发与并行 同步\异步\阻塞\非阻塞 进程的创建与结束 multiprocess 模块 进程池和 mutiprocess.Poll - 充电宝宝 - 博客园](https://www.cnblogs.com/16795079a/p/10445071.html)
-[Python 番外之 阻塞非阻塞，同步与异步，i/o 模型 - 小新 gg - 博客园](https://www.cnblogs.com/xiaoxinfengjixuchui/p/5698337.html)
-[Python 中异步协程的使用方法介绍 | 静觅](https://cuiqingcai.com/6160.html)
-[深入理解 Python 异步编程(上) - 简书](https://www.jianshu.com/p/794c7887b0cb)
-[阿驹](https://aju.space/)
-[Python 异步编程入门 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2019/11/python-asyncio.html)
-[从 asyncio 简单实现看异步是如何工作的 | ipfans's Blog](https://www.4async.com/2016/02/2016-02-03-simple-implement-asyncio-to-understand-how-async-works/)
-[Python async/await 入门 | ipfans's Blog](https://www.4async.com/2015/08/2015-08-14-introduction-to-async-and-await/)
-### TODO: 翻译此系列文章
-[系列文章 | Asynchronous programming. Blocking I/O and non-blocking I/O](https://luminousmen.com/post/asynchronous-programming-blocking-and-non-blocking
