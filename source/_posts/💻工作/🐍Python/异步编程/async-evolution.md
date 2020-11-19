@@ -6,7 +6,7 @@ categories:
   - "\U0001F4BB 工作"
   - "\U0001F40DPython"
   - 异步编程
-date: 2020-11-10 11:16:53
+date: 2020-11-04 11:16:53
 ---
 
 如今，地球上最发达、规模最庞大的计算机程序，莫过于因特网。而从 CPU 的时间观中可知，**网络 I/O 是最大的 I/O 瓶颈**，除了宕机没有比它更慢的。所以，诸多异步框架都对准的是网络 I/O。
@@ -156,6 +156,7 @@ Python 中 `time.sleep` 是阻塞的，都知道使用它要谨慎，但在多�
 ```python
 def non_blocking_way():
     sock = socket.socket()
+    # https://docs.python.org/zh-cn/3/library/socket.html#socket.socket.setblocking
     sock.setblocking(False)
     try:
         sock.connect(('example.com', 80))
@@ -186,10 +187,6 @@ def non_blocking_way():
 
     return response
 ```
-```plain
-blocking_way (10, 'sync_way', 0.1429271697998047)
-non_blocking_way (10, 'sync_way', 8.619038343429565)
-```
 
 注：总体耗时约 4.3 秒。
 
@@ -198,7 +195,12 @@ non_blocking_way (10, 'sync_way', 8.619038343429565)
 在我的实验中，非阻塞消耗明显大于阻塞消耗。
 {% endnote %}
 
-上图第 9 行代码**sock.setblocking(False)**告诉 OS，让 socket 上阻塞调用都改为非阻塞的方式。之前我们说到，非阻塞就是在做一件事的时候，不阻碍调用它的程序做别的事情。上述代码在执行完 \*\*sock.connect() \*\*和 **sock.recv()** 后的确不再阻塞，可以继续往下执行请求准备的代码或者是执行下一次读取。
+```plain
+blocking_way (10, 'sync_way', 0.1429271697998047)
+non_blocking_way (10, 'sync_way', 8.619038343429565)
+```
+
+上图第 9 行代码**sock.setblocking(False)**告诉 OS，让 socket 上阻塞调用都改为非阻塞的方式。之前我们说到，非阻塞就是在做一件事的时候，不阻碍调用它的程序做别的事情。上述代码在执行完 `sock.connect() `和 **sock.recv()** 后的确不再阻塞，可以继续往下执行请求准备的代码或者是执行下一次读取。
 
 代码变得更复杂也是上述原因所致。第 11 行要放在**try**语句内，是因为**socket**在发送非阻塞连接请求过程中，系统底层也会抛出异常。**connect()**被调用之后，立即可以往下执行第 15 和 16 行的代码。
 
@@ -263,7 +265,7 @@ pass
 
 注：总体耗时约 0.45 秒。
 
-上述执行结果令人振奋。在单线程内用 **事件循环+回调** 搞定了 10 篇网页同时下载的问题。这，已经是**异步编程**了。虽然有一个 for 循环顺序地创建 Crawler 实例并调用\*\* fetch\*\* 方法，但是**fetch** 内仅有**connect()**和注册可写事件，而且从执行时间明显可以推断，多个下载任务确实在同时进行！
+上述执行结果令人振奋。在单线程内用 **事件循环+回调** 搞定了 10 篇网页同时下载的问题。这，已经是**异步编程**了。虽然有一个 for 循环顺序地创建 Crawler 实例并调用` fetch` 方法，但是**fetch** 内仅有**connect()**和注册可写事件，而且从执行时间明显可以推断，多个下载任务确实在同时进行！
 
 上述代码异步执行的过程：
 

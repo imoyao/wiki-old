@@ -6,7 +6,7 @@ categories:
   - "\U0001F4BB 工作"
   - "\U0001F40DPython"
   - 异步编程
-date: 2020-11-10 11:16:53
+date: 2020-11-01 11:16:53
 ---
 本系列以[深入理解 Python 异步编程| 阿驹](https://aju.space/2017/07/31/Drive-into-python-asyncio-programming-part-1.html)所写内容为向导，记录本人学习异步编程的过程。
 
