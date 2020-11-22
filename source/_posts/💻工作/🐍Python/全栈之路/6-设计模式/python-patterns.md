@@ -22,3 +22,6 @@ date: 2020-06-08 21:41:49
 ## 观点
 [Python 里没有接口，如何写设计模式？ - 知乎](https://www.zhihu.com/question/20685467)
 [为何大量设计模式在动态语言中不适用? - 知乎](https://www.zhihu.com/question/63734103)
+
+## 代码
+[Meteorix/python-design-patterns: Python设计模式](https://github.com/Meteorix/python-design-patterns)

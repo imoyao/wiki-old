@@ -101,9 +101,13 @@ a=A()
 
 ```
 
-这里先理解下函数参数里面的 self 和 cls.这个 self 和 cls 是对类或者实例的绑定,对于一般的函数来说我们可以这么调用`foo(x)`,这个函数就是最常用的,它的工作跟任何东西(类,实例)无关.对于实例方法,我们知道在类里每次定义方法的时候都需要绑定这个实例,就是`foo(self, x)`,为什么要这么做呢?因为实例方法的调用离不开实例,我们需要把实例自己传给函数,调用的时候是这样的`a.foo(x)`(其实是`foo(a, x)`).类方法一样,只不过它传递的是类而不是实例,`A.class_foo(x)`.注意这里的 self 和 cls 可以替换别的参数,但是 Python 的约定是这俩,还是不要改的好.
+这里先理解下函数参数里面的 self 和 cls.这个 self 和 cls 是对类或者实例的绑定,对于一般的函数来说我们可以这么调用`foo(x)`,这个函数就是最常用的,它的工作跟任何东西(类,实例)无关.对于实例方法,我们知道在类里每次定义方法的时候都需要绑定这个实例,就是`foo(self, x)`,为什么要这么做呢?因为实例方法的调用离不开实例,我们需要把实例自己传给函数,调用的时候是这样的`a.foo(x)`(其实是`foo(a, x)`).类方法一样,只不过它传递的是类而不是实例,`A.class_foo(x)`.注意这里的 self 和 cls 可以替换别的参数,但是 Python 的约定是这俩,还是不要改的好。
 
-对于静态方法其实和普通的方法一样，不需要对谁进行绑定，唯一的区别是调用的时候需要使用`a.static_foo(x)`或者`A.static_foo(x)`来调用。
+对于实例方法，调用时会把实例`instance`作为第一个参数传递给self参数。因此，调用`instance.foo(1)`时输出了实例ik的地址。
+
+对于类方法，调用时会把类`class`作为第一个参数传递给cls参数。因此，调用`instance.class_foo(1)`时输出了`class`类型信息，所以可以通过类也可以通过实例来调用类方法。
+
+对于静态方法，调用时并不需要传递类或者实例。其实，静态方法很像我们在类外定义的函数，只不过静态方法可以通过类`A.static_foo(x)`或者实例`a.static_foo(x)`来调用而已。
 
 | \\      | 实例方法     | 类方法            | 静态方法            |
 | :------ | :------- | :------------- | :-------------- |
@@ -111,7 +115,7 @@ a=A()
 | A       | 不可用      | A.class_foo(x) | A.static_foo(x) |
 
 更多关于这个问题:
-1. http://stackoverflow.com/questions/136097/what-is-the-difference-between-staticmethod-and-classmethod-in-python
+1. [python - Difference between staticmethod and classmethod - Stack Overflow](https://stackoverflow.com/questions/136097/difference-between-staticmethod-and-classmethod)
 2. https://realpython.com/blog/python/instance-class-and-static-methods-demystified/
 3. [Python 实例方法、类方法和静态方法_Leo 的博客-CSDN 博客](https://blog.csdn.net/lihao21/article/details/79762681)
 ```python
@@ -192,8 +196,6 @@ print p1.name  # [1]
 print p2.name  # [1]
 print Person.name  # [1]
 ```
-
-~~参考:http://stackoverflow.com/questions/6470428/catch-multiple-exceptions-in-one-line-except-block~~
 
 ## Python 自省与反射
 
@@ -286,18 +288,18 @@ AttributeError: myClass instance has no attribute '__superprivate'
 http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
 
 ## 迭代器和生成器
-![容器、可迭代 、迭代器、生成器](https://images2017.cnblogs.com/blog/999584/201709/999584-20170927122209153-2033684386.png)
+![容器、可迭代 、迭代器、生成器](/images/2033684386.png)
 - 迭代器
-它是一个带状态的对象，它能在你调用 next()方法的时候返回容器中的下一个值，任何实现了`__iter__`和`__next__()`（python2 中实现 next()）方法的对象都是迭代器，`__iter__`返回迭代器自身，`__next__`返回容器中的下一个值，如果容器中没有更多元素了，则抛出 StopIteration 异常。
+它是一个带状态的对象，它能在你调用 `next()`方法的时候返回容器中的下一个值，任何实现了`__iter__()`和`__next__()`（python2 中实现 next()）方法的对象都是迭代器，`__iter__`返回迭代器自身，`__next__`返回容器中的下一个值，如果容器中没有更多元素了，则抛出 StopIteration 异常。
 
 - 生成器(generator)
-生成器其实是一种特殊的迭代器，不过这种迭代器更加优雅。它不需要再像上面的类一样写`__iter__()`和`__next__()`方法了，只需要一个 yiled 关键字。 生成器一定是迭代器（反之不成立），因此任何生成器也是以一种懒加载的模式生成值。
+生成器其实是一种特殊的迭代器，不过这种迭代器更加优雅。它不需要再像上面的类一样写`__iter__()`和`__next__()`方法了，只需要一个 `yiled` 关键字。 生成器一定是迭代器（反之不成立），因此任何生成器也是以一种懒加载的模式生成值。
 [Python 迭代器，生成器--精华中的精华 - Winter_Ding - 博客园](https://www.cnblogs.com/deeper/p/7565571.html)
 [完全理解 Python 迭代对象、迭代器、生成器 - FooFish-Python 之禅](https://foofish.net/iterators-vs-generators.html)
 [如何更好地理解 Python 迭代器和生成器？ - 知乎](https://www.zhihu.com/question/20829330)
 [python 生成器和迭代器有这篇就够了 - 战争热诚 - 博客园](https://www.cnblogs.com/wj-1314/p/8490822.html)
 
-这个是 stackoverflow 里 Python 排名第一的问题，值得一看: http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python
+这个是 stackoverflow 里 Python 排名第一的问题，值得一看: [python - What does the "yield" keyword do? - Stack Overflow](https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do)
 
 这是中文版: http://python.jobbole.com/83610/
 
@@ -393,7 +395,7 @@ http://stackoverflow.com/questions/3394835/args-and-kwargs
 
 ## Python 中重载
 
-引自知乎:http://www.zhihu.com/question/20053359
+引自知乎：[为什么 Python 不支持函数重载？而其他语言大都支持？ - 知乎](https://www.zhihu.com/question/20053359)
 
 函数重载主要是为了解决两个问题。
 
@@ -509,9 +511,9 @@ f()
 # 正常返回
 You get call func!
 ```
-- [What is the difference between __init__ and __call__?](https://stackoverflow.com/questions/9663562/what-is-the-difference-between-init-and-call)
-- [简述 __init__、__new__、__call__ 方法](https://foofish.net/magic-method.html)
-- [Python __call__ special method practical example](https://stackoverflow.com/questions/5824881/python-call-special-method-practical-example)
+- [What is the difference between `__init__` and `__call__`?](https://stackoverflow.com/questions/9663562/what-is-the-difference-between-init-and-call)
+- [简述 `__init__`、`__new__`、`__call__` 方法](https://foofish.net/magic-method.html)
+- [Python `__call__` special method practical example](https://stackoverflow.com/questions/5824881/python-call-special-method-practical-example)
 应用：如 Django 中的表单验证，增强代码的可扩展性和可读性。
 ps: `__metaclass__`是创建类时起作用.所以我们可以分别使用`__metaclass__`,`__new__`和`__init__`来分别在类创建,实例创建和实例初始化的时候做一些小手脚.
 
