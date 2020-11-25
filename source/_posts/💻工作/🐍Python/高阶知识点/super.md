@@ -234,5 +234,5 @@ class LoggingDict(dict):
 [Python: super 没那么简单 - Huang Huang 的博客](https://mozillazg.com/2016/12/python-super-is-not-as-simple-as-you-thought.html)
 [Multiple inheritance and mixin classes in Python - The Digital Cat](https://www.thedigitalcatonline.com/blog/2020/03/27/mixin-classes-in-python/)
 [8.18 利用 Mixins 扩展类功能 — python3-cookbook 3.0.0 文档](https://python3-cookbook.readthedocs.io/zh_CN/latest/c08/p18_extending_classes_with_mixins.html)
-[彻底搞懂python super函数的作用_技术成就梦想，梦想成就未来。-CSDN博客](https://blog.csdn.net/wo198711203217/article/details/84097274)
+[彻底搞懂 python super 函数的作用_技术成就梦想，梦想成就未来。-CSDN 博客](https://blog.csdn.net/wo198711203217/article/details/84097274)
 [Supercharge Your Classes With Python super() – Real Python](https://realpython.com/python-super/)

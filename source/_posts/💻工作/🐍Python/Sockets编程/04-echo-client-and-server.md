@@ -108,7 +108,7 @@ with conn:
 
 ## 打印程序的客户端
 
-现在我们来看下客户端的程序，` echo-client.py`：
+现在我们来看下客户端的程序，`echo-client.py`：
 
 ```python
 #!/usr/bin/env python3

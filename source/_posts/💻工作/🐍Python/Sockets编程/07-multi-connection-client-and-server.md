@@ -104,7 +104,7 @@ def service_connection(key, mask):
 
 这就是多连接服务端的核心部分，`key` 就是从调用 `select()` 方法返回的一个具名元组，它包含了 socket 对象「fileobj」和数据对象。`mask` 包含了就绪的事件
 
-如果 socket 就绪而且可以被读取，` mask & selectors.EVENT_READ` 就为真，`sock.recv()` 会被调用。所有读取到的数据都会被追加到 `data.outb` 里面。随后被发送出去
+如果 socket 就绪而且可以被读取，`mask & selectors.EVENT_READ` 就为真，`sock.recv()` 会被调用。所有读取到的数据都会被追加到 `data.outb` 里面。随后被发送出去
 
 注意 `else:` 语句，如果没有收到任何数据：
 

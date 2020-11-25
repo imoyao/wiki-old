@@ -24,4 +24,4 @@ date: 2020-06-08 21:41:49
 [为何大量设计模式在动态语言中不适用? - 知乎](https://www.zhihu.com/question/63734103)
 
 ## 代码
-[Meteorix/python-design-patterns: Python设计模式](https://github.com/Meteorix/python-design-patterns)
+[Meteorix/python-design-patterns: Python 设计模式](https://github.com/Meteorix/python-design-patterns)
