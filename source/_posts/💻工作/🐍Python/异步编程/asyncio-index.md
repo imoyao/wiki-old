@@ -19,5 +19,6 @@ date: 2020-11-01 11:16:53
 [Python 异步编程入门 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2019/11/python-asyncio.html)
 [从 asyncio 简单实现看异步是如何工作的 | ipfans's Blog](https://www.4async.com/2016/02/2016-02-03-simple-implement-asyncio-to-understand-how-async-works/)
 [Python async/await 入门 | ipfans's Blog](https://www.4async.com/2015/08/2015-08-14-introduction-to-async-and-await/)
+[Python异步IO技术概览 - Zhikai-Yang Space](http://zhikai.pro/post/Python%E5%BC%82%E6%AD%A5IO%E6%8A%80%E6%9C%AF%E6%A6%82%E8%A7%88)
 ### TODO: 翻译此系列文章
 [系列文章 | Asynchronous programming. Blocking I/O and non-blocking I/O](https://luminousmen.com/post/asynchronous-programming-blocking-and-non-blocking

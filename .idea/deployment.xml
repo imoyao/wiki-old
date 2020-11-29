@@ -2,16 +2,6 @@
 <project version="4">
   <component name="PublishConfigData">
     <serverData>
-      <paths name="C1">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-          <excludedPaths>
-            <excludedPath local="true" path="$PROJECT_DIR$/source/pics" />
-          </excludedPaths>
-        </serverdata>
-      </paths>
       <paths name="C2">
         <serverdata>
           <mappings>
@@ -45,6 +35,16 @@
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
+        </serverdata>
+      </paths>
+      <paths name="myDev">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/source/pics" />
+          </excludedPaths>
         </serverdata>
       </paths>
       <paths name="py3flk">
