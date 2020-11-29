@@ -34,7 +34,7 @@ date: 2020-09-15 12:27:56
 
 一种情况是许多投资者在没赚多少和没亏多少的情况下反复进出市场，导致即便投资多年却也是收获寥寥，丢失应有的收益；另一种情况是许多投资者没能克服人性的弱点，追涨杀跌最后站在了建仓的高点上。
 
-![](https://mmbiz.qpic.cn/mmbiz_jpg/1N2Ly5jkVsjj3ZwldZ1E4D6OBMZ4rbjzG7ZtyeUjicjEs6vWmgUt0SmiayWXoiaMiay4SeXewp0upFmJXNRf8qYLDA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![](/images/Snipaste_2020-11-30_00-14-41.png)
 
 注：上图为指数模拟图，不代表具体基金过往及未来走势，亦不作为投资建议
 
@@ -104,7 +104,7 @@ date: 2020-09-15 12:27:56
 
   
 
-![](https://mmbiz.qpic.cn/mmbiz_jpg/1N2Ly5jkVsjj3ZwldZ1E4D6OBMZ4rbjzP84cfwWF8xicauqHG3SMOVLwvXQicVWzzZAnMpgeTuOiaAHfdiczsbFneg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![](/images/Snipaste_2020-11-30_00-14-22.png)
 
 横轴年龄，纵轴收入经济压力
 
