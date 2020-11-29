@@ -61,6 +61,14 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="root@192.168.0.103:22">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping local="$PROJECT_DIR$/node_modules" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="root@192.168.116.21:22">
         <serverdata>
           <mappings>
