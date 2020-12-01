@@ -18,5 +18,5 @@ print (profile)
 print(pow(profile+1, 12) - 1)
 ````
 参见：
-[python IRR公式使用——定投基金收益率计算_huiguixian的专栏-CSDN博客](https://blog.csdn.net/huiguixian/article/details/90714331)
+[python IRR 公式使用——定投基金收益率计算_huiguixian 的专栏-CSDN 博客](https://blog.csdn.net/huiguixian/article/details/90714331)
 [How to calculate IRR in Python :: Coding Finance](https://www.codingfinance.com/post/2018-03-20-irr-py/)
