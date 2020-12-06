@@ -27,7 +27,7 @@ WSL
 
 以管理员身份运行 PowerShell (WIN+X , A)，输入下面的命令，并重启。
 
-    Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linuxplainplain
+    Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linuxplainplainplainplainplain
 
 然后去应用商店下载自己喜欢的 Linux 发行版。
 
@@ -68,21 +68,21 @@ Terminus 是一个高度可配置的终端模拟器，适用于 Windows、macOS 
 
 ### 安装 zsh
 
-    apt update && apt install -y zshplain
+    apt update && apt install -y zshplainplainplain
 
 ### 安装 Oh My Zsh
 
 使用 curl 下载安装
 
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"plainplain
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"plainplainplainplainplain
 
 使用 wget 下载安装
 
-    sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"plain
+    sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"plainplain
 
 Oh My Zsh 安装完成后会提示你设置 zsh 为默认 sehll 。如果没有提示，输入下面的命令进行设置：
 
-    chsh -s $(which zsh)plain
+    chsh -s $(which zsh)plainplain
 
 ### 修改 Oh My Zsh 主题
 
@@ -90,25 +90,25 @@ Oh My Zsh 有很多[内置主题](https://p3terx.com/go/aHR0cHM6Ly9naXRodWIuY29t
 
 我使用的主题是 [ys](https://p3terx.com/go/aHR0cHM6Ly9naXRodWIuY29tL3JvYmJ5cnVzc2VsbC9vaC1teS16c2gvd2lraS90aGVtZXMjeXM=) ，简单实用，不花里胡哨。使用 `sed` 命令一键修改：
 
-    sed -i '/^ZSH_THEME=/c\ZSH_THEME="ys"' ~/.zshrcplain
+    sed -i '/^ZSH_THEME=/c\ZSH_THEME="ys"' ~/.zshrcplainplain
 
 修改后输入下面的命令刷新配置就可以看到效果：
 
-    source ~/.zshrcplain
+    source ~/.zshrcplainplain
 
 ### 安装 Oh My Zsh 插件
 
 安装 [zsh-syntax-highlighting](https://p3terx.com/go/aHR0cHM6Ly9naXRodWIuY29tL3pzaC11c2Vycy96c2gtc3ludGF4LWhpZ2hsaWdodGluZw==) （代码高亮）
 
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugins/zsh-syntax-highlightingplainplainplain
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugins/zsh-syntax-highlightingplainplainplainplain
 
 安装 [zsh-autosuggestions](https://p3terx.com/go/aHR0cHM6Ly9naXRodWIuY29tL3pzaC11c2Vycy96c2gtYXV0b3N1Z2dlc3Rpb25z) （自动建议）
 
-    git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestionsplain
+    git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestionsplainplainplainplain
 
 安装 [zsh-completions](https://p3terx.com/go/aHR0cHM6Ly9naXRodWIuY29tL3pzaC11c2Vycy96c2gtY29tcGxldGlvbnM=) （自动补全）
 
-    git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completionsplain
+    git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completionsplainplain
 
 zsh-completions 插件还需把 `autoload -U compinit && compinit` 添加到`.zshrc`。输入命令可一键添加：
 
@@ -122,7 +122,7 @@ zsh-completions 插件还需把 `autoload -U compinit && compinit` 添加到`.zs
 
 最后应用配置
 
-    source ~/.zshrc
+    source ~/.zshrcplainplain
 
 [The Fuck](https://p3terx.com/go/aHR0cHM6Ly9naXRodWIuY29tL252Ym4vdGhlZnVjaw==)
 ------------------------------------------------------------------------------
@@ -143,7 +143,7 @@ zsh-completions 插件还需把 `autoload -U compinit && compinit` 添加到`.zs
 
 我的 WSL 使用的是 Ubuntu ，按照[官方教程](https://p3terx.com/go/aHR0cHM6Ly9naXRodWIuY29tL252Ym4vdGhlZnVjayNpbnN0YWxsYXRpb24=) 输入以下命令进行安装
 
-    sudo apt updateplainplainplain
+    sudo apt updateplainplainplainplain
     sudo apt install python3-dev python3-pip python3-setuptools
     sudo pip3 install thefuck
 
