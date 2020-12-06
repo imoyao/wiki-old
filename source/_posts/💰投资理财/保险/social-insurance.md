@@ -3,6 +3,7 @@ title: 社保小白科普文
 toc: true
 tags:
   - 社保
+  - 保险
 categories:
   - "\U0001F4B0 投资理财"
 date: 2020-09-10 12:27:56
