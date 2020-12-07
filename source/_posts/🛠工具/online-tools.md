@@ -31,13 +31,6 @@ date: 2020-12-04 23:19:29
 ![](https://cdn.jsdelivr.net/gh/zhaoolee/OnlineToolsBook@master/README/4.png)
 
 
-## 内容同步更新到公众号「0 加 1」
-
-![0加1](https://cdn.jsdelivr.net/gh/zhaoolee/OnlineToolsBook@master/README/jikemiji.png)
-
-公众号 「0 加 1」 由项目作者 zhaoolee 运营, 在 2020 年会同步更新 [OnlineToolsBook (在线工具秘籍)](https://github.com/zhaoolee/OnlineToolsBook) , 欢迎关注~
-
-
 ## 目录(点击以下标题, 可以进入文章页~)
 
 **说明：T 开头的为工具类，S 开头的为资源类**
