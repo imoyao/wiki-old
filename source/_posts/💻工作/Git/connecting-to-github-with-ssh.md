@@ -5,7 +5,8 @@ tags:
 - GitHub
 - Git
 categories:
-- 教程记录
+  - "\U0001F4BB 工作"
+  - Git
 ---
 ## 前言
 终于厌烦了每一次往远程仓库推送代码时都要手动输入用户名和密码验证个人信息，所以配置了一下 SSH 认证。
@@ -43,6 +44,8 @@ SSH 为 Secure Shell 的缩写，由 IETF 的网络小组（Network Working Grou
 
 ## 其他
 
+### 之前使用https克隆
+
 对于已经克隆到本地的 https 类型仓库，我们可以通过修改 git 配置的方式实现 SSH 连接到远程仓库。
 ```plain
 vim .git/config
@@ -50,8 +53,19 @@ vim .git/config
 像下面改 url
 ```plain
 [remote "origin"]
-url = git@github.com:hpcpp/ｈello-world.git
+url = git@github.com:hpcpp/hello-world.git
 ```
+
+### Permission denied
+```bash
+ssh -T git@github.com
+git@github.com: Permission denied (publickey).
+```
+直接添加刚才新增的key
+```bash
+ssh-add ~/.ssh/id_imoyao
+```
+
 ## 参考链接
 [使用 SSH 连接到 GitHub - GitHub Docs](https://docs.github.com/cn/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh)
 [GitHub 教程 SSH keys 配置_LolitaSian-CSDN 博客](https://blog.csdn.net/qq_36667170/article/details/79094257)
