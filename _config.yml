@@ -108,8 +108,8 @@ theme: Wikitten
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/imoyao/wiki.git
-  #  repo: git@github.com:imoyao/wiki.git
+  repo: git@github.com:imoyao/wiki.git
+#  repo: https://github.com/imoyao/wiki.git
 
   branch: master
 # Local Search
