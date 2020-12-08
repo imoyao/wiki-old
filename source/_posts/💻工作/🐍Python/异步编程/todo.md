@@ -53,9 +53,9 @@ do_b()
 ```plain
 
 如果 b 处理依赖于 a 处理的结果，而 a 过程是异步调用，就不知 a 何时能返回值，需要将后续的处理过程以 callback 的方式传递给 a ，让 a 执行完以后可以执行 b。代码变化为：
+```plain
+do_a(do_b())
 ```
-    do_a(do_b())plainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplainplain
-    ```
 
 如果整个流程中全部改为异步处理，而流程比较长的话，代码逻辑就会成为这样：
 ```plain

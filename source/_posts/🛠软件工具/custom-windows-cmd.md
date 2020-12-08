@@ -26,9 +26,9 @@ WSL
 如果你没有使用过 WSL ，那么可以按照[微软官方教程](https://p3terx.com/go/aHR0cHM6Ly9kb2NzLm1pY3Jvc29mdC5jb20vemgtY24vd2luZG93cy93c2wvaW5zdGFsbC13aW4xMA==) 来操作。
 
 以管理员身份运行 PowerShell (WIN+X , A)，输入下面的命令，并重启。
-
-    Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linuxplainplainplainplainplainplainplainplainplainplain
-
+```plain
+    Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+```
 然后去应用商店下载自己喜欢的 Linux 发行版。
 
 ![](https://ximg.now.sh/post/20190814190607.png#vwid=1222&vhei=730)
@@ -67,63 +67,63 @@ Terminus 是一个高度可配置的终端模拟器，适用于 Windows、macOS 
 我使用 Oh My Zsh 倒不是为把终端搞得花里胡哨去装逼，作为一个实用主义者，我非常喜欢自动建议、补全和代码高亮功能，这极大的提高了终端的输入效率。
 
 ### 安装 zsh
-
-    apt update && apt install -y zshplainplainplainplain
-
+```plain
+    apt update && apt install -y zsh
+```
 ### 安装 Oh My Zsh
 
 使用 curl 下载安装
-
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"plainplainplainplainplainplainplain
-
+```plain
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
 使用 wget 下载安装
-
-    sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"plainplainplain
-
+```plain
+    sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
 Oh My Zsh 安装完成后会提示你设置 zsh 为默认 sehll 。如果没有提示，输入下面的命令进行设置：
-
-    chsh -s $(which zsh)plainplainplainplain
-
+```plain
+    chsh -s $(which zsh)
+```
 ### 修改 Oh My Zsh 主题
 
 Oh My Zsh 有很多[内置主题](https://p3terx.com/go/aHR0cHM6Ly9naXRodWIuY29tL3JvYmJ5cnVzc2VsbC9vaC1teS16c2gvd2lraS90aGVtZXM=) ，只需要修改配置文件即可启用。也可以选择安装 [外置主题](https://p3terx.com/go/aHR0cHM6Ly9naXRodWIuY29tL3JvYmJ5cnVzc2VsbC9vaC1teS16c2gvd2lraS9FeHRlcm5hbC10aGVtZXM=) ，比如 [Powerlevel10k](https://p3terx.com/go/aHR0cHM6Ly9naXRodWIuY29tL3JvbWthdHYvcG93ZXJsZXZlbDEwaw==) 。
 
 我使用的主题是 [ys](https://p3terx.com/go/aHR0cHM6Ly9naXRodWIuY29tL3JvYmJ5cnVzc2VsbC9vaC1teS16c2gvd2lraS90aGVtZXMjeXM=) ，简单实用，不花里胡哨。使用 `sed` 命令一键修改：
-
-    sed -i '/^ZSH_THEME=/c\ZSH_THEME="ys"' ~/.zshrcplainplainplainplain
-
+```plain
+    sed -i '/^ZSH_THEME=/c\ZSH_THEME="ys"' ~/.zshrc
+```
 修改后输入下面的命令刷新配置就可以看到效果：
-
-    source ~/.zshrcplainplainplain
-
+```plain
+    source ~/.zshrc
+```
 ### 安装 Oh My Zsh 插件
 
 安装 [zsh-syntax-highlighting](https://p3terx.com/go/aHR0cHM6Ly9naXRodWIuY29tL3pzaC11c2Vycy96c2gtc3ludGF4LWhpZ2hsaWdodGluZw==) （代码高亮）
-
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugins/zsh-syntax-highlightingplainplainplainplainplainplain
-
+```plain
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+```
 安装 [zsh-autosuggestions](https://p3terx.com/go/aHR0cHM6Ly9naXRodWIuY29tL3pzaC11c2Vycy96c2gtYXV0b3N1Z2dlc3Rpb25z) （自动建议）
-
-    git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestionsplainplainplainplainplainplain
-
+```plain
+    git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+```
 安装 [zsh-completions](https://p3terx.com/go/aHR0cHM6Ly9naXRodWIuY29tL3pzaC11c2Vycy96c2gtY29tcGxldGlvbnM=) （自动补全）
-
-    git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completionsplainplain
-
+```plain
+    git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completions
+```
 zsh-completions 插件还需把 `autoload -U compinit && compinit` 添加到`.zshrc`。输入命令可一键添加：
-
-    [ -z "`grep "autoload -U compinit && compinit" ~/.zshrc`" ] && echo "autoload -U compinit && compinit" >> ~/.zshrcplainplainplain
-
+```plain
+    [ -z "`grep "autoload -U compinit && compinit" ~/.zshrc`" ] && echo "autoload -U compinit && compinit" >> ~/.zshrc
+```
 把需要启用的插件写入到配置文件中，使用 `sed` 命令一键操作：
-
-    sed -i '/^plugins=/c\plugins=(git sudo z zsh-syntax-highlighting zsh-autosuggestions zsh-completions)' ~/.zshrcplainplain
-
+```plain
+    sed -i '/^plugins=/c\plugins=(git sudo z zsh-syntax-highlighting zsh-autosuggestions zsh-completions)' ~/.zshrc
+```
 > 如果你有自己想添加的插件，写在括号内即可，插件名称用空格隔开。
 
 最后应用配置
-
-    source ~/.zshrcplainplain
-
+```plain
+    source ~/.zshrc
+```
 [The Fuck](https://p3terx.com/go/aHR0cHM6Ly9naXRodWIuY29tL252Ym4vdGhlZnVjaw==)
 ------------------------------------------------------------------------------
 
@@ -142,19 +142,19 @@ zsh-completions 插件还需把 `autoload -U compinit && compinit` 添加到`.zs
 ### 安装 The Fuck
 
 我的 WSL 使用的是 Ubuntu ，按照[官方教程](https://p3terx.com/go/aHR0cHM6Ly9naXRodWIuY29tL252Ym4vdGhlZnVjayNpbnN0YWxsYXRpb24=) 输入以下命令进行安装
-
-    sudo apt updateplainplainplainplain
+```plain
+    sudo apt update
     sudo apt install python3-dev python3-pip python3-setuptools
     sudo pip3 install thefuck
-
+```
 安装完后输入 `fuck` 会提示将 `eval $(thefuck --alias)` 添加到 `~/.zshrc` 中。此时你只需要再输入一次 `fuck`，就会自动进行添加，这也算你第一次成功体验到 The Fuck 的功能了。
 
 ![](https://ximg.now.sh/post/20190815030056.png#vwid=929&vhei=268)
 
 最后应用配置
-
+```plain
     source ~/.zshrc
-
+```
 尾巴
 --
 

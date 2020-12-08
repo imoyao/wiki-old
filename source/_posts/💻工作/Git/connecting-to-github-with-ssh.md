@@ -44,7 +44,7 @@ SSH 为 Secure Shell 的缩写，由 IETF 的网络小组（Network Working Grou
 
 ## 其他
 
-### 之前使用https克隆
+### 之前使用 https 克隆
 
 对于已经克隆到本地的 https 类型仓库，我们可以通过修改 git 配置的方式实现 SSH 连接到远程仓库。
 ```plain
@@ -61,9 +61,14 @@ url = git@github.com:hpcpp/hello-world.git
 ssh -T git@github.com
 git@github.com: Permission denied (publickey).
 ```
-直接添加刚才新增的key
+直接添加刚才新增的 key
 ```bash
-ssh-add ~/.ssh/id_imoyao
+ssh-add ~/.ssh/id_imoyao  # 替换成你自己的 key
+```
+
+### Could not open a connection to your authentication agent
+```bash
+ssh-agent bash
 ```
 
 ## 参考链接

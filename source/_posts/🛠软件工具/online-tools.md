@@ -2,6 +2,7 @@
 title: 「在线工具秘籍」 OnlineToolsBook
 tags:
   - 工具
+  - 在线工具
 categories:
   - "\U0001F6E0 工具"
 hide: true
@@ -36,9 +37,12 @@ date: 2020-12-04 23:19:29
 **说明：T 开头的为工具类，S 开头的为资源类**
 
 ### 工具类
+[Table Convert Online - table to markdown,csv,json,latex table,excel,sql,xml|MD 表格转换](https://tableconvert.com/)
 
-[在线工具秘籍](https://www.v2fy.com/p/readme-onlinetoolsbook/)
+[Mathpix Snip | 图片转公式](https://mathpix.com/)
 
+[诚华 OCR - 图片转文字 - 免费在线 OCR](https://zhcn.109876543210.com/)
+[T042《墨灵音乐》可以在线编辑本地音乐的在线播放器(教程待编写)](https://www.v2fy.com/p/T042-yinyue-qugeek/)
 
 [T042《墨灵音乐》可以在线编辑本地音乐的在线播放器(教程待编写)](https://www.v2fy.com/p/T042-yinyue-qugeek/)
 
@@ -63,6 +67,7 @@ date: 2020-12-04 23:19:29
 
 [T035《mdnice》老法师教你偷懒完成微信公众号，哔哩哔哩，知乎，掘金发文排版，让 Markdown 排版更 nice！](https://www.v2fy.com/p/T035-mdnice-2020-09-27/)
 
+> [让微信排版变 Nice](https://www.mdnice.com/)
 
 [T034《九格切图》在线制作微信朋友圈九宫格切图](https://www.v2fy.com/p/T034-9-img-split/)
 
