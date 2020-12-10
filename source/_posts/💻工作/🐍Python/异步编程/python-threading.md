@@ -5,91 +5,105 @@ date: 2020-12-04 12:27:56
 tags: 
 - threading
 - TODO
+categories:
+  - "\U0001F4BB 工作"
+  - "\U0001F40DPython"
+  - 异步编程
 ---
 > 翻译自[Laurent Luce](http://www.laurentluce.com/)的博客  
-> 原文名称：Python threads synchronization: Locks, RLocks, Semaphores, Conditions, Events and Queues  
-> 原文连接：[http://www.laurentluce.com/posts/python-threads-synchronization-locks-rlocks-semaphores-conditions-events-and-queues/](http://www.laurentluce.com/posts/python-threads-synchronization-locks-rlocks-semaphores-conditions-events-and-queues/)
+> 原文出处：[Python threads synchronization: Locks, RLocks, Semaphores, Conditions and Queues – Laurent Luce's Blog](http://www.laurentluce.com/posts/python-threads-synchronization-locks-rlocks-semaphores-conditions-events-and-queues/)
 
-本文详细地阐述了 Python 线程同步机制。你将学习到以下有关 Python 线程同步机制：Lock，RLock，Semaphore，Condition，Event 和 Queue，还有 Python 的内部是如何实现这些机制的。 本文给出的程序的源代码可以在[github](https://github.com/laurentluce/python-tutorials/tree/master/threads)上找到。
+本文详细地阐述了 Python 线程同步机制。你将学习到以下有关 Python 线程同步机制：Lock，RLock，Semaphore，Condition，Event 和 Queue，还有 Python 的内部是如何实现这些机制的。 本文给出的程序的源代码可以在[github](https://github.com/imoyao/code-snippets/tree/master/codes/threads)上找到。
+
+{% note primary no-icon %}
+**注意** 
+原作者仓库见[此处 github](https://github.com/laurentluce/python-tutorials/tree/master/threads)，本文写作时根据 python3 做了适当调整。
+
+{% endnote %}
 
 首先让我们来看一个没有使用线程同步的简单程序。
 
-线程（Threading）
--------------
+## 线程（Threading）
 
 我们希望编程一个从一些 URL 中获得内容并且将内容写入文件的程序，完成这个程序可以不使用线程，为了加快获取的速度，我们使用 2 个线程，每个线程处理一半的 URL。
+{% note info %}
+**注**
+完成这个程序的最好方式是使用一个 URL 队列，但是以下面的例子开始更加合适。
+{% endnote %}
 
-注：完成这个程序的最好方式是使用一个 URL 队列，但是以下面的例子开始我的讲解更加合适。
-
-类 FetchUrls 是 threading.Thread 的子类，他拥有一个 URL 列表和一个写 URL 内容的文件对象。
+FetchUrls 类是 threading.Thread 的子类，它拥有一个 URL 列表和一个写 URL 内容的文件对象。
 
 ```python
+import threading
+import urllib.error
+import urllib.request
+
+
 class FetchUrls(threading.Thread):
-  """
-  下载URL内容的线程
-  """
-
-  def __init__(self, urls, output):
     """
-    构造器
-
-    @param urls 需要下载的URL列表
-    @param output 写URL内容的输出文件
+    Thread checking URLs.
     """
-    threading.Thread.__init__(self)
-    self.urls = urls
-    self.output = output
 
-  def run(self):
-    """s
-    实现父类Thread的run方法，打开URL，并且一个一个的下载URL的内容
-    """
-    while self.urls:
-      url = self.urls.pop()
-      req = urllib2.Request(url)
-      try:
-        d = urllib2.urlopen(req)
-      except urllib2.URLError, e:
-        print 'URL %s failed: %s' % (url, e.reason)
-      self.output.write(d.read())
-      print 'write done by %s' % self.name
-      print 'URL %s fetched by %s' % (url, self.name) 
+    def __init__(self, urls, output):
+        """
+        Constructor.
+
+        @param urls list of urls to check
+        @param output file to write urls output
+        """
+        super().__init__()
+        self.urls = urls
+        self.output = output
+
+    def run(self):
+        while self.urls:
+            url = self.urls.pop()
+            req = urllib.request.Request(url)
+            d = None
+            try:
+                d = urllib.request.urlopen(req)
+            except urllib.error.URLError as e:
+                print(('URL %s failed: %s' % (url, e.reason)))
+            if d:
+                content = str(d.read(), encoding="utf8")
+                self.output.write(content)
+                print('write done by %s' % self.name)
+                print('URL %s fetched by %s' % (url, self.name)) 
 ```
 
-main 函数启动了两个线程，之后让他们下载 URL 内容。
+main 函数启动了两个线程，之后让它们下载 URL 内容。
 
 ```python
 def main():
-  # URL列表1
-  urls1 = ['http://www.google.com', 'http://www.facebook.com']
-  # URL列表2
-  urls2 = ['http://www.yahoo.com', 'http://www.youtube.com']
-  f = open('output.txt', 'w+')
-  t1 = FetchUrls(urls1, f)
-  t2 = FetchUrls(urls2, f)
-  t1.start()
-  t2.start()
-  t1.join()
-  t2.join()
-  f.close()
+    # URL列表1
+    urls1 = ['http://www.masantu.com', 'http://www.zhihu.com']
+    # URL列表2
+    urls2 = ['http://www.github.com', 'http://www.example.com']
+    with open('output_no_lock.html', 'w', encoding='utf-8') as f:
+        t1 = FetchUrls(urls1, f)
+        t2 = FetchUrls(urls2, f)
+        t1.start()
+        t2.start()
+        t1.join()
+        t2.join()
+
 
 if __name__ == '__main__':
-  main() 
+    main()
 ```
 
 上面的程序将出现两个线程同时写一个文件的情况，导致文件一团乱码。我们需要找到一种在给定的时间里只有一个线程写文件的方法。实现的方法就是使用像锁（Locks）这样的线程同步机制。
 
-锁（Lock）
--------
+## 锁（Lock）
 
-锁有两种状态：被锁（locked）和没有被锁（unlocked）。拥有 acquire()和 release()两种方法，并且遵循一下的规则：
+锁有两种状态：被锁（locked）和没有被锁（unlocked）。拥有 `acquire()`和 `release()`两种方法，并且遵循以下的规则：
 
 *   如果一个锁的状态是 unlocked，调用 acquire()方法改变它的状态为 locked；
 *   如果一个锁的状态是 locked，acquire()方法将会阻塞，直到另一个线程调用 release()方法释放了锁；
 *   如果一个锁的状态是 unlocked 调用 release()会抛出 RuntimeError 异常；
 *   如果一个锁的状态是 locked，调用 release()方法改变它的状态为 unlocked。
 
-解决上面两个线程同时写一个文件的问题的方法就是：我们给类 FetchUrls 的构造器中传入一个锁（lock），使用这个锁来保护文件操作，实现在给定的时间只有一个线程写文件。下面的代码只显示了关于 lock 部分的修改。完整的源码可以在 threads/lock.py 中找到。
+解决上面两个线程同时写一个文件的问题的方法就是：我们给 FetchUrls 类的构造器中传入一个锁（lock），使用这个锁来保护文件操作，实现在给定的时间只有一个线程写文件。下面的代码只显示了关于 lock 部分的修改。完整的源码可以在 threads/lock.py 中找到。
 
 ```python
 class FetchUrls(threading.Thread):
@@ -104,20 +118,26 @@ class FetchUrls(threading.Thread):
     while self.urls:
       ...
       self.lock.acquire()	#获得lock对象，lock状态变为locked，并且阻塞其他线程获取lock对象（写文件的权利）
-      print 'lock acquired by %s' % self.name
+      print('lock acquired by %s' % self.name)
       self.output.write(d.read())
-      print 'write done by %s' % self.name
-      print 'lock released by %s' % self.name
+      print('write done by %s' % self.name)
+      print('lock released by %s' % self.name)
       self.lock.release()	#释放lock对象，lock状态变为unlocked，其他的线程可以重新获取lock对象
       ...
 
 def main():
-  ...
-  lock = threading.Lock()
-  ...
-  t1 = FetchUrls(urls1, f, lock)
-  t2 = FetchUrls(urls2, f, lock)
-  ... 
+    # URL列表1
+    urls1 = ['https://www.jisilu.cn/', 'http://www.zhihu.com']
+    # URL列表2
+    urls2 = ['http://www.github.com', 'http://www.example.com']
+    lock = threading.Lock()
+    with open('output_lock.html', 'w', encoding='utf-8') as f:
+        t1 = FetchUrls(urls1, f, lock)
+        t2 = FetchUrls(urls2, f, lock)
+        t1.start()
+        t2.start()
+        t1.join()
+        t2.join()
 ```
 
 ![](http://www.laurentluce.com/images/blog/threads/lock.png)
@@ -125,31 +145,31 @@ def main():
 以下是程序的输出：
 
 ```bash
-$ python locks.py
+$ python3 no_lock.py
 lock acquired by Thread-2
 write done by Thread-2
-lock released by Thread-2
-URL http://www.youtube.com fetched by Thread-2
+URL http://www.example.com fetched by Thread-2
+lock release by Thread-2
 lock acquired by Thread-1
 write done by Thread-1
-lock released by Thread-1
-URL http://www.facebook.com fetched by Thread-1
-lock acquired by Thread-2
-write done by Thread-2
-lock released by Thread-2
-URL http://www.yahoo.com fetched by Thread-2
+URL http://www.zhihu.com fetched by Thread-1
+lock release by Thread-1
 lock acquired by Thread-1
 write done by Thread-1
-lock released by Thread-1
-URL http://www.google.com fetched by Thread-1 
+URL https://www.jisilu.cn/ fetched by Thread-1
+lock release by Thread-1
 ```
 
 从上面的输出我们可以看出，写文件的操作被锁保护，没有出现两个线程同时写一个文件的现象。
+{% note danger %}
+**注意**
+此处我们看 Python3.7 的代码的话会有版本差异
+{% endnote %}
 
 下面我们看一下 Python 内部是如何实现锁（Lock）的。我正在使用的 Python 版本是 Linux 操作系统上的 Python 2.6.6。
 
-threading 模块的 Lock()方法就是 thread.allocate\_lock，代码可以在 Lib/threading.py 中找到。
-```plain
+threading 模块的 Lock()方法就是 `thread.allocate_lock`，代码可以在 Lib/threading.py 中找到。
+```python
     Lock = _allocate_lock
     _allocate_lock = thread.allocate_lock 
 ```
@@ -194,7 +214,13 @@ C 的实现在 Python/thread\_pthread.h 中。程序假定你的系统支持 POS
         ...
     } 
 ```
-可以将锁（Lock）与“with”语句一起使用，锁可以作为上下文管理器（context manager）。使用“with”语句的好处是：当程序执行到“with”语句时，acquire()方法将被调用，当程序执行完“with”语句时，release()方法会被调用（译注：这样我们就不用显示地调用 acquire()和 release()方法，而是由“with”语句根据上下文来管理锁的获取和释放。）下面我们用“with”语句重写 FetchUrls 类。
+可以将锁（Lock）与“with”语句一起使用，锁可以作为上下文管理器（context manager）。使用“with”语句的好处是：当程序执行到“with”语句时，acquire()方法将被调用，当程序执行完“with”语句时，release()方法会被调用。
+{% note info %}
+**译注**
+这样我们就不用显式地调用 acquire()和 release()方法，而是由“with”语句根据上下文来管理锁的获取和释放。
+{% endnote %}
+
+下面我们用“with”语句重写 FetchUrls 类。
 
 ```python
 class FetchUrls(threading.Thread):
@@ -203,18 +229,17 @@ class FetchUrls(threading.Thread):
     ...
     while self.urls:
       ...
-      with self.lock:	#使用“with”语句管理锁的获取和释放
-        print 'lock acquired by %s' % self.name
+      with self.lock:	#使用with语句管理锁的获取和释放
+        print('lock acquired by %s' % self.name)
         self.output.write(d.read())
-        print 'write done by %s' % self.name
-        print 'lock released by %s' % self.name
+        print('write done by %s' % self.name)
+        print('lock released by %s' % self.name)
       ... 
 ```
 
-可重入锁（RLock）
------------
+## 可重入锁（RLock）
 
-RLock 是可重入锁（reentrant lock），acquire()能够不被阻塞的被同一个线程调用多次。要注意的是 release()需要调用与 acquire()相同的次数才能释放锁。
+RLock 是可重入锁（reentrant lock），acquire()能够不被阻塞地被同一个线程调用多次。要注意的是 release()需要调用与 acquire()相同的次数才能释放锁。
 
 使用 Lock，下面的代码第二次调用 acquire()时将被阻塞：
 ```python
@@ -228,7 +253,7 @@ RLock 是可重入锁（reentrant lock），acquire()能够不被阻塞的被同
     rlock.acquire()
     rlock.acquire() 
 ```
-RLock 使用的同样是 thread.allocate\_lock()，不同的是他跟踪宿主线程（the owner thread）来实现可重入的特性。下面是 RLock 的 acquire()实现。如果调用 acquire()的线程是资源的所有者，记录调用 acquire()次数的计数器就会加 1。如果不是，就将试图去获取锁。线程第一次获得锁时，锁的拥有者将会被保存，同时计数器初始化为 1。
+RLock 使用的同样是 `thread.allocate_lock()`，不同的是他跟踪宿主线程（the owner thread）来实现可重入的特性。下面是 RLock 的 acquire()实现。如果调用 acquire()的线程是资源的所有者，记录调用 acquire()次数的计数器就会加 1。如果不是，就将试图去获取锁。线程第一次获得锁时，锁的拥有者将会被保存，同时计数器初始化为 1。
 ```python
     def acquire(self, blocking=1):
         me = _get_ident()
@@ -256,12 +281,11 @@ RLock 使用的同样是 thread.allocate\_lock()，不同的是他跟踪宿主�
             ...
         ... 
 ```
-条件（Condition）
--------------
+## 条件（Condition）
 
-条件同步机制是指：一个线程等待特定条件，而另一个线程发出特定条件满足的信号。 解释条件同步机制的一个很好的例子就是生产者/消费者（producer/consumer）模型。生产者随机的往列表中“生产”一个随机整数，而消费者从列表中“消费”整数。完整的源码可以在 threads/condition.py 中找到
+条件同步机制是指：一个线程等待特定条件，而另一个线程发出满足特定条件的信号。解释条件同步机制的一个很好的例子就是生产者/消费者（producer/consumer）模型。生产者随机的往列表中“生产”一个随机整数，而消费者从列表中“消费”整数。完整的源码可以在 [threads/condition.py](https://github.com/imoyao/code-snippets/blob/master/codes/threads/condition.py) 中找到
 
-在 producer 类中，producer 获得锁，生产一个随机整数，通知消费者有了可用的“商品”，并且释放锁。producer 无限地向列表中添加整数，同时在两个添加操作中间随机的停顿一会儿。
+在 `Producer` 类中，生产者获得锁，生产一个随机整数，通知消费者有了可用的“商品”，并且释放锁。生产者无限地向列表中添加整数，同时在两个添加操作中间随机地停顿一会儿。
 
 ```python
 class Producer(threading.Thread):
@@ -632,6 +656,10 @@ class Producer(threading.Thread):
         finally:
             self.__cond.release() 
 ```
+{% note info %}
+What’s different between Condition and Event?
+You can use a Condition when the thread is interested in waiting for something to become true, and once it is true, to have exclusive access to some shared resource.
+{% endnote %}
 队列（Queue）
 ---------
 

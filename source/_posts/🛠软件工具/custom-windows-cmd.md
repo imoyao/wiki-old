@@ -1,11 +1,11 @@
 ---
-title: 一些自己在用的工具的记录及收集
+title: 自定义 Windows10 终端工具配置
 tags:
   - 工具
 categories:
   - "\U0001F6E0 工具"
-hide: true
 date: 2020-04-21 23:19:29
+toc: true
 ---
 前言
 --

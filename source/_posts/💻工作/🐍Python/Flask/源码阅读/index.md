@@ -126,7 +126,7 @@ Flask 是一个基于 Python 开发并且依赖 jinja2 模板和 Werkzeug WSGI �
 [flask 流程详解 — mydocument 1.0 文档](https://pham-nuwens-document.readthedocs.io/zh/latest/flask%E5%AD%A6%E4%B9%A0/flask%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3.html)
 [用尽洪荒之力学习 Flask 源码 - 柯君 - 博客园](https://www.cnblogs.com/kendrick/p/7649772.html)
 [Flask 源码阅读笔记 - 知乎](https://zhuanlan.zhihu.com/p/55583976)
-[阅读Flask源码 - Jiajun的编程随想](https://jiajunhuang.com/articles/2016_09_15-flask_source_code.rst)
+[阅读 Flask 源码 - Jiajun 的编程随想](https://jiajunhuang.com/articles/2016_09_15-flask_source_code.rst)
 
 ## 推荐阅读
 
