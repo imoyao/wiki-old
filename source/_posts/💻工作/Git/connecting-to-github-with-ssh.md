@@ -4,8 +4,11 @@ date: 2020-12-06 10:16:16
 tags:
 - GitHub
 - Git
+- SSH
+- ssh_agent
+- ssh_key
 categories:
-  - "\U0001F4BB 工作"
+  - "U0001F4BB 工作"
   - Git
 ---
 ## 前言
@@ -70,7 +73,61 @@ ssh-add ~/.ssh/id_imoyao  # 替换成你自己的 key
 ```bash
 ssh-agent bash
 ```
+### 每次开机自启动 ssh_agent
+
+**Windows** 上 **自动启动 git-agent** 以及 **自动加载 SSH Key** 的方法
+
+这里的 **自动** 指的是，每次启动 **Git Bash** 这个客户端时
+
+1. 新建文件 `~/.profile` ，即 `/c/Users/XXX/profile` ，然后写入如下内容
+
+```bash
+env=~/.ssh/agent.env  
+  
+agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }  
+  
+agent_start () {  
+ (umask 077; ssh-agent >| "$env")  
+ . "$env" >| /dev/null ; }  
+  
+agent_load_env  
+  
+# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2= agent not running  
+agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)  
+  
+if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then  
+ agent_start  
+ ssh-add  
+ ssh-add ~/.ssh/github  # 如果自定义了 key 的名字或者路径，则需要写在这里  
+ ssh-add ~/.ssh/coding  
+elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then  
+ ssh-add  
+ ssh-add ~/.ssh/github  # 如果自定义了 key 的名字或者路径，则需要写在这里  
+ ssh-add ~/.ssh/coding  
+fi  
+  
+unset env  
+```
+2. 在新开 **Git Bash** 时，如果看到如下信息，表示 **ssh-agent** 打开成功，**SSH Key** 加载成功。
+
+```plain
+Identity added: /c/Users/XXX/.ssh/id_rsa (/c/Users/XXX/.ssh/id_rsa)  
+Identity added: /c/Users/XXX/.ssh/github (/c/Users/XXX/.ssh/github)  
+Identity added: /c/Users/XXX/.ssh/coding (/c/Users/XXX/.ssh/coding)  
+```
+3. 然后，可以通过 `ssh -T` 命令才测试一下，看到如下信息表示添加测试通过。
+
+```bash
+$ ssh -T git@github.com  
+Hi XXX! You've successfully authenticated, but GitHub does not provide shell access.  
+
+$ ssh -T git@git.coding.net  
+Warning: Permanently added the RSA host key for IP address '123.XX.XX.XX' to the list of known hosts.  
+Coding 提示: Hello XXX, You've connected to Coding.net via SSH. This is a personal key.  
+```
+XXX，你好，你已经通过 SSH 协议认证 Coding.net 服务，这是一个个人公钥
 
 ## 参考链接
 [使用 SSH 连接到 GitHub - GitHub Docs](https://docs.github.com/cn/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh)
 [GitHub 教程 SSH keys 配置_LolitaSian-CSDN 博客](https://blog.csdn.net/qq_36667170/article/details/79094257)
+[通过 SSH 操作 Git 终极教程 | zcdll's Blog](https://zcdll.github.io/2018/01/10/git-ssh/)
